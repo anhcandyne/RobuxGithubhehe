@@ -1,0 +1,1098 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Anh Candy Roblox- Mua Bán Acc & Pet Xịn</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff6b6b;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    /* Shop Sections */
+    .shop-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .shop-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #4ecdc4;
+      text-align: center;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Product Cards */
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .buy-card {
+      border-color: #4ecdc4;
+    }
+
+    .buy-card:hover {
+      border-color: #45b7b8;
+    }
+
+    .product-image {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .description {
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+    }
+
+    .buy-price {
+      color: #4ecdc4;
+    }
+
+    /* Buttons */
+    .buy-btn, .sell-btn {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .sell-btn {
+      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    }
+
+    .buy-btn:hover {
+      background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+      transform: scale(1.05);
+    }
+
+    .sell-btn:hover {
+      background: linear-gradient(45deg, #44a08d, #4ecdc4);
+      transform: scale(1.05);
+    }
+
+    /* Product Image Container */
+    .product-image-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .account-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0, 123, 255, 0.9);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Price Container */
+    .price-container {
+      margin-bottom: 1rem;
+    }
+
+    .current-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6b6b;
+      margin-right: 10px;
+    }
+
+    .old-price {
+      font-size: 1rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-section h2 {
+      color: #ff6b6b;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #333;
+    }
+
+    .contact-info strong {
+      color: #4ecdc4;
+    }
+
+    .instructions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .instruction-box {
+      background: linear-gradient(135deg, #ffffff, #f8f9fa);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .instruction-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .buy-instruction {
+      border-color: #ff6b6b;
+    }
+
+    .sell-instruction {
+      border-color: #4ecdc4;
+    }
+
+    .instruction-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .instruction-header h3 {
+      color: #333;
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    .instruction-badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .buy-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    }
+
+    .sell-badge {
+      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    }
+
+    .instruction-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .step-number {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .step-content p {
+      color: #666;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .step-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-content strong {
+      color: #ff6b6b;
+    }
+
+    /* Commitment Section */
+    .commitment-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 3rem 0;
+      margin-top: 2rem;
+    }
+
+    .commitment-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .commitment-section h2 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .commitment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .commitment-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .commitment-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .commitment-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .commitment-item h3 {
+      color: #333;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .commitment-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .trust-badges {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .trust-text {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .trust-text strong {
+      color: #ff6b6b;
+      font-size: 1.4rem;
+    }
+
+    .trust-text span {
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.show {
+      opacity: 1;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-title {
+      margin: 0;
+      color: #333;
+      font-size: 1.3rem;
+    }
+    
+    .modal-close {
+      font-size: 2rem;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      color: #ff6b6b;
+    }
+    
+    .modal-body {
+      padding: 1.5rem;
+    }
+    
+    .modal-type {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .modal-type.buy {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+      color: white;
+    }
+    
+    .modal-type.sell {
+      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+      color: white;
+    }
+    
+    .modal-message {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: #555;
+    }
+    
+    .contact-options h4 {
+      margin-bottom: 1rem;
+      color: #333;
+      text-align: center;
+    }
+    
+    .contact-buttons {
+      display: grid;
+      gap: 0.8rem;
+    }
+    
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      color: white;
+    }
+    
+    .contact-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    .contact-btn.phone {
+      background: linear-gradient(45deg, #27ae60, #2ecc71);
+    }
+    
+    .contact-btn.zalo {
+      background: linear-gradient(45deg, #0084ff, #0073e6);
+    }
+    
+    .contact-btn.tiktok {
+      background: linear-gradient(45deg, #ff0050, #fe2c55);
+      font-size: 1.1rem;
+    }
+    
+    .transaction-guide {
+      margin-top: 1.5rem;
+    }
+    
+    .guide-section {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: left;
+      width: 100%;
+    }
+    
+    .buy-guide {
+      border-left: 4px solid #ff6b6b;
+    }
+    
+    .sell-guide {
+      border-left: 4px solid #4ecdc4;
+    }
+    
+    .guide-section h4 {
+      margin-bottom: 0.8rem;
+      color: #333;
+      font-size: 1rem;
+      text-align: center;
+    }
+    
+    .guide-steps {
+      margin-top: 0.5rem;
+    }
+    
+    .guide-section p {
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .step-num {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .shop-section {
+        padding: 1.5rem;
+      }
+
+      .instructions-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .instruction-box {
+        padding: 1.5rem;
+      }
+
+      .instruction-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .step {
+        gap: 0.8rem;
+      }
+
+      .step-number {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+      }
+
+      .modal-content {
+        width: 95%;
+        margin: 1rem;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .product-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .product-card:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .product-card:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>🍭 Shop Anh Candy Roblox</h1>
+      <p>Chuyên mua bán acc Candy & thu mua pet xịn Không Scam Uy tín số 1</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Random Account Section -->
+    <section class="shop-section">
+      <h2>🎲ACC 100% CÓ CANDY BLOSSOM RANDOM</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="FB_IMG_1750575645916.jpg" alt="ACC RANDOM 9K" class="account-image">
+            <div class="status-badge">Đã bán: 0 | Xem: 47</div>
+          </div>
+          <h3>ACC CANDY BLOSSOM</h3>
+          <div class="price-container">
+            <span class="current-price">50,000</span>
+            <span class="old-price">100,000</span>
+          </div>
+          <button class="buy-btn" onclick="contactSeller('acc-random-9k')">Mua Ngay</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="FB_IMG_1750575724880.jpg" alt="ACC RANDOM GROW A GARDEN" class="account-image">
+            <div class="status-badge">Đã bán: 1 | Xem: 17</div>
+          </div>
+          <h3>ACC CANDY BLOSSOM TRÊN 2 CÂY</h3>
+          <div class="price-container">
+            <span class="current-price">100,000</span>
+            <span class="old-price">150,000</span>
+          </div>
+          <button class="buy-btn" onclick="contactSeller('acc-grow-garden')">Mua Ngay</button>
+        </div>
+
+        
+      </div>
+    </section>
+
+    
+
+    <!-- Thu Mua Pet Section -->
+    <section class="shop-section">
+      <h2>💎 Thu Mua Pet Xịn NẾU BẠN CÓ PET XỊN VỪA MỚI MỞ RA VÀ MUỐN BÁN THÌ HÃY BÁN LẠI CHO CHÚNG TÔI</h2>
+      <div class="products-grid">
+        <div class="product-card buy-card">
+          <div class="product-image">🐉</div>
+          <h3>Dragon Fly</h3>
+          <p class="description">Thu mua với giá cao nhất thị trường</p>
+          <div class="price buy-price">80,000 VNĐ</div>
+          <button class="sell-btn" onclick="contactBuyer('dragon-fly')">Bán Cho Shop</button>
+        </div>
+
+        <div class="product-card buy-card">
+          <div class="product-image">🦝</div>
+          <h3>Raccoon</h3>
+          <p class="description">Thu mua với giá cao nhất thị trường</p>
+          <div class="price buy-price">90,000 VNĐ</div>
+          <button class="sell-btn" onclick="contactBuyer('raccoon')">Bán Cho Shop</button>
+        </div>
+
+        <div class="product-card buy-card">
+          <div class="product-image">🦋</div>
+          <h3>Butterfly</h3>
+          <p class="description">Thu mua với giá cao nhất thị trường</p>
+          <div class="price buy-price">75,000 VNĐ</div>
+          <button class="sell-btn" onclick="contactBuyer('butterfly')">Bán Cho Shop</button>
+        </div>
+
+        <div class="product-card buy-card">
+          <div class="product-image">🐝</div>
+          <h3>Disco Bee</h3>
+          <p class="description">Thu mua với giá cao nhất thị trường</p>
+          <div class="price buy-price">150,000 VNĐ</div>
+          <button class="sell-btn" onclick="contactBuyer('disco-bee')">Bán Cho Shop</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>📞 Liên Hệ</h2>
+      <div class="contact-info">
+        <p>💬 <strong>TikTok:</strong> anhcandyroblox99</p>
+        
+        <div class="instructions-grid">
+          <div class="instruction-box buy-instruction">
+            <div class="instruction-header">
+              <h3>🛒 HƯỚNG DẪN MUA ACC</h3>
+              <span class="instruction-badge buy-badge">Mua hàng</span>
+            </div>
+            <div class="instruction-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Liên hệ Shop</h4>
+                  <p>Liên hệ TikTok: <strong>anhcandyroblox99</strong></p>
+                  <p>Thông báo acc bạn muốn mua</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Thanh toán</h4>
+                  <p>Gửi thẻ cào cho shop</p>
+                  <p>Shop sẽ kiểm tra thẻ cào</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Nhận acc</h4>
+                  <p>Shop gửi thông tin acc</p>
+                  <p>Kiểm tra và đổi mật khẩu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="instruction-box sell-instruction">
+            <div class="instruction-header">
+              <h3>💎 HƯỚNG DẪN BÁN PET</h3>
+              <span class="instruction-badge sell-badge">Thu mua</span>
+            </div>
+            <div class="instruction-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Liên hệ Shop</h4>
+                  <p>Liên hệ TikTok: <strong>anhcandyroblox99</strong></p>
+                  <p>Thông báo pet bạn muốn bán</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Kết bạn</h4>
+                  <p>Gửi tên cho shop để kết bạn</p>
+                  <p>Chờ shop gửi lời mời kết bạn</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Giao dịch</h4>
+                  <p><strong>Đưa pet trước</strong></p>
+                  <p>Shop sẽ đưa thẻ cào sau</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <p>⚡ <strong>Giao dịch nhanh - Uy tín - An toàn</strong></p>
+      </div>
+    </section>
+
+    <!-- Commitment Section -->
+    <section class="commitment-section">
+      <div class="commitment-container">
+        <h2>🛡️ CAM KẾT UY TÍN</h2>
+        <div class="commitment-grid">
+          <div class="commitment-item">
+            <div class="commitment-icon">✅</div>
+            <h3>100% Uy Tín</h3>
+            <p>Đảm bảo account chính chủ, không lừa đảo</p>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">🔒</div>
+            <h3>Bảo Mật Tuyệt Đối</h3>
+            <p>Thông tin khách hàng được bảo mật hoàn toàn</p>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">⚡</div>
+            <h3>Giao Dịch Nhanh</h3>
+            <p>Xử lý đơn hàng trong vòng 5-10 phút</p>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">💰</div>
+            <h3>Giá Cả Hợp Lý</h3>
+            <p>Giá tốt nhất thị trường, có chính sách ưu đãi</p>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">🔄</div>
+            <h3>Hỗ Trợ 24/7</h3>
+            <p>Tư vấn và hỗ trợ khách hàng mọi lúc</p>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">🎯</div>
+            <h3>Đổi Trả Dễ Dàng</h3>
+            <p>Chính sách đổi trả trong 24h nếu có vấn đề</p>
+          </div>
+        </div>
+        <div class="trust-badges">
+          <div class="trust-text">
+            <strong>🏆 SHOP UY TÍN HÀNG ĐẦU</strong><br>
+            <span>Được hàng nghìn khách hàng tin tưởng</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Shop Candy Premium. Mua bán uy tín #1.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Contact functions for buying and selling
+    function contactSeller(productType) {
+      let message = '';
+      
+      switch(productType) {
+        case 'acc-random-9k':
+          message = 'Chào shop! Tôi muốn mua ACC CÓ CÂY CANDY BLOSSOM Ở VƯỜN. Acc còn không ạ?';
+          break;
+        case 'acc-grow-garden':
+          message = 'Chào shop! Tôi muốn mua ACC CANDY BLOSSOM XỊN (100,000VNĐ). Acc còn không ạ?';
+          break;
+        
+      }
+      
+      showContactModal('Mua Account', message, 'buy');
+    }
+
+    function contactBuyer(petType) {
+      let message = '';
+      let price = '';
+      
+      switch(petType) {
+        case 'dragon-fly':
+          message = 'Chào shop! Tôi có Dragon Fly muốn bán cho shop.';
+          price = '80k';
+          break;
+        case 'raccoon':
+          message = 'Chào shop! Tôi có Raccoon muốn bán cho shop.';
+          price = '90k';
+          break;
+        case 'butterfly':
+          message = 'Chào shop! Tôi có Butterfly muốn bán cho shop.';
+          price = '75k';
+          break;
+        case 'disco-bee':
+          message = 'Chào shop! Tôi có Disco Bee muốn bán cho shop.';
+          price = '150k';
+          break;
+      }
+      
+      message += ` Giá thu ${price} đúng không ạ?`;
+      showContactModal('Bán Pet', message, 'sell');
+    }
+
+    function showContactModal(title, message, type) {
+      // Create modal if it doesn't exist
+      let modal = document.getElementById('contactModal');
+      if (!modal) {
+        modal = createContactModal();
+      }
+      
+      // Update modal content
+      const modalTitle = modal.querySelector('.modal-title');
+      const modalMessage = modal.querySelector('.modal-message');
+      const modalType = modal.querySelector('.modal-type');
+      const transactionGuide = modal.querySelector('#transactionGuide');
+      
+      modalTitle.textContent = title;
+      modalMessage.textContent = message;
+      modalType.textContent = type === 'buy' ? '🛒 Mua hàng' : '💰 Bán hàng';
+      modalType.className = `modal-type ${type}`;
+      
+      // Update transaction guide based on type
+      if (type === 'buy') {
+        transactionGuide.innerHTML = `
+          <div class="guide-section buy-guide">
+            <h4>🛒 Hướng Dẫn Mua Acc:</h4>
+            <div class="guide-steps">
+              <p><span class="step-num">1.</span> Nhắn Tin trên TikTok: anhcandyroblox</p>
+              <p><span class="step-num">2.</span> và nhắn tin acc bạn muốn mua</p>
+              <p><span class="step-num">3.</span> Gửi thẻ cào cho shop</p>
+              <p><span class="step-num">4.</span> Shop sẽ kiểm tra & gửi acc cho bạn</p>
+            </div>
+          </div>
+        `;
+      } else {
+        transactionGuide.innerHTML = `
+          <div class="guide-section sell-guide">
+            <h4>💎 Hướng Dẫn Bán Pet:</h4>
+            <div class="guide-steps">
+              <p><span class="step-num">1.</span> nhắn tin TikTok: anhcandyroblox</p>
+              <p><span class="step-num">2.</span> Nhắn tin tên pet bạn muốn bán</p>
+              <p><span class="step-num">3.</span> Gửi tên để shop kết bạn</p>
+              <p><span class="step-num">4.</span> <strong>Xin vui lòng đưa pet trước</strong> - Shop sẽ gửi thẻ cào sau</p>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
+      
+      // Add animation
+      setTimeout(() => {
+        modal.classList.add('show');
+      }, 10);
+    }
+
+    function createContactModal() {
+      const modal = document.createElement('div');
+      modal.id = 'contactModal';
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"></h3>
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="modal-type"></div>
+            <p class="modal-message"></p>
+            <div class="contact-options">
+              <h4>Liên hệ ngay:</h4>
+              <div class="contact-buttons">
+                <a href="https://www.tiktok.com/@anhcandyroblox99" target="_blank" class="contact-btn tiktok">
+                  🎵 TikTok: anhcandyroblox99
+                </a>
+              </div>
+              <div class="transaction-guide" id="transactionGuide">
+                <!-- Guide content will be dynamically inserted here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      return modal;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 300);
+      }
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('contactModal');
+      if (modal && e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Add some interactive animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add loading animation
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+      
+      // Add floating animation to prices
+      const prices = document.querySelectorAll('.price');
+      prices.forEach(price => {
+        setInterval(() => {
+          price.style.transform = 'scale(1.05)';
+          setTimeout(() => {
+            price.style.transform = 'scale(1)';
+          }, 200);
+        }, 3000 + Math.random() * 2000);
+      });
+    });
+
+    // Add scroll animations
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.shop-section');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+          section.style.opacity = '1';
+          section.style.transform = 'translateY(0)';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
