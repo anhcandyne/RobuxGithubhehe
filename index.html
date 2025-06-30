@@ -221,6 +221,257 @@
             font-size: 1.1em;
         }
 
+        /* Scam Check Section - Fixed Layout */
+        .scam-check-section {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 3px solid #e53e3e;
+            overflow: hidden;
+        }
+
+        .scam-header {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .scam-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .scam-subtitle {
+            margin: 0;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .scammer-warning-box {
+            background: #fff5f5;
+            padding: 20px;
+        }
+
+        .warning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .warning-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #c53030;
+        }
+
+        .danger-badge {
+            background: linear-gradient(45deg, #e53e3e, #c53030);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+        }
+
+        .scammer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .scammer-card {
+            background: white;
+            border: 2px solid #fed7d7;
+            border-radius: 10px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(229, 62, 62, 0.1);
+        }
+
+        .scammer-card:hover {
+            transform: translateX(-3px);
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.2);
+            border-color: #e53e3e;
+        }
+
+        .scammer-avatar {
+            font-size: 1.5em;
+            background: #fed7d7;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scammer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .scammer-name {
+            font-weight: bold;
+            color: #c53030;
+            font-size: 1em;
+        }
+
+        .scam-type {
+            color: #742a2a;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        .report-date {
+            color: #a0aec0;
+            font-size: 0.75em;
+        }
+
+        .danger-level {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-align: center;
+            min-width: 40px;
+        }
+
+        .danger-level.high {
+            background: #e53e3e;
+            color: white;
+        }
+
+        .danger-level.medium {
+            background: #ed8936;
+            color: white;
+        }
+
+        .report-scammer-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .report-scammer-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 1.1em;
+        }
+
+        .report-scammer-box p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        .report-scammer-box strong {
+            color: #ffd700;
+        }
+
+        /* Trusted Traders Section */
+        .trusted-traders-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid #38a169;
+        }
+
+        .trusted-traders-section h2 {
+            color: #38a169;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .trusted-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .trusted-item {
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #48bb78;
+            transition: transform 0.3s ease;
+        }
+
+        .trusted-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(56, 161, 105, 0.2);
+        }
+
+        .trader-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .trader-name {
+            font-weight: bold;
+            color: #22543d;
+            font-size: 1.1em;
+        }
+
+        .trader-badge {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .trader-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .success-rate {
+            color: #276749;
+            font-size: 0.9em;
+        }
+
+        .verified {
+            color: #2f855a;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .add-trader-note {
+            background: #e6fffa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #81e6d9;
+            text-align: center;
+        }
+
+        .add-trader-note p {
+            color: #234e52;
+            margin: 0;
+        }
+
         footer {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
@@ -233,6 +484,12 @@
             color: #4a5568;
             font-size: 1.2em;
             font-weight: bold;
+        }
+
+        .safety-note {
+            font-size: 1em !important;
+            color: #e53e3e !important;
+            margin-top: 10px;
         }
 
         /* Modal styles */
@@ -336,7 +593,7 @@
                 opacity: 0;
             }
         }
-        
+
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -345,7 +602,7 @@
             animation: ripple-animation 0.6s ease-out;
             pointer-events: none;
         }
-        
+
         @keyframes ripple-animation {
             to {
                 transform: scale(4);
@@ -380,6 +637,29 @@
             .modal-buttons {
                 flex-direction: column;
             }
+            
+            .scammer-card {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }
+            
+            .danger-level {
+                grid-column: 1 / -1;
+                justify-self: center;
+                margin-top: 8px;
+            }
+            
+            .scam-header h2 {
+                font-size: 1.5em;
+            }
+            
+            .warning-header {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            
         }
     </style>
 </head>
@@ -412,7 +692,7 @@
 
         <div class="trading-section">
             <h2>🔄 Trade Pet</h2>
-            
+
             <div class="trade-option">
                 <div class="trade-card">
                     <h3>🦋 Tôi có Butterfly Cần qua Dragonfly</h3>
@@ -461,8 +741,11 @@
                             <span class="get">Cần qua Disco Bee của bạn</span>
                         </div>
                     </div>
-                    <button class="trade-btn" onclick="requestTrade('1 Butterfly + 1 Dragonfly', '1 Disco Bee')">
-                        Trade Pet nè
+                    <button class="trade-btn" onclick="requestTrade('1 Butterfly + 1 Dragonfly', '1 Disco Bee')"> 
+                        trade pet nè
+                        
+                    
+                            
                     </button>
                 </div>
             </div>
@@ -479,8 +762,96 @@
             </ol>
         </div>
 
+        <div class="scam-check-section">
+            <div class="scam-header">
+                <h2>🛡️ CHECK SCAM</h2>
+                <p class="scam-subtitle">Bảo vệ tài sản khỏi những kẻ lừa đảo</p>
+            </div>
+
+            <div class="scammer-warning-box">
+                <div class="warning-header">
+                    <h3>🚨 DANH SÁCH SCAM</h3>
+                    <span class="danger-badge"> Cảnh báo scam</span>
+                </div>
+                <div class="scammer-list">
+                    <div class="scammer-card">
+                        <div class="scammer-avatar">⚠️</div>
+                        <div class="scammer-info">
+                            <span class="scammer-name">@kingoftheloveklinh</span>
+                            <span class="scam-type">Scam pet - Không trả lại</span>
+                            <span class="report-date">Báo cáo: 28/06/2025</span>
+                        </div>
+                        <div class="danger-level high">HIGH</div>
+                    </div>
+                    <div class="scammer-card">
+                        <div class="scammer-avatar">🚫</div>
+                        <div class="scammer-info">
+                            <span class="scammer-name">@nguyenlinhtrung26</span>
+                            <span class="scam-type"> lấy pet và chặn</span>
+                            <span class="report-date">Báo cáo: 27/06/2025</span>
+                        </div>
+                        <div class="danger-level high">HIGH</div>
+                    </div>
+                    <div class="scammer-card">
+                        <div class="scammer-avatar">❌</div>
+                        <div class="scammer-info">
+                            <span class="scammer-name">@daugiapetgo0</span>
+                            <span class="scam-type"> idol livesteam chuyên gia scam các game nổi</span>
+                            <span class="report-date">Báo cáo: 26/06/2025</span>
+                        </div>
+                        <div class="danger-level medium">MED</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-scammer-box">
+                <h4>📢 BÁO CÁO SCAM</h4>
+                <p>G? Liên hệ ngay <strong>@whitetradepet</strong> với bằng chứng để bảo vệ cộng đồng!</p>
+            </div>
+        </div>
+
+        <div class="trusted-traders-section">
+            <h2>✅ Giao dịch viên uy tín</h2>
+            <div class="trusted-list">
+                <div class="trusted-item">
+                    <div class="trader-info">
+                        <span class="trader-name">@whitetradepet</span>
+                        <span class="trader-badge">🏆 Admin</span>
+                    </div>
+                    <div class="trader-stats">
+                        <span class="success-rate">✅ 100+ giao dịch thành công</span>
+                        <span class="verified">🔒 Đã xác minh</span>
+                    </div>
+                </div>
+                <div class="trusted-item">
+                    <div class="trader-info">
+                        <span class="trader-name">@hnglq404</span>
+                        <span class="trader-badge">⭐ Mod</span>
+                    </div>
+                    <div class="trader-stats">
+                        <span class="success-rate">✅ 50+ giao dịch thành công</span>
+                        <span class="verified">🔒 Đã xác minh</span>
+                    </div>
+                </div>
+                <div class="trusted-item">
+                    <div class="trader-info">
+                        <span class="trader-name">@trusted_trader_example</span>
+                        <span class="trader-badge">💎 VIP</span>
+                    </div>
+                    <div class="trader-stats">
+                        <span class="success-rate">✅ 30+ giao dịch thành công</span>
+                        <span class="verified">🔒 Đã xác minh</span>
+                    </div>
+                </div>
+            </div>
+            <div class="add-trader-note">
+                <p><strong>📝 Lưu ý:</strong> Chỉ trade với những người trong danh sách này để đảm bảo an toàn!</p>
+            </div>
+        </div>
+
         <footer>
             <p>🌟 Whitetradepet X hnglq404 Ghưng 🌟</p>
+            <p class="safety-note">🛡️ Trade an toàn - Tránh xa Scammer</p>
         </footer>
     </div>
 
