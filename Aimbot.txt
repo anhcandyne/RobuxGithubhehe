@@ -1,0 +1,149 @@
+-- ✅ Script aimbot có GUI + Mở khóa bằng key (whitedzbulon)
+-- Dành cho executor mobile như Hydrogen, Arceus X, Delta
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+
+local AimbotEnabled = false
+local CurrentTarget = nil
+local CorrectKey = "whitedzbulon"
+
+-- === GUI mở khóa ===
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local KeyFrame = Instance.new("Frame", ScreenGui)
+KeyFrame.Size = UDim2.new(0, 300, 0, 150)
+KeyFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
+KeyFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+KeyFrame.BorderSizePixel = 0
+
+local KeyLabel = Instance.new("TextLabel", KeyFrame)
+KeyLabel.Size = UDim2.new(1, 0, 0, 30)
+KeyLabel.BackgroundTransparency = 1
+KeyLabel.Text = " Nhập key để mở"
+KeyLabel.TextColor3 = Color3.new(1, 1, 1)
+KeyLabel.Font = Enum.Font.GothamBold
+KeyLabel.TextSize = 18
+
+local KeyBox = Instance.new("TextBox", KeyFrame)
+KeyBox.PlaceholderText = "Nhập key..."
+KeyBox.Size = UDim2.new(1, -40, 0, 35)
+KeyBox.Position = UDim2.new(0, 20, 0, 45)
+KeyBox.Text = ""
+KeyBox.TextColor3 = Color3.new(1, 1, 1)
+KeyBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+KeyBox.Font = Enum.Font.Gotham
+KeyBox.TextSize = 16
+
+local KeyBtn = Instance.new("TextButton", KeyFrame)
+KeyBtn.Text = "Khóa"
+KeyBtn.Size = UDim2.new(1, -40, 0, 35)
+KeyBtn.Position = UDim2.new(0, 20, 0, 90)
+KeyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+KeyBtn.TextColor3 = Color3.new(1, 1, 1)
+KeyBtn.Font = Enum.Font.GothamBold
+KeyBtn.TextSize = 18
+
+-- Hàm mở GUI Aimbot
+local function OpenAimbotGUI()
+	-- Ẩn giao diện nhập key
+	KeyFrame:Destroy()
+
+	-- Tạo GUI Aimbot
+	local frame = Instance.new("Frame", ScreenGui)
+	frame.Size = UDim2.new(0, 250, 0, 150)
+	frame.Position = UDim2.new(0.5, -125, 0.5, -75)
+	frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	frame.BorderSizePixel = 0
+	frame.Active = true
+	frame.Draggable = true
+
+	local title = Instance.new("TextLabel", frame)
+	title.Size = UDim2.new(1, 0, 0, 30)
+	title.BackgroundTransparency = 1
+	title.Text = "🎯 Aimbot Toggle"
+	title.TextColor3 = Color3.new(1, 1, 1)
+	title.Font = Enum.Font.GothamBold
+	title.TextSize = 18
+
+	local textbox = Instance.new("TextBox", frame)
+	textbox.PlaceholderText = "Nhập tên (vd: goku)"
+	textbox.Size = UDim2.new(1, -20, 0, 30)
+	textbox.Position = UDim2.new(0, 10, 0, 35)
+	textbox.TextColor3 = Color3.new(1, 1, 1)
+	textbox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+	textbox.Font = Enum.Font.Gotham
+	textbox.TextSize = 16
+
+	local button = Instance.new("TextButton", frame)
+	button.Text = "Bật Aimbot"
+	button.Size = UDim2.new(1, -20, 0, 40)
+	button.Position = UDim2.new(0, 10, 0, 80)
+	button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+	button.TextColor3 = Color3.new(1, 1, 1)
+	button.Font = Enum.Font.GothamBold
+	button.TextSize = 18
+
+	-- Tìm người có tên giống 1 phần input
+	local function findPlayerByPartialName(partial)
+		partial = partial:lower()
+		for _, player in ipairs(Players:GetPlayers()) do
+			if player.Name:lower():find(partial) then
+				return player
+			end
+		end
+		return nil
+	end
+
+	-- Xử lý bấm nút
+	button.MouseButton1Click:Connect(function()
+		if AimbotEnabled then
+			AimbotEnabled = false
+			CurrentTarget = nil
+			button.Text = "Bật Aimbot"
+			button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+		else
+			local input = textbox.Text
+			local targetPlayer = findPlayerByPartialName(input)
+			if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Head") then
+				CurrentTarget = targetPlayer
+				AimbotEnabled = true
+				button.Text = "Đang Aim: " .. targetPlayer.Name
+				button.BackgroundColor3 = Color3.fromRGB(0, 200, 100)
+			else
+				button.Text = "Không tìm thấy!"
+				button.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+				wait(1.5)
+				button.Text = "Bật Aimbot"
+				button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+			end
+		end
+	end)
+
+	-- Aimbot hoạt động
+	RunService.RenderStepped:Connect(function()
+		if AimbotEnabled and CurrentTarget then
+			if CurrentTarget.Character and CurrentTarget.Character:FindFirstChild("Head") then
+				local camPos = Camera.CFrame.Position
+				local headPos = CurrentTarget.Character.Head.Position
+				Camera.CFrame = CFrame.new(camPos, headPos)
+			end
+		end
+	end)
+end
+
+-- Xử lý nút nhập key
+KeyBtn.MouseButton1Click:Connect(function()
+	if KeyBox.Text == CorrectKey then
+		KeyBtn.Text = " đúgkey!"
+		KeyBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 100)
+		wait(0.5)
+		OpenAimbotGUI()
+	else
+		KeyBtn.Text = "key là whitedzbulon nhé th ngu!"
+		KeyBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+		wait(1.2)
+		KeyBtn.Text = "mở"
+		KeyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+	end
+end)
