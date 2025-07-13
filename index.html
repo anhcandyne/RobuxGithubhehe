@@ -1,24 +1,1209 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>thanh niên say gex</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-    img {
-      width: 50%;
-      height: 100%;
-      object-fit: cover; /* Ảnh phủ kín màn hình, cắt nếu cần */
-      display: block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUỸ BẢO HIỂM ADMIN - Dịch Vụ Tin Cậy</title>
+    <meta name="description" content="Hệ thống quỹ bảo hiểm admin tin cậy, đảm bảo an toàn cho mọi giao dịch. Kiểm tra uy tín admin MMO, thiết kế website và các dịch vụ chuyên nghiệp.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ebf8ff 0%, #ffffff 100%);
+            color: #1a202c;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo h1 {
+            color: #2563eb;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .logo h1:hover {
+            color: #1d4ed8;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+            background: #f7fafc;
+        }
+
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+
+        .account-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .account-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 32px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 16px;
+        }
+
+        .title-line {
+            width: 96px;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Warning Alert */
+        .warning-alert {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .warning-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .warning-content h3 {
+            color: #991b1b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .warning-content p {
+            color: #7f1d1d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .warning-content a {
+            color: #dc2626;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .warning-content a:hover {
+            color: #b91c1c;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 32px;
+        }
+
+        .category-instruction {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 12px 24px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #4a5568;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Admin Sections */
+        .admin-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .admin-category {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .admin-category.hidden {
+            display: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 24px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 16px;
+            border: 4px solid #dbeafe;
+        }
+
+        .admin-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 12px;
+        }
+
+        .admin-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .admin-badge.management {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .admin-badge.mmo-vip {
+            background: #e9d5ff;
+            color: #7c3aed;
+        }
+
+        .admin-badge.mmo {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .admin-badge.website {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+
+        /* Social Section */
+        .social-section {
+            margin-top: 64px;
+            text-align: center;
+        }
+
+        .social-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 24px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .social-btn {
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .social-btn img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 48px 0 24px;
+            margin-top: 64px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section p {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #2d3748;
+            color: #a0aec0;
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            color: #2563eb;
+            font-size: 14px;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Detail Page Styles */
+        .admin-detail-container {
+            background: white;
+            max-width: 100%;
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .back-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 24px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #4b5563;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .admin-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            object-fit: cover;
+        }
+
+        .admin-name {
+            font-size: 30px;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .verified-badge img {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .check-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 16px 0;
+            flex-wrap: nowrap;
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e293b 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 150px;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .check-btn.ok {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e293b 100%);
+        }
+
+        .check-btn.ok:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 6px;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 2px solid #2563eb;
+        }
+
+        .contact-item img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .contact-item span {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .contact-item a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .insurance-section {
+            background: white;
+            border: 3px solid #2563eb;
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .insurance-content-wrapper {
+            flex: 1;
+        }
+
+        .insurance-title {
+            color: #2563eb;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .insurance-content {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .insurance-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e53e3e;
+            margin: 12px 0;
+        }
+
+        .owner-name {
+            color: #e53e3e;
+            font-weight: 700;
+        }
+
+        .insurance-icon {
+            width: 100px;
+            height: 100px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .warning-section {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .warning-title {
+            color: #991b1b;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .warning-text {
+            color: #7f1d1d;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .services-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .services-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 500;
+        }
+
+        .services-list li:last-child {
+            border-bottom: none;
+        }
+
+        .links-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 16px 0;
+                gap: 16px;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .page-title h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .admin-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 16px;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-tab {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .warning-alert {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-buttons {
+                flex-wrap: wrap;
+            }
+
+            .admin-detail-container {
+                padding: 15px;
+            }
+            
+            .admin-avatar {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .admin-name-detail {
+                font-size: 26px;
+                line-height: 1.2;
+                flex-direction: row;
+                gap: 6px;
+            }
+            
+            .check-buttons {
+                flex-direction: row;
+                justify-content: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            
+            .check-btn {
+                min-width: 140px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            
+            .contact-item {
+                padding: 8px;
+                font-size: 14px;
+            }
+            
+            .links-section {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .section-title-detail {
+                font-size: 16px;
+            }
+            
+            .insurance-section {
+                padding: 16px;
+                margin: 16px 0;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .insurance-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 16px;
+            }
+            
+            .insurance-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <img src="Screenshot_2025-07-12-12-34-17-894_com.ss.android.ugc.trill-edit.jpg" alt="Ảnh">
+    <!-- Snowflake Background -->
+    <div id="snowflakes"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>GDVAnhdzz</h1>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link">GIỚI THIỆU</a>
+                    <a href="#" class="nav-link">ĐIỀU KHOẢN</a>
+                    <a href="#" class="nav-link active">QUỸ BẢO HIỂM ADMIN</a>
+                    <a href="#" class="nav-link">CHAT CỘNG ĐỒNG</a>
+                </nav>
+                <button class="account-btn">TÀI KHOẢN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Page Title -->
+            <div class="page-title">
+                <h1>QUỸ BẢO HIỂM ADMIN</h1>
+                <div class="title-line"></div>
+            </div>
+
+            
+            <!-- Warning Alert -->
+            <div class="warning-alert">
+                <div class="warning-icon">⚠️</div>
+                <div class="warning-content">
+                    <h3>LƯU Ý KHI GIAO DỊCH:</h3>
+                    <p>Hãy luôn tuân thủ <strong>Nội Quy Giao Dịch</strong>. Để tránh gặp Fake, Scam. Bạn nhớ Copy "<strong>Link BH</strong>, <strong>Link fb ad</strong>, <strong>Sđt</strong>, <strong>Stk</strong>" gửi vào <a href="https://t.me/THANHHOANG123_BOT" target="_blank">Gr Check Real, Fake, Scam</a>. Bot tele sẽ tự động kiểm tra và trả lời ...!</p>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-section">
+                <p class="category-instruction">Ấn Vào "Tab Dịch Vụ" Để Lọc Admin !!!</p>
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">Tất cả</button>
+                    <button class="category-tab" data-category="website">THIẾT KẾ WEBSITE</button>
+                    <button class="category-tab" data-category="mmo">GDV MMO</button>
+                    <button class="category-tab" data-category="mmo-vip">GDV MMO VIP</button>
+                    <button class="category-tab" data-category="management">Quản Lý - Điều Hành</button>
+                </div>
+            </div>
+
+            <!-- Admin Profiles -->
+            <div class="admin-sections">
+                <!-- Management Section -->
+                <section class="admin-category" data-category="management">
+                    <h2 class="section-title">★ Quản Lý - Điều Hành ★</h2>
+                    <div class="admin-grid">
+                        <div class="admin-card" data-admin="hoangg-anhdzz">
+                            <img src="https://i.imgur.com/wzhCXch.jpeg" alt="Hoàngg Anhdzz" class="admin-image">
+                            <h3 class="admin-name">1. Hoàngg Anhdzz</h3>
+                            <span class="admin-badge management">Quản Lý</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MMO VIP Section -->
+                <section class="admin-category" data-category="mmo-vip">
+                    <h2 class="section-title">★ GDV MMO VIP ★</h2>
+                    <div class="admin-grid">
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/udkmZsb.jpeg" alt="Thiên Bá" class="admin-image">
+                            <h3 class="admin-name">1. Thiên Bá</h3>
+                            <span class="admin-badge mmo-vip">MMO VIP</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/Z5GjPLw.jpeg" alt="Chi Thien" class="admin-image">
+                            <h3 class="admin-name">2. Chi Thien</h3>
+                            <span class="admin-badge mmo-vip">MMO VIP</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MMO Section -->
+                <section class="admin-category" data-category="mmo">
+                    <h2 class="section-title">★ GDV MMO ★</h2>
+                    <div class="admin-grid">
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/kBSzO01.jpeg" alt="Anh Quốc" class="admin-image">
+                            <h3 class="admin-name">1. Anh Quốc</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/jJirYuu.jpeg" alt="Rio Rio" class="admin-image">
+                            <h3 class="admin-name">2. Rio Rio</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/fzqVqU7.jpeg" alt="Nguyen Thang Dấm" class="admin-image">
+                            <h3 class="admin-name">3. Nguyen Thang Dấm</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/08tonsP.jpeg" alt="Phat Tran" class="admin-image">
+                            <h3 class="admin-name">4. Phat Tran</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/hGsKIzG.jpeg" alt="Kiem Dac" class="admin-image">
+                            <h3 class="admin-name">5. Kiem Dac</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/rPwfPHu.jpeg" alt="Hoàng Minh" class="admin-image">
+                            <h3 class="admin-name">6. Hoàng Minh</h3>
+                            <span class="admin-badge mmo">MMO</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Website Design Section -->
+                <section class="admin-category" data-category="website">
+                    <h2 class="section-title">★ THIẾT KẾ WEBSITE ★</h2>
+                    <div class="admin-grid">
+                        <div class="admin-card">
+                            <img src="https://i.imgur.com/Dlb2Tae.jpeg" alt="Thành Hoàng" class="admin-image">
+                            <h3 class="admin-name">1. Thành Hoàng</h3>
+                            <span class="admin-badge website">Website</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Detail Section (Initially Hidden) -->
+            <div id="detail-section" class="admin-detail-container" style="display: none;">
+                <button class="back-btn" onclick="showMainSection()">← Quay lại</button>
+                
+                <div class="admin-header">
+                    <img src="https://i.imgur.com/wzhCXch.jpeg" alt="White" class="admin-avatar">
+                    <h1 class="admin-name">
+                        White
+                        <span class="verified-badge">
+                            <img src="https://i.imgur.com/pdF33Fl.gif" alt="Đã Xác Minh">
+                        </span>
+                    </h1>
+                    <div class="check-buttons">
+                        <a href="https/61575140889246/" target="_blank" class="check-btn">
+                            <span></span>Whitetradepet
+                        </a>
+                        <button class="check-btn ok">
+                            <span></span>đã Xác Minh Uy tín
+                        </button>
+                    </div>
+                    <p class="note-text">
+                        Hi mọi người mình là white đây:)
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="section-title">Thông tin liên Hệ</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/tiktok-52-1086816.png" alt="TikTok">
+                            <span>TikTok:</span>
+                            <a href="https://www.tiktok.com/@gdvanhdzz" target="_blank">@Whitetradepet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insurance-section">
+                    <div class="insurance-content-wrapper">
+                        <h2 class="insurance-title">Quỹ Uy Tín</h2>
+                        
+                        <div class="insurance-content">
+                            Từ Ngày <strong style="color: #e53e3e;">16/6/2025</strong> Từng Giao dịch trade hơn 50 Đơn, Uy Tín Làm nên thương hiệu 
+                        </div>
+                        
+                        <div class="insurance-amount"> White Trade Pet</div>
+                        
+                        <div class="insurance-content">
+                            của <span class="owner-name">WhiteTradepet</span>
+                        </div>
+                    </div>
+                    
+                    <div class="insurance-icon">
+                        <span style="font-size: 48px; color: #10b981;">✓</span>
+                    </div>
+                </div>
+
+                <div class="warning-section">
+                    <h3 class="warning-title">⚠️ Vui lòng kiểm tra kỹ thông tin trước khi giao dịch tránh Fake, Nick Tiktok thật Là @Whitetradepet</h3>
+                    <div class="contact-item">
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="section-title">Dịch Vụ Cung Cấp</h2>
+                    <div class="services-section">
+                        <ul class="services-list">
+                            <li><strong>Trade Pet</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-section">
+                    <h3 class="warning-title">📋 Lưu Ý</h3>
+                    <p class="warning-text">Xin Vui lòng hãy đưa trước, chúng tôi Nói Không với scam..!!!</p>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="section-title">🔗 Comment</h2>
+                    <div class="links-section">
+                        <a href="https:.site/scam/create" class="check-btn" target="_blank">Chiminh: +1 máy admin được tui tin tưởng hehe</a>
+                        <a href="https:.site/trust-services" class="check-btn" target="_blank">ronaldobukumesi: Admin Buku Tao</a>
+                        <a href="https://gdvanhite/post/dieu-khoan.html" class="check-btn" target="_blank">Tradepetuytin: Uy tín nhé ae=)</a>
+                        <a href="ht//www..com/ThaoangReal" class="check-btn" target="_blank">thanhhoang: tao la nguoi giup no lam web</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="social-section">
+                <h3>Liên Hệ Hỗ Trợ</h3>
+                <div class="social-buttons">
+                    <a href="https://gdvanhdzz.site/trust-services" class="social-btn">
+                        <img src="https://img.upanh.tv/2024/11/05/facebook.gif" alt="Facebook">
+                    </a>
+                    <a href="https://zalo.me/" class="social-btn">
+                        <img src="https://i.imgur.com/fIfueSD.png" alt="Zalo">
+                    </a>
+                    <a href="https://t.me/THANHHOANG123_BOT" class="social-btn">
+                        <img src="https://img.upanh.tv/2024/11/05/7ea6iam2aygm0qws.gif" alt="Telegram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GDVAnhdzz</h3>
+                    <p>Hệ thống quỹ bảo hiểm admin tin cậy, đảm bảo an toàn cho mọi giao dịch.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Dịch Vụ</h4>
+                    <ul>
+                        <li><a href="#">Thiết Kế Website</a></li>
+                        <li><a href="#">GDV MMO</a></li>
+                        <li><a href="#">GDV MMO VIP</a></li>
+                        <li><a href="#">Quản Lý</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên Kết</h4>
+                    <ul>
+                        <li><a href="https://gdvanhdzz.site/scam/create">Tố Cáo Lừa Đảo</a></li>
+                        <li><a href="https://gdvanhdzz.site/trust-services">Check Uy Tín</a></li>
+                        <li><a href="https://gdvanhdzz.site/post/dieu-khoan.html">Điều Khoản</a></li>
+                        <li><a href="https://www.facebook.com/ThanhHoangReal">Thiết Kế Website</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GDVAnhdzz. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Snowflake Animation
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '💦';
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            
+            document.getElementById('snowflakes').appendChild(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Create snowflakes periodically
+        setInterval(createSnowflake, 300);
+
+        // Category filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const adminCategories = document.querySelectorAll('.admin-category');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const selectedCategory = this.dataset.category;
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide admin sections
+                    adminCategories.forEach(section => {
+                        if (selectedCategory === 'all' || section.dataset.category === selectedCategory) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                    
+                    console.log('Clicked category-tab:', selectedCategory);
+                });
+            });
+            
+            // Handle image loading errors
+            const adminImages = document.querySelectorAll('.admin-image');
+            adminImages.forEach(img => {
+                img.addEventListener('error', function() {
+                    const name = this.alt;
+                    this.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=3b82f6&color=fff&size=80`;
+                });
+            });
+            
+            // Add click tracking for admin cards
+            document.querySelectorAll('.admin-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    console.log('Clicked admin-card:', this.textContent);
+                    
+                    // Check if it's Hoàng Anh card and show detail page
+                    if (this.textContent.includes('Hoàngg Anhdzz')) {
+                        showDetailSection();
+                    }
+                });
+            });
+        });
+
+        // Function to show detail section
+        function showDetailSection() {
+            document.querySelector('.main').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+            document.querySelector('#detail-section').style.display = 'block';
+        }
+
+        // Function to show main section
+        function showMainSection() {
+            document.querySelector('.main').style.display = 'block';
+            document.querySelector('.footer').style.display = 'block';
+            document.querySelector('#detail-section').style.display = 'none';
+        }
+
+        // Handle window resize for responsive design
+        window.addEventListener('resize', function() {
+            const windowWidth = window.innerWidth;
+            
+            if (windowWidth < 768) {
+                document.body.classList.add('mobile');
+            } else {
+                document.body.classList.remove('mobile');
+            }
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Initialize snowflakes
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createSnowflake, i * 100);
+        }
+
+        // Error handling for images
+        function handleImageError(img) {
+            img.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder';
+            placeholder.textContent = 'Image not available';
+            img.parentNode.insertBefore(placeholder, img);
+        }
+
+        // Utility functions
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Đã sao chép vào clipboard!', 'success');
+            }).catch(() => {
+                showNotification('Không thể sao chép!', 'error');
+            });
+        }
+    </script>
 </body>
-</html>
+  </html>
