@@ -1,56 +1,1069 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Code ASTD Tháng 7/2025</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #000;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 22px;
-      font-style: italic;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #999;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #eee;
-    }
-    .code {
-      font-family: monospace;
-      font-style: italic;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mua Robux - Game Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header Section */
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .package-list-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff6b35;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .package-list-icon i {
+            font-size: 18px;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .payment-method.active {
+            border-color: #ff6b35;
+            background: #fff5f2;
+            color: #ff6b35;
+        }
+
+        .payment-method:hover {
+            border-color: #ff6b35;
+            transform: translateY(-2px);
+        }
+
+        /* Packages Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #ff6b35;
+        }
+
+        .package-image {
+            height: 120px;
+            background: url('1403347641449975808.png') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .robux-badge {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border: 2px solid #ffb347;
+            position: relative;
+            z-index: 2;
+        }
+
+        .robux-badge i {
+            color: #ffb347;
+            font-size: 18px;
+        }
+
+        .package-info {
+            padding: 15px;
+        }
+
+        .package-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .package-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff6b35;
+        }
+
+        .add-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ff6b35;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .add-btn:hover {
+            background: #e55a2b;
+            transform: scale(1.1);
+        }
+
+        /* Account Balance */
+        .account-balance {
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .balance-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .balance-info i {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .balance-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+
+        .balance-amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Shopping Cart */
+        .shopping-cart {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            background: #ff6b35;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: white;
+            color: #ff6b35;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .cart-label {
+            display: block;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .cart-total {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .continue-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .continue-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .continue-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .selected-package {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .selected-package p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .selected-package span {
+            font-weight: 600;
+            color: #ff6b35;
+        }
+
+        .modal-footer {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .cancel-btn, .confirm-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .cancel-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .confirm-btn {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background: #e55a2b;
+        }
+
+        /* Loading Modal */
+        .loading-modal {
+            text-align: center;
+        }
+
+        .loading-content {
+            padding: 40px 20px;
+        }
+
+        .loading-spinner {
+            font-size: 40px;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .loading-content p {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .loading-subtitle {
+            font-size: 14px !important;
+            color: #666 !important;
+            font-weight: normal !important;
+        }
+
+        /* Success Modal */
+        .success-modal .modal-header {
+            text-align: center;
+            padding-bottom: 0;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .success-modal h3 {
+            color: #28a745;
+            margin-bottom: 0;
+        }
+
+        .success-message {
+            font-size: 16px;
+            font-weight: 500;
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .transaction-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .transaction-details p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .transaction-details span {
+            font-weight: 600;
+            color: #28a745;
+        }
+
+        /* Ripple effect */
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            
+            .package-image {
+                height: 100px;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                text-align: center;
+            }
+            
+            .account-balance {
+                margin: 15px 0;
+                padding: 12px;
+            }
+            
+            .balance-info i {
+                font-size: 20px;
+            }
+            
+            .balance-amount {
+                font-size: 18px;
+            }
+            
+            .shopping-cart {
+                padding: 12px 15px;
+                gap: 10px;
+            }
+            
+            .modal {
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .add-btn {
+                align-self: flex-end;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h2 class="section-title">2. Chọn gói</h2>
+            <div class="package-list-icon">
+                <i class="fas fa-list-ul"></i>
+                <span>Danh sách gói</span>
+            </div>
+        </div>
 
-  <h1>I. Code All Star Tower Defense X<br>update 1 tháng 07/2025</h1>
+        <!-- Payment Method Selection -->
+        <div class="payment-methods">
+            <button class="payment-method active" data-method="zingcard">ZingCard</button>
+            <button class="payment-method" data-method="other">ZaloPay / VietQR / ATM / Credit Card</button>
+        </div>
 
-  <table>
-    <tr>
-      <th>Code</th>
-      <th>Quà tặng</th>
-      <th>Thời hạn</th>
-    </tr>
-    <tr>
-      <td class="code">CONCACDOUMAALLSTARS</td>
-      <td>
-        1000 Gems, 1000 Trait Burner, 1 admin Fruit,<br>và 999 Bounded Cube
-      </td>
-      <td>Mới</td>
-    </tr>
-  </table>
+        <!-- Robux Packages -->
+        <div class="packages-grid">
+            <!-- 55 Robux Package -->
+            <div class="package-card" data-robux="55" data-price="20000">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Gói 55 Robux</h3>
+                    <div class="package-footer">
+                        <span class="price">20.000 VND</span>
+                        <button class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- 145 Robux Package -->
+            <div class="package-card" data-robux="145" data-price="50000">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Gói 145 Robux</h3>
+                    <div class="package-footer">
+                        <span class="price">50.000 VND</span>
+                        <button class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 300 Robux Package -->
+            <div class="package-card" data-robux="300" data-price="100000">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Gói 300 Robux</h3>
+                    <div class="package-footer">
+                        <span class="price">100.000 VND</span>
+                        <button class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Balance Display -->
+        <div class="account-balance">
+            <div class="balance-info">
+                <i class="fas fa-wallet"></i>
+                <div class="balance-details">
+                    <span class="balance-label">Số dư tài khoản:</span>
+                    <span class="balance-amount" id="accountBalance">700.000 VND</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping Cart -->
+        <div class="shopping-cart">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="cart-info">
+                <span class="cart-label">Số dư tài khoản:</span>
+                <span class="cart-total" id="cartBalance">700.000 VND</span>
+            </div>
+            <button class="continue-btn" id="continueBtn">
+                <span>Tiếp tục</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Account Input Modal -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Thông tin tài khoản</h3>
+                <button class="close-btn" id="closeAccountModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Vui lòng nhập tên tài khoản game để nạp Robux:</p>
+                <div class="input-group">
+                    <label for="gameUsername">Tên tài khoản game:</label>
+                    <input type="text" id="gameUsername" placeholder="Nhập tên tài khoản của bạn..." required>
+                </div>
+                <div class="selected-package">
+                    <p>Gói đã chọn: <span id="selectedPackage"></span></p>
+                    <p>Số tiền: <span id="selectedPrice"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" id="cancelBtn">Hủy</button>
+                <button class="confirm-btn" id="topupBtn">Nạp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal-overlay" id="loadingModal">
+        <div class="modal loading-modal">
+            <div class="loading-content">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <p>Đang xử lý giao dịch...</p>
+                <p class="loading-subtitle">Vui lòng đợi trong giây lát</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal success-modal">
+            <div class="modal-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Nạp thành công!</h3>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">Nạp thành công!  5 ngày sau Robux sẽ về tài khoản</p>
+                <div class="transaction-details">
+                    <p>Tài khoản: <span id="successUsername"></span></p>
+                    <p>Số Robux: <span id="successRobux"></span></p>
+                    <p>Thời gian nhận: 5 ngày kể từ bây giờ</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm-btn" id="closeSuccessModal">Hoàn thành</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class RobuxStore {
+            constructor() {
+                this.cart = [];
+                this.selectedPackage = null;
+                this.paymentMethod = 'zingcard';
+                this.accountBalance = 700000; // 700,000 VND starting balance
+                
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.updateCartDisplay();
+                this.updateBalanceDisplay();
+            }
+
+            bindEvents() {
+                // Payment method selection
+                document.querySelectorAll('.payment-method').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.paymentMethod = e.target.dataset.method;
+                    });
+                });
+
+                // Package card clicks
+                document.querySelectorAll('.package-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.closest('.add-btn')) {
+                            this.selectPackage(card);
+                        }
+                    });
+                });
+
+                // Add to cart buttons
+                document.querySelectorAll('.add-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const card = e.target.closest('.package-card');
+                        this.addToCart(card);
+                    });
+                });
+
+                // Continue button
+                document.getElementById('continueBtn').addEventListener('click', () => {
+                    if (this.cart.length > 0) {
+                        this.showAccountModal();
+                    }
+                });
+
+                // Modal events
+                this.bindModalEvents();
+            }
+
+            bindModalEvents() {
+                // Account modal
+                document.getElementById('closeAccountModal').addEventListener('click', () => {
+                    this.hideModal('accountModal');
+                });
+
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    this.hideModal('accountModal');
+                });
+
+                document.getElementById('topupBtn').addEventListener('click', () => {
+                    this.processTopup();
+                });
+
+                // Success modal
+                document.getElementById('closeSuccessModal').addEventListener('click', () => {
+                    this.hideModal('successModal');
+                    this.resetCart();
+                });
+
+                // Close modal on overlay click
+                document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            this.hideModal(overlay.id);
+                        }
+                    });
+                });
+
+                // Enter key in username input
+                document.getElementById('gameUsername').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.processTopup();
+                    }
+                });
+            }
+
+            selectPackage(card) {
+                const robux = card.dataset.robux;
+                const price = parseInt(card.dataset.price);
+                
+                this.selectedPackage = {
+                    robux: robux,
+                    price: price,
+                    formattedPrice: this.formatPrice(price)
+                };
+
+                this.showAccountModal();
+            }
+
+            addToCart(card) {
+                const robux = card.dataset.robux;
+                const price = parseInt(card.dataset.price);
+                
+                const existingItem = this.cart.find(item => item.robux === robux);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.push({
+                        robux: robux,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+
+                this.updateCartDisplay();
+                this.showAddAnimation(card);
+            }
+
+            showAddAnimation(card) {
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            }
+
+            updateCartDisplay() {
+                const cartCount = this.cart.reduce((total, item) => total + item.quantity, 0);
+
+                document.querySelector('.cart-count').textContent = cartCount;
+                document.getElementById('cartBalance').textContent = this.formatPrice(this.accountBalance);
+
+                const continueBtn = document.getElementById('continueBtn');
+                continueBtn.disabled = cartCount === 0;
+            }
+
+            showAccountModal() {
+                const modal = document.getElementById('accountModal');
+                const usernameInput = document.getElementById('gameUsername');
+                
+                if (this.selectedPackage) {
+                    document.getElementById('selectedPackage').textContent = `${this.selectedPackage.robux} Robux`;
+                    document.getElementById('selectedPrice').textContent = this.selectedPackage.formattedPrice;
+                } else if (this.cart.length > 0) {
+                    const totalRobux = this.cart.reduce((total, item) => total + (parseInt(item.robux) * item.quantity), 0);
+                    const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                    
+                    document.getElementById('selectedPackage').textContent = `${totalRobux} Robux`;
+                    document.getElementById('selectedPrice').textContent = this.formatPrice(totalPrice);
+                }
+
+                usernameInput.value = '';
+                this.showModal('accountModal');
+                
+                setTimeout(() => {
+                    usernameInput.focus();
+                }, 300);
+            }
+
+            processTopup() {
+                const username = document.getElementById('gameUsername').value.trim();
+                
+                if (!username) {
+                    alert('Vui lòng nhập tên tài khoản game!');
+                    return;
+                }
+
+                // Calculate total cost
+                let totalCost;
+                if (this.selectedPackage) {
+                    totalCost = this.selectedPackage.price;
+                } else {
+                    totalCost = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                }
+
+                // Check if user has enough balance
+                if (totalCost > this.accountBalance) {
+                    alert('Số dư tài khoản không đủ để thanh toán!');
+                    return;
+                }
+
+                // Hide account modal and show loading
+                this.hideModal('accountModal');
+                this.showModal('loadingModal');
+
+                // Simulate processing time
+                setTimeout(() => {
+                    // Deduct balance
+                    this.accountBalance -= totalCost;
+                    this.updateBalanceDisplay();
+                    
+                    this.hideModal('loadingModal');
+                    this.showSuccessModal(username);
+                }, 3000);
+            }
+
+            showSuccessModal(username) {
+                document.getElementById('successUsername').textContent = username;
+                
+                let totalRobux;
+                if (this.selectedPackage) {
+                    totalRobux = this.selectedPackage.robux;
+                } else {
+                    totalRobux = this.cart.reduce((total, item) => total + (parseInt(item.robux) * item.quantity), 0);
+                }
+                
+                document.getElementById('successRobux').textContent = `${totalRobux} Robux`;
+                
+                this.showModal('successModal');
+            }
+
+            showModal(modalId) {
+                document.getElementById(modalId).classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            hideModal(modalId) {
+                document.getElementById(modalId).classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            resetCart() {
+                this.cart = [];
+                this.selectedPackage = null;
+                this.updateCartDisplay();
+            }
+
+            updateBalanceDisplay() {
+                document.getElementById('accountBalance').textContent = this.formatPrice(this.accountBalance);
+                document.getElementById('cartBalance').textContent = this.formatPrice(this.accountBalance);
+            }
+
+            formatPrice(price) {
+                return price.toLocaleString('vi-VN') + ' VND';
+            }
+        }
+
+        // Initialize the store when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new RobuxStore();
+        });
+
+        // Add some visual enhancements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add loading states for buttons
+            const addButtons = document.querySelectorAll('.add-btn');
+            addButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-plus"></i>';
+                    }, 1000);
+                });
+            });
+
+            // Add hover effects for cards
+            const cards = document.querySelectorAll('.package-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#ff6b35';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'transparent';
+                });
+            });
+
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.confirm-btn, .add-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255,255,255,0.5);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
