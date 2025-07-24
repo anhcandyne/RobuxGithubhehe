@@ -41,7 +41,7 @@ mainBorder.Transparency = 1
 
 -- Title
 local title = Instance.new("TextLabel", mainFrame)
-title.Text = "DEV DEV ĐÉO WHITE"
+title.Text = "Ông Tám Kiếm chuyện Hub"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(180, 220, 255)
@@ -51,9 +51,9 @@ title.Position = UDim2.new(0, 20, 0, 0)
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.ZIndex = 10
 
--- Expand Button "+"
+-- Expand Button "Mở"
 local expandButton = Instance.new("TextButton", mainFrame)
-expandButton.Text = "+"
+expandButton.Text = "Mở"
 expandButton.Size = UDim2.new(0, 40, 0, 40)
 expandButton.Position = UDim2.new(1, -90, 0, 10)
 expandButton.Font = Enum.Font.GothamBold
@@ -64,9 +64,9 @@ expandButton.ZIndex = 10
 Instance.new("UICorner", expandButton).CornerRadius = UDim.new(0, 8)
 Instance.new("UIStroke", expandButton).Color = Color3.fromRGB(100, 160, 255)
 
--- Close Button "X"
+-- Close Button "Đóng"
 local closeButton = Instance.new("TextButton", mainFrame)
-closeButton.Text = "x"
+closeButton.Text = "Đóng"
 closeButton.Size = UDim2.new(0, 40, 0, 40)
 closeButton.Position = UDim2.new(1, -45, 0, 10)
 closeButton.Font = Enum.Font.GothamBold
@@ -213,7 +213,7 @@ for i, tab in ipairs(tabNames) do
 	if tab == "Combat" then
 		-- Nút Hitbox
 		local hitboxBtn = Instance.new("TextButton", content)
-		hitboxBtn.Text = "Hitbox Xa: Tắt"
+		hitboxBtn.Text = "Hitbox: Tắt"
 		hitboxBtn.Size = UDim2.new(0, 200, 0, 40)
 		hitboxBtn.Position = UDim2.new(0, 10, 0, 10)
 		hitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -225,12 +225,12 @@ for i, tab in ipairs(tabNames) do
 
 		hitboxBtn.MouseButton1Click:Connect(function()
 			local isActive = toggleHitbox()
-			hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+			hitboxBtn.Text = isActive and "Hitbox: Bật" or "Hitbox: Tắt"
 		end)
 
 		-- Thanh kéo Nhảy Cao
 		local jumpLabel = Instance.new("TextLabel", content)
-		jumpLabel.Text = "Nhảy Cao: 50"
+		jumpLabel.Text = "kéo để con cặc ông tám dài"
 		jumpLabel.Size = UDim2.new(0, 200, 0, 30)
 		jumpLabel.Position = UDim2.new(0, 10, 0, 60)
 		jumpLabel.BackgroundTransparency = 1
@@ -336,18 +336,9 @@ for i, tab in ipairs(tabNames) do
 		-- Nội dung hướng dẫn
 		local guideLabel = Instance.new("TextLabel", content)
 		guideLabel.Text = [[
-Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
-1. **Tab Combat**:
-   - **Hitbox Xa**: Bật/tắt để làm đối thủ to như cái nhà, dễ bắn vcl! 🔥
-   - **Nhảy Cao**: Kéo slider chỉnh độ nhảy (50-200). Nhảy lên trời luôn bro! 🚀
-2. **Tab Script**:
-   - Nhấn "Mở GUI Hitbox Riêng" để tạo GUI độc lập, bật/tắt Hitbox riêng, không đụng tới Hitbox Combat.
-3. **Tab AI Chat**:
-   - Chat "bật" hoặc "tắt" để điều khiển Hitbox Combat. AI siêu khôn, khịa mày tới bến! 😜
-   - Ví dụ: "5 * 3" -> AI tính nhanh hơn crush mày! 😎
-4. **Mẹo Chống Bug**:
-   - Khi nhân vật sắp respawn (kiểu "con đỉ lồn sắp dậy thì" 😝), tắt Hitbox (Combat hoặc GUI riêng), chờ respawn xong bật lại. Tránh bị khối Hitbox đẩy bay lung tung! 💥
-   - Dùng tài khoản phụ, executor xịn (Krnl, Fluxus) để tránh ban nha bro! 😎
+khi con đỉ lồn sắp dậy thì tắt hitbox lên xong bật lại để không bị cái khối hitbox đẩy nhé các tình iu của tám😙
+Tiktok: ongtamkiemchuyen
+Phiên bản script: Beta 1.0 bitch
 ]]
 		guideLabel.Size = UDim2.new(1, -20, 1, -20)
 		guideLabel.Position = UDim2.new(0, 10, 0, 10)
@@ -375,7 +366,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		Instance.new("UICorner", chatHeader).CornerRadius = UDim.new(0, 8)
 		
 		local headerTitle = Instance.new("TextLabel", chatHeader)
-		headerTitle.Text = "AI White Chat"
+		headerTitle.Text = "AI Tám Chat"
 		headerTitle.Size = UDim2.new(1, -20, 1, 0)
 		headerTitle.Position = UDim2.new(0, 10, 0, 0)
 		headerTitle.BackgroundTransparency = 1
@@ -501,7 +492,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 			local message = chatInput.Text:gsub("^%s*(.-)%s*$", "%1")
 			if message ~= "" then
 				createMessage(message, true)
-				chatInput.Text = ""
+				chatInput.Text = "Ông 8"
 				
 				task.wait(0.5)
 				local response = ""
