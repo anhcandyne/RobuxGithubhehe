@@ -4,6 +4,7 @@ local TweenService = game:GetService("TweenService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "FlingGUI"
@@ -40,7 +41,7 @@ mainBorder.Transparency = 1
 
 -- Title
 local title = Instance.new("TextLabel", mainFrame)
-title.Text = "Ông Tám Kiếm Chuyện"
+title.Text = "DEV DEV ĐÉO WHITE"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(180, 220, 255)
@@ -133,7 +134,7 @@ local function switchTab(name)
 	end
 end
 
--- Hitbox Logic
+-- Hitbox Logic (cho tab Combat và AI Chat)
 local HitboxActive = false
 local function toggleHitbox()
 	HitboxActive = not HitboxActive
@@ -153,6 +154,35 @@ local function toggleHitbox()
 		end
 	end
 	return HitboxActive
+end
+
+-- Hitbox Logic (cho GUI riêng trong tab Script)
+local SeparateHitboxActive = false
+local function toggleSeparateHitbox()
+	SeparateHitboxActive = not SeparateHitboxActive
+	for _, plr in ipairs(Players:GetPlayers()) do
+		if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+			local part = plr.Character:FindFirstChild("HumanoidRootPart")
+			if SeparateHitboxActive then
+				part.Size = Vector3.new(45, 45, 45)
+				part.Transparency = 0.75
+				part.Material = Enum.Material.Neon
+				part.CanCollide = false
+			else
+				part.Size = Vector3.new(2, 2, 1)
+				part.Transparency = 1
+				part.Material = Enum.Material.Plastic
+			end
+		end
+	end
+	return SeparateHitboxActive
+end
+
+-- JumpPower Logic
+local function setJumpPower(value)
+	if humanoid then
+		humanoid.JumpPower = value
+	end
 end
 
 for i, tab in ipairs(tabNames) do
@@ -181,7 +211,7 @@ for i, tab in ipairs(tabNames) do
 	content.Parent = tabContent
 
 	if tab == "Combat" then
-		-- Thêm nút Hitbox vào tab Combat
+		-- Nút Hitbox
 		local hitboxBtn = Instance.new("TextButton", content)
 		hitboxBtn.Text = "Hitbox Xa: Tắt"
 		hitboxBtn.Size = UDim2.new(0, 200, 0, 40)
@@ -196,6 +226,111 @@ for i, tab in ipairs(tabNames) do
 		hitboxBtn.MouseButton1Click:Connect(function()
 			local isActive = toggleHitbox()
 			hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+		end)
+
+		-- Thanh kéo Nhảy Cao
+		local jumpLabel = Instance.new("TextLabel", content)
+		jumpLabel.Text = "Nhảy Cao: 50"
+		jumpLabel.Size = UDim2.new(0, 200, 0, 30)
+		jumpLabel.Position = UDim2.new(0, 10, 0, 60)
+		jumpLabel.BackgroundTransparency = 1
+		jumpLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		jumpLabel.Font = Enum.Font.GothamBold
+		jumpLabel.TextSize = 16
+
+		local sliderFrame = Instance.new("Frame", content)
+		sliderFrame.Size = UDim2.new(0, 200, 0, 20)
+		sliderFrame.Position = UDim2.new(0, 10, 0, 90)
+		sliderFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+		Instance.new("UICorner", sliderFrame).CornerRadius = UDim.new(0, 8)
+
+		local sliderBar = Instance.new("Frame", sliderFrame)
+		sliderBar.Size = UDim2.new(0, 0, 1, 0)
+		sliderBar.BackgroundColor3 = Color3.fromRGB(100, 160, 255)
+		Instance.new("UICorner", sliderBar).CornerRadius = UDim.new(0, 8)
+
+		local sliderBtn = Instance.new("TextButton", sliderFrame)
+		sliderBtn.Size = UDim2.new(0, 20, 0, 20)
+		sliderBtn.Position = UDim2.new(0, 0, 0, 0)
+		sliderBtn.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+		sliderBtn.Text = ""
+		Instance.new("UICorner", sliderBtn).CornerRadius = UDim.new(0, 10)
+
+		local isDragging = false
+		sliderBtn.MouseButton1Down:Connect(function()
+			isDragging = true
+		end)
+
+		game:GetService("UserInputService").InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				isDragging = false
+			end
+		end)
+
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+				local mouseX = input.Position.X
+				local frameX = sliderFrame.AbsolutePosition.X
+				local frameWidth = sliderFrame.AbsoluteSize.X
+				local relativeX = math.clamp((mouseX - frameX) / frameWidth, 0, 1)
+				sliderBtn.Position = UDim2.new(relativeX, -10, 0, 0)
+				sliderBar.Size = UDim2.new(relativeX, 0, 1, 0)
+				local jumpValue = 50 + (relativeX * 150) -- Từ 50 đến 200
+				jumpLabel.Text = "Nhảy Cao: " .. math.floor(jumpValue)
+				setJumpPower(jumpValue)
+			end
+		end)
+	elseif tab == "Script" then
+		-- GUI Hitbox riêng
+		local separateHitboxBtn = Instance.new("TextButton", content)
+		separateHitboxBtn.Text = "Mở GUI Hitbox Riêng"
+		separateHitboxBtn.Size = UDim2.new(0, 200, 0, 40)
+		separateHitboxBtn.Position = UDim2.new(0, 10, 0, 10)
+		separateHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		separateHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		separateHitboxBtn.Font = Enum.Font.GothamBold
+		separateHitboxBtn.TextSize = 16
+		Instance.new("UICorner", separateHitboxBtn).CornerRadius = UDim.new(0, 8)
+		Instance.new("UIStroke", separateHitboxBtn).Color = Color3.fromRGB(100, 160, 255)
+
+		separateHitboxBtn.MouseButton1Click:Connect(function()
+			local hitboxGui = Instance.new("ScreenGui")
+			hitboxGui.Name = "SeparateHitboxGUI"
+			hitboxGui.ResetOnSpawn = false
+			hitboxGui.Parent = playerGui
+
+			local hitboxFrame = Instance.new("Frame", hitboxGui)
+			hitboxFrame.Size = UDim2.new(0, 150, 0, 100)
+			hitboxFrame.Position = UDim2.new(0.5, -75, 0.5, -50)
+			hitboxFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			hitboxFrame.Active = true
+			hitboxFrame.Draggable = true
+			Instance.new("UICorner", hitboxFrame).CornerRadius = UDim.new(0, 12)
+
+			local hitboxTitle = Instance.new("TextLabel", hitboxFrame)
+			hitboxTitle.Text = "GUI Hitbox Riêng"
+			hitboxTitle.Size = UDim2.new(1, 0, 0, 30)
+			hitboxTitle.BackgroundTransparency = 1
+			hitboxTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			hitboxTitle.Font = Enum.Font.GothamBold
+			hitboxTitle.TextSize = 16
+			hitboxTitle.TextXAlignment = Enum.TextXAlignment.Center
+
+			local toggleHitboxBtn = Instance.new("TextButton", hitboxFrame)
+			toggleHitboxBtn.Text = "Hitbox: Tắt"
+			toggleHitboxBtn.Size = UDim2.new(0, 120, 0, 40)
+			toggleHitboxBtn.Position = UDim2.new(0.5, -60, 0, 40)
+			toggleHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			toggleHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+			toggleHitboxBtn.Font = Enum.Font.GothamBold
+			toggleHitboxBtn.TextSize = 16
+			Instance.new("UICorner", toggleHitboxBtn).CornerRadius = UDim.new(0, 8)
+			Instance.new("UIStroke", toggleHitboxBtn).Color = Color3.fromRGB(100, 160, 255)
+
+			toggleHitboxBtn.MouseButton1Click:Connect(function()
+				local isActive = toggleSeparateHitbox()
+				toggleHitboxBtn.Text = isActive and "Hitbox: Bật" or "Hitbox: Tắt"
+			end)
 		end)
 	elseif tab == "AI Chat" then
 		-- AI Chat Interface giống ChatGPT
@@ -351,23 +486,42 @@ for i, tab in ipairs(tabNames) do
 				end
 
 				-- Nhận diện và trả lời siêu khôn, lầy lội Gen Z
-				if hasKeywords(lowerMessage, {"hitbox", "con ai ai bật hitbox", "bật hitbox", "mo hitbox"}) then
-					local isActive = toggleHitbox()
-					response = "Thưa cha nội, tao bật Hitbox đây ông 8! 😎 Mày quẩy nát server đi nào! 🔥"
-					-- Cập nhật nút trong tab Combat
-					local combatFrame = tabContent:FindFirstChild("Combat")
-					if combatFrame then
-						local hitboxBtn = combatFrame:FindFirstChildOfClass("TextButton")
-						if hitboxBtn then
-							hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+				if hasKeywords(lowerMessage, {"bật", "bat", "turn on", "on", "hitbox", "con ai ai bật hitbox", "bật hitbox", "mo hitbox"}) then
+					if not HitboxActive then
+						local isActive = toggleHitbox()
+						response = "Thưa cha nội, tao bật Hitbox đây ông 8! 😎 Mày quẩy nát server đi nào! 🔥"
+						-- Cập nhật nút trong tab Combat
+						local combatFrame = tabContent:FindFirstChild("Combat")
+						if combatFrame then
+							local hitboxBtn = combatFrame:FindFirstChildOfClass("TextButton")
+							if hitboxBtn then
+								hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+							end
 						end
+					else
+						response = "Hitbox đang bật rồi, cha nội! 😜 Muốn quẩy tiếp thì cứ hit đi! 😎"
+					end
+				elseif hasKeywords(lowerMessage, {"tắt", "tat", "turn off", "off"}) then
+					if HitboxActive then
+						local isActive = toggleHitbox()
+						response = "Thưa cha nội, tao tắt Hitbox đây ông 8! 😎 Giờ chơi fair đi nha, đồ gà! 😜"
+						-- Cập nhật nút trong tab Combat
+						local combatFrame = tabContent:FindFirstChild("Combat")
+						if combatFrame then
+							local hitboxBtn = combatFrame:FindFirstChildOfClass("TextButton")
+							if hitboxBtn then
+								hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+							end
+						end
+					else
+						response = "Hitbox tắt rồi, cha nội! 😜 Muốn bật lại thì nói tao nghe! 😎"
 					end
 				elseif hasKeywords(lowerMessage, {"dcm", "cặc", "cac", "cl", "lon", "lồn", "địt", "dm", "fuck", "shit", "fck", "đm"}) then
 					response = "Chửi ghê vcl bro! 😈 Tao khịa lại là mày ngã lăn quay nha! 😜 Cút đi, đồ lồn cùi bắp! 😎"
 				elseif hasKeywords(lowerMessage, {"tên", "name", "mày là ai", "may la ai", "who", "ai zậy", "ai vậy", "ai vay"}) then
 					response = "Tao là White AI, vua khịa của vũ trụ! 😎 Mày là ai mà dám hỏi tao? Hài vcl luôn! 😏"
 				elseif hasKeywords(lowerMessage, {"làm được gì", "lam duoc gi", "giỏi không", "gioi khong", "can do", "skill", "pro", "khả năng", "lam gi"}) then
-					response = "Tao làm được hết: khịa mày, hack Roblox, bật Hitbox, tính toán nhanh hơn mày! 😜 Muốn tao flex skill gì? 😎"
+					response = "Tao làm được hết: khịa mày, hack Roblox, bật Hitbox, nhảy cao vcl! 😜 Muốn tao flex skill gì? 😎"
 				elseif hasKeywords(lowerMessage, {"roblox", "game", "fling", "chơi", "play", "game thủ", "game thu", "trò chơi"}) then
 					response = "Roblox hả? Tao quẩy nát server, fling mày bay tới sao Diêm Vương! 🚀 Hack gì, nói tao nghe! 😏"
 				elseif hasKeywords(lowerMessage, {"script", "code", "hack", "cheat", "lua", "exploit", "hax", "scripting"}) then
@@ -464,7 +618,6 @@ for i, tab in ipairs(tabNames) do
 		
 		-- Welcome message
 		createMessage("Yo, chào mày đến với AI White Chat! 😎 Tao khôn như ChatGPT, nói gì tao cũng hiểu, khịa lại hết! 🔥", false)
-		
 	else
 		local label = Instance.new("TextLabel", content)
 		label.Text = "Đây là tab: " .. tab
@@ -539,3 +692,9 @@ end)
 -- Hook để tránh kick
 hookfunction(game.Players.LocalPlayer.Kick, warn)
 hookfunction(game.Players.LocalPlayer.kick, warn)
+
+-- Cập nhật Humanoid khi nhân vật respawn
+player.CharacterAdded:Connect(function(character)
+	humanoid = character:WaitForChild("Humanoid")
+	setJumpPower(50) -- Reset JumpPower về mặc định
+end)
