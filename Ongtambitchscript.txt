@@ -39,7 +39,7 @@ mainBorder.Transparency = 1  -- Hidden initially
 
 -- Title
 local title = Instance.new("TextLabel", mainFrame)
-title.Text = "DEV DEV ĐÉO WHITE"
+title.Text = "Ông 8 Kiếm chuyện"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(180, 220, 255)
