@@ -41,7 +41,7 @@ mainBorder.Transparency = 1
 
 -- Title
 local title = Instance.new("TextLabel", mainFrame)
-title.Text = "DEV DEV ĐÉO WHITE"
+title.Text = "Ông Tám Kiếm Chuyện"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(180, 220, 255)
@@ -51,9 +51,9 @@ title.Position = UDim2.new(0, 20, 0, 0)
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.ZIndex = 10
 
--- Expand Button "+"
+-- Expand Button "Mở"
 local expandButton = Instance.new("TextButton", mainFrame)
-expandButton.Text = "+"
+expandButton.Text = "Mở"
 expandButton.Size = UDim2.new(0, 40, 0, 40)
 expandButton.Position = UDim2.new(1, -90, 0, 10)
 expandButton.Font = Enum.Font.GothamBold
@@ -66,7 +66,7 @@ Instance.new("UIStroke", expandButton).Color = Color3.fromRGB(100, 160, 255)
 
 -- Close Button "X"
 local closeButton = Instance.new("TextButton", mainFrame)
-closeButton.Text = "x"
+closeButton.Text = "đóng"
 closeButton.Size = UDim2.new(0, 40, 0, 40)
 closeButton.Position = UDim2.new(1, -45, 0, 10)
 closeButton.Font = Enum.Font.GothamBold
@@ -120,7 +120,7 @@ tabContent.BackgroundTransparency = 1
 tabContent.ZIndex = 2
 
 -- Tab Data
-local tabNames = {"Combat", "Misc", "Script", "About", "AI Chat"}
+local tabNames = {"Combat", "Misc", "Gui riêng", "About", "AI Chat"}
 local tabIcons = {"🖕", "☃️", "🤞", "🫵", "🤖"}
 
 local function switchTab(name)
@@ -213,7 +213,7 @@ for i, tab in ipairs(tabNames) do
 	if tab == "Combat" then
 		-- Nút Hitbox
 		local hitboxBtn = Instance.new("TextButton", content)
-		hitboxBtn.Text = "Hitbox Xa: Tắt"
+		hitboxBtn.Text = "Hitbox Xa ( lưu ý khi dùng con l bị đánh sắp dậy thì tắt hitbox xong bật lại để không bị đẩy: Tắt"
 		hitboxBtn.Size = UDim2.new(0, 200, 0, 40)
 		hitboxBtn.Position = UDim2.new(0, 10, 0, 10)
 		hitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -225,12 +225,12 @@ for i, tab in ipairs(tabNames) do
 
 		hitboxBtn.MouseButton1Click:Connect(function()
 			local isActive = toggleHitbox()
-			hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+			hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Tám : Tắt"
 		end)
 
 		-- Thanh kéo Nhảy Cao
 		local jumpLabel = Instance.new("TextLabel", content)
-		jumpLabel.Text = "Nhảy Cao: 50"
+		jumpLabel.Text = "Trong quá trình làm nhảy cao anti band các con đợi tám nha: 50"
 		jumpLabel.Size = UDim2.new(0, 200, 0, 30)
 		jumpLabel.Position = UDim2.new(0, 10, 0, 60)
 		jumpLabel.BackgroundTransparency = 1
@@ -349,7 +349,7 @@ for i, tab in ipairs(tabNames) do
 		Instance.new("UICorner", chatHeader).CornerRadius = UDim.new(0, 8)
 		
 		local headerTitle = Instance.new("TextLabel", chatHeader)
-		headerTitle.Text = "AI White Chat"
+		headerTitle.Text = "AI Ông Tám Bản Láo Chat"
 		headerTitle.Size = UDim2.new(1, -20, 1, 0)
 		headerTitle.Position = UDim2.new(0, 10, 0, 0)
 		headerTitle.BackgroundTransparency = 1
