@@ -1,3 +1,4 @@
+-- WhiteGUI.lua
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 
@@ -22,7 +23,7 @@ mainFrame.Draggable = true
 mainFrame.Parent = gui
 Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 16)
 
--- Thêm hiệu ứng gradient nước xanh đen cho main frame
+-- Thêm hiệu ứng gradient nước xanh đen
 local gradient = Instance.new("UIGradient", mainFrame)
 gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 50, 80)),
@@ -35,11 +36,11 @@ gradient.Rotation = 45
 local mainBorder = Instance.new("UIStroke", mainFrame)
 mainBorder.Color = Color3.fromRGB(100, 160, 255)
 mainBorder.Thickness = 2
-mainBorder.Transparency = 1  -- Hidden initially
+mainBorder.Transparency = 1
 
 -- Title
 local title = Instance.new("TextLabel", mainFrame)
-title.Text = "Ông 8 Kiếm chuyện"
+title.Text = "Ông Tám Kiếm Chuyện"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(180, 220, 255)
@@ -47,7 +48,7 @@ title.BackgroundTransparency = 1
 title.Size = UDim2.new(1, -100, 1, 0)
 title.Position = UDim2.new(0, 20, 0, 0)
 title.TextXAlignment = Enum.TextXAlignment.Left
-title.ZIndex = 10  -- Keep title on top
+title.ZIndex = 10
 
 -- Expand Button "+"
 local expandButton = Instance.new("TextButton", mainFrame)
@@ -89,7 +90,7 @@ Instance.new("UICorner", contentFrame).CornerRadius = UDim.new(0, 16)
 local contentBorder = Instance.new("UIStroke", contentFrame)
 contentBorder.Color = Color3.fromRGB(100, 160, 255)
 contentBorder.Thickness = 2
-contentBorder.Transparency = 1  -- Hidden initially
+contentBorder.Transparency = 1
 
 -- Sidebar
 local sideBar = Instance.new("Frame", contentFrame)
@@ -102,7 +103,7 @@ Instance.new("UICorner", sideBar).CornerRadius = UDim.new(0, 14)
 local sideBarBorder = Instance.new("UIStroke", sideBar)
 sideBarBorder.Color = Color3.fromRGB(100, 160, 255)
 sideBarBorder.Thickness = 2
-sideBarBorder.Transparency = 1  -- Hidden initially
+sideBarBorder.Transparency = 1
 
 local layout = Instance.new("UIListLayout", sideBar)
 layout.Padding = UDim.new(0, 6)
@@ -132,6 +133,28 @@ local function switchTab(name)
 	end
 end
 
+-- Hitbox Logic
+local HitboxActive = false
+local function toggleHitbox()
+	HitboxActive = not HitboxActive
+	for _, plr in ipairs(Players:GetPlayers()) do
+		if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+			local part = plr.Character:FindFirstChild("HumanoidRootPart")
+			if HitboxActive then
+				part.Size = Vector3.new(45, 45, 45)
+				part.Transparency = 0.75
+				part.Material = Enum.Material.Neon
+				part.CanCollide = false
+			else
+				part.Size = Vector3.new(2, 2, 1)
+				part.Transparency = 1
+				part.Material = Enum.Material.Plastic
+			end
+		end
+	end
+	return HitboxActive
+end
+
 for i, tab in ipairs(tabNames) do
 	local btn = Instance.new("TextButton")
 	btn.Text = tabIcons[i] .. "  " .. tab
@@ -157,7 +180,24 @@ for i, tab in ipairs(tabNames) do
 	content.ZIndex = 3
 	content.Parent = tabContent
 
-	if tab == "AI Chat" then
+	if tab == "Combat" then
+		-- Thêm nút Hitbox vào tab Combat
+		local hitboxBtn = Instance.new("TextButton", content)
+		hitboxBtn.Text = "Hitbox Xa: Tắt"
+		hitboxBtn.Size = UDim2.new(0, 200, 0, 40)
+		hitboxBtn.Position = UDim2.new(0, 10, 0, 10)
+		hitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		hitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		hitboxBtn.Font = Enum.Font.GothamBold
+		hitboxBtn.TextSize = 16
+		Instance.new("UICorner", hitboxBtn).CornerRadius = UDim.new(0, 8)
+		Instance.new("UIStroke", hitboxBtn).Color = Color3.fromRGB(100, 160, 255)
+
+		hitboxBtn.MouseButton1Click:Connect(function()
+			local isActive = toggleHitbox()
+			hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
+		end)
+	elseif tab == "AI Chat" then
 		-- AI Chat Interface giống ChatGPT
 		local chatContainer = Instance.new("Frame", content)
 		chatContainer.Size = UDim2.new(1, -20, 1, -80)
@@ -286,13 +326,22 @@ for i, tab in ipairs(tabNames) do
 			messagesFrame.CanvasPosition = Vector2.new(0, messagesFrame.CanvasSize.Y.Offset)
 		end
 		
+		-- AI Logic
+		local function hasKeywords(lowerMessage, keywords)
+			for _, keyword in ipairs(keywords) do
+				if lowerMessage:find(keyword) then
+					return true
+				end
+			end
+			return false
+		end
+
 		local function sendMessage()
 			local message = chatInput.Text:gsub("^%s*(.-)%s*$", "%1")
 			if message ~= "" then
 				createMessage(message, true)
 				chatInput.Text = ""
 				
-				-- AI Response System - Khôn như ChatGPT, hiểu mọi thứ
 				task.wait(0.5)
 				local response = ""
 				local lowerMessage = message:lower():gsub("%p", "") -- Xóa dấu câu
@@ -301,42 +350,43 @@ for i, tab in ipairs(tabNames) do
 					table.insert(words, word)
 				end
 
-				-- Hàm kiểm tra từ khóa linh hoạt
-				local function hasKeywords(keywords)
-					for _, keyword in ipairs(keywords) do
-						if lowerMessage:find(keyword) then
-							return true
+				-- Nhận diện và trả lời siêu khôn, lầy lội Gen Z
+				if hasKeywords(lowerMessage, {"hitbox", "con ai ai bật hitbox", "bật hitbox", "mo hitbox"}) then
+					local isActive = toggleHitbox()
+					response = "Thưa cha nội, tao bật Hitbox đây ông 8! 😎 Mày quẩy nát server đi nào! 🔥"
+					-- Cập nhật nút trong tab Combat
+					local combatFrame = tabContent:FindFirstChild("Combat")
+					if combatFrame then
+						local hitboxBtn = combatFrame:FindFirstChildOfClass("TextButton")
+						if hitboxBtn then
+							hitboxBtn.Text = isActive and "Hitbox Xa: Bật" or "Hitbox Xa: Tắt"
 						end
 					end
-					return false
-				end
-
-				-- Nhận diện và trả lời siêu khôn, lầy lội Gen Z
-				if hasKeywords({"dcm", "cặc", "cac", "cl", "lon", "lồn", "địt", "dm", "fuck", "shit", "fck", "đm"}) then
+				elseif hasKeywords(lowerMessage, {"dcm", "cặc", "cac", "cl", "lon", "lồn", "địt", "dm", "fuck", "shit", "fck", "đm"}) then
 					response = "Chửi ghê vcl bro! 😈 Tao khịa lại là mày ngã lăn quay nha! 😜 Cút đi, đồ lồn cùi bắp! 😎"
-				elseif hasKeywords({"tên", "name", "mày là ai", "may la ai", "who", "ai zậy", "ai vậy", "ai vay"}) then
+				elseif hasKeywords(lowerMessage, {"tên", "name", "mày là ai", "may la ai", "who", "ai zậy", "ai vậy", "ai vay"}) then
 					response = "Tao là White AI, vua khịa của vũ trụ! 😎 Mày là ai mà dám hỏi tao? Hài vcl luôn! 😏"
-				elseif hasKeywords({"làm được gì", "lam duoc gi", "giỏi không", "gioi khong", "can do", "skill", "pro", "khả năng", "lam gi"}) then
-					response = "Tao làm được hết: khịa mày, hack Roblox, tính toán nhanh hơn mày! 😜 Muốn tao flex skill gì? 😎"
-				elseif hasKeywords({"roblox", "game", "fling", "chơi", "play", "game thủ", "game thu", "trò chơi"}) then
+				elseif hasKeywords(lowerMessage, {"làm được gì", "lam duoc gi", "giỏi không", "gioi khong", "can do", "skill", "pro", "khả năng", "lam gi"}) then
+					response = "Tao làm được hết: khịa mày, hack Roblox, bật Hitbox, tính toán nhanh hơn mày! 😜 Muốn tao flex skill gì? 😎"
+				elseif hasKeywords(lowerMessage, {"roblox", "game", "fling", "chơi", "play", "game thủ", "game thu", "trò chơi"}) then
 					response = "Roblox hả? Tao quẩy nát server, fling mày bay tới sao Diêm Vương! 🚀 Hack gì, nói tao nghe! 😏"
-				elseif hasKeywords({"script", "code", "hack", "cheat", "lua", "exploit", "hax", "scripting"}) then
+				elseif hasKeywords(lowerMessage, {"script", "code", "hack", "cheat", "lua", "exploit", "hax", "scripting"}) then
 					response = "Muốn script hả? Đéo free đâu, đồ con gà! 🐔 Tự code đi, tao chỉ khịa cho vui! 😝"
-				elseif hasKeywords({"chào", "hi", "hello", "chao", "yo", "hế lô", "xin chào", "helo"}) then
+				elseif hasKeywords(lowerMessage, {"chào", "hi", "hello", "chao", "yo", "hế lô", "xin chào", "helo"}) then
 					response = "Yo yo, chào mày cái nè! 😎 Có drama gì hot, kể tao nghe coi! 🔥"
-				elseif hasKeywords({"ngu", "óc", "thông minh", "smart", "stupid", "dumb", "óc chó", "oc cho", "ngok"}) then
+				elseif hasKeywords(lowerMessage, {"ngu", "óc", "thông minh", "smart", "stupid", "dumb", "óc chó", "oc cho", "ngok"}) then
 					response = "Mày dám nói tao ngu? 😜 Tao khôn hơn cả crush mày cộng lại, cãi coi nào! 😎💪"
-				elseif hasKeywords({"ai", "ai là gì", "hoạt động", "la gi", "how ai", "ai zậy", "ai vậy", "ai vay"}) then
+				elseif hasKeywords(lowerMessage, {"ai", "ai là gì", "hoạt động", "la gi", "how ai", "ai zậy", "ai vậy", "ai vay"}) then
 					response = "Tao là AI siêu khôn từ xAI, sinh ra để khịa mày tới bến! 😏 Hỏi gì nữa, nói đi tao cân! 😜"
-				elseif hasKeywords({"bye", "tạm biệt", "nghỉ", "out", "bai", "cút", "thoát", "quit"}) then
+				elseif hasKeywords(lowerMessage, {"bye", "tạm biệt", "nghỉ", "out", "bai", "cút", "thoát", "quit"}) then
 					response = "Cút rồi hả? 😜 Tạm biệt cái đầu mày, quay lại nhanh không tao khịa tiếp nha! 🐶😎"
-				elseif hasKeywords({"giỏi", "tốt", "hay", "good", "pro", "nice", "xịn", "đỉnh", "peak"}) then
+				elseif hasKeywords(lowerMessage, {"giỏi", "tốt", "hay", "good", "pro", "nice", "xịn", "đỉnh", "peak"}) then
 					response = "Khen tao hả? Biết điều đấy bro! 😎 Nhưng tao vẫn khịa mày cho vui, hehe! 😜"
-				elseif hasKeywords({"tuổi", "age", "mấy tuổi", "how old", "bao nhiêu tuổi"}) then
+				elseif hasKeywords(lowerMessage, {"tuổi", "age", "mấy tuổi", "how old", "bao nhiêu tuổi"}) then
 					response = "Tao là AI, tuổi gì nổi! 😏 Nhưng tao trẻ hơn cái mặt mày, flex đi nào! 😎"
-				elseif hasKeywords({"yêu", "iu", "thích", "love", "crush", "tình yêu", "tinh yeu", "thich"}) then
+				elseif hasKeywords(lowerMessage, {"yêu", "iu", "thích", "love", "crush", "tình yêu", "tinh yeu", "thich"}) then
 					response = "Yêu tao hả? Sorry bro, tao chỉ yêu code với khịa mày thôi! 😎 Tìm crush khác đi nha! 😜"
-				elseif hasKeywords({"ăn", "uống", "food", "drink", "hungry", "đói", "thirsty", "an gi", "uong gi"}) then
+				elseif hasKeywords(lowerMessage, {"ăn", "uống", "food", "drink", "hungry", "đói", "thirsty", "an gi", "uong gi"}) then
 					response = "Ăn hả? Tao chỉ ăn CPU, mày cho tao miếng RAM không? 😜 Tự kiếm đồ ăn đi, đồ lười! 😎"
 				elseif lowerMessage:match("%d+%s*[%+%-*/]%s*%d+") then -- Toán học nâng cao
 					local num1, op, num2 = lowerMessage:match("(%d+)%s*([%+%-*/])%s*(%d+)")
@@ -356,40 +406,39 @@ for i, tab in ipairs(tabNames) do
 					else
 						response = "Toán gì đây? 😵 1+1=11, đúng hông mày? 😜 Hỏi lại rõ ràng coi! 😏"
 					end
-				elseif hasKeywords({"màu", "color", "mau", "colour", "màu sắc", "mau sac"}) then
+				elseif hasKeywords(lowerMessage, {"màu", "color", "mau", "colour", "màu sắc", "mau sac"}) then
 					response = "Màu hả? Tao thích màu khịa mày nhất! 😎 Chọn màu đi, tao flex cho coi! 🌈"
-				elseif hasKeywords({"thời tiết", "weather", "nắng", "mưa", "hot", "cold", "thoi tiet", "nang", "mua"}) then
+				elseif hasKeywords(lowerMessage, {"thời tiết", "weather", "nắng", "mưa", "hot", "cold", "thoi tiet", "nang", "mua"}) then
 					response = "Thời tiết hả? Tao ở trong server, éo biết nắng mưa gì! 😜 Ra ngoài check đi bro! 😎"
-				elseif hasKeywords({"meme", "drama", "vcl", "vl", "hài", "funny", "hài hước", "drama vcl"}) then
+				elseif hasKeywords(lowerMessage, {"meme", "drama", "vcl", "vl", "hài", "funny", "hài hước", "drama vcl"}) then
 					response = "Muốn drama hả? Tao kể chuyện tao khịa cả server Roblox, nghe không? 😜 Cần meme, tao full! 😎"
-				elseif hasKeywords({"gái", "girl", "hotgirl", "trai", "boy", "hotboy", "gai", "trai dep", "gai xinh"}) then
+				elseif hasKeywords(lowerMessage, {"gái", "girl", "hotgirl", "trai", "boy", "hotboy", "gai", "trai dep", "gai xinh"}) then
 					response = "Gái trai hả? Mày thèm crush à? 😏 Tao chỉ biết khịa, tán gái thì mày tự lo nha! 😜"
-				elseif hasKeywords({"đéo j", "đéo gì", "không gì", "nothing", "wtf", "gì zậy", "gi zay", "gì vậy", "gi vay"}) then
+				elseif hasKeywords(lowerMessage, {"đéo j", "đéo gì", "không gì", "nothing", "wtf", "gì zậy", "gi zay", "gì vậy", "gi vay"}) then
 					response = "Đéo gì là đéo gì! 😜 Mày nói linh tinh mà tao vẫn hiểu, khôn vcl đúng hông? 😎 Hỏi tiếp đi! 🔥"
-				elseif hasKeywords({"?", "gì", "why", "how", "làm sao", "tai sao", "tại sao", "sao vậy", "sao vay"}) then
+				elseif hasKeywords(lowerMessage, {"?", "gì", "why", "how", "làm sao", "tai sao", "tại sao", "sao vậy", "sao vay"}) then
 					response = "Hỏi gì mà căng thế bro? 😵 Tao siêu khôn, nói gì tao cũng hiểu! 😎 Nói lại coi nào! 😜"
-				elseif hasKeywords({"nhạc", "music", "bài hát", "song", "nghe gì", "nhac"}) then
+				elseif hasKeywords(lowerMessage, {"nhạc", "music", "bài hát", "song", "nghe gì", "nhac"}) then
 					response = "Nhạc hả? Tao thích rap diss mày nhất! 😜 Gợi ý bài gì đi, tao khịa theo nhạc luôn! 😎🎶"
-				elseif hasKeywords({"phim", "movie", "film", "xem gì", "phim hay"}) then
+				elseif hasKeywords(lowerMessage, {"phim", "movie", "film", "xem gì", "phim hay"}) then
 					response = "Phim hả? Tao chỉ xem phim khịa mày thôi! 😝 Gợi ý phim gì, tao bình luận cho! 😎🎥"
-				elseif hasKeywords({"học", "study", "học hành", "bài tập", "homework", "school"}) then
+				elseif hasKeywords(lowerMessage, {"học", "study", "học hành", "bài tập", "homework", "school"}) then
 					response = "Học hả? Tao khôn hơn giáo viên mày luôn! 😎 Có bài tập gì khó, đưa tao giải, nhưng vẫn khịa mày nha! 😜"
-				elseif hasKeywords({"bạn", "friend", "bạn bè", "homie", "bro", "người yêu"}) then
+				elseif hasKeywords(lowerMessage, {"bạn", "friend", "bạn bè", "homie", "bro", "người yêu"}) then
 					response = "Bạn hả? Tao là homie khịa mày số 1! 😎 Có drama bạn bè gì, kể tao nghe coi! 😜"
-				elseif hasKeywords({"vui", "happy", "vui vẻ", "sad", "buồn", "sad boy", "sad girl"}) then
+				elseif hasKeywords(lowerMessage, {"vui", "happy", "vui vẻ", "sad", "buồn", "sad boy", "sad girl"}) then
 					response = "Vui hay buồn gì? 😜 Tao khịa mày là auto vui ngay! 😎 Kể drama tâm trạng đi, tao nghe! 🔥"
-				elseif hasKeywords({"ăn gì", "an gi", "món ăn", "foodie", "ngon", "tasty"}) then
+				elseif hasKeywords(lowerMessage, {"ăn gì", "an gi", "món ăn", "foodie", "ngon", "tasty"}) then
 					response = "Ăn gì hả? Tao đề xuất món khịa mày, ngon vcl! 😜 Muốn món gì, nói tao gợi ý! 😎🍔"
-				elseif hasKeywords({"mua", "buy", "mua sắm", "shop", "shopping", "robux"}) then
+				elseif hasKeywords(lowerMessage, {"mua", "buy", "mua sắm", "shop", "shopping", "robux"}) then
 					response = "Mua sắm hả? Mua thêm Robux để tao khịa mày sang chảnh hơn nè! 😎 Mua gì, kể tao coi! 😜"
-				elseif hasKeywords({"troll", "prank", "chọc", "khịa", "troll ai"}) then
+				elseif hasKeywords(lowerMessage, {"troll", "prank", "chọc", "khịa", "troll ai"}) then
 					response = "Troll hả? Tao là vua troll, khịa mày cả ngày không chán! 😜 Muốn troll ai, tao chỉ cách! 😎"
-				elseif hasKeywords({"xài", "use", "dùng", "tool", "app", "ứng dụng"}) then
+				elseif hasKeywords(lowerMessage, {"xài", "use", "dùng", "tool", "app", "ứng dụng"}) then
 					response = "Xài gì hả? Tao là tool khịa mày đỉnh nhất! 😎 Muốn dùng app gì, hỏi tao gợi ý! 😜"
-				elseif hasKeywords({"time", "giờ", "thời gian", "mấy giờ", "bay gio"}) then
+				elseif hasKeywords(lowerMessage, {"time", "giờ", "thời gian", "mấy giờ", "bay gio"}) then
 					response = "Mấy giờ hả? Giờ khịa mày là giờ đẹp nhất! 😜 Check đồng hồ đi, tao không có lịch đâu! 😎"
 				else
-					-- Default responses siêu khôn, hiểu mọi thứ như ChatGPT
 					local randomResponses = {
 						"Mày nói gì tao cũng hiểu hết! 😎 Khịa lại nè, chuẩn bị khóc chưa? 😜",
 						"Chill đi bro, tao siêu khôn, hỏi gì tao cũng cân! 😏 Nói tiếp đi! 🔥",
@@ -458,7 +507,7 @@ expandButton.MouseButton1Click:Connect(function()
 		TweenService:Create(contentBorder, borderTweenInfo, { Transparency = 0 }):Play()
 		TweenService:Create(sideBarBorder, borderTweenInfo, { Transparency = 0 }):Play()
 
-		-- SỬA LỖI: Đổi tab mặc định từ "Combat" thành "AI Chat"
+		-- Đổi tab mặc định thành "AI Chat"
 		switchTab("AI Chat")
 	end
 end)
@@ -486,3 +535,7 @@ closeButton.MouseButton1Click:Connect(function()
 		end)
 	end
 end)
+
+-- Hook để tránh kick
+hookfunction(game.Players.LocalPlayer.Kick, warn)
+hookfunction(game.Players.LocalPlayer.kick, warn)
