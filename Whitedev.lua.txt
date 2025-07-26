@@ -1,4 +1,4 @@
--- WhiteGUI.lua
+ -- WhiteGUI.lua
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local StarterGui = game:GetService("StarterGui")
@@ -886,5 +886,5 @@ player.CharacterAdded:Connect(function(character)
 		toggleFreeHitbox() -- Tắt Hitbox Free
 		task.wait(0.5)
 		toggleFreeHitbox() -- Bật lại sau respawn
-end
+	end
 end)
