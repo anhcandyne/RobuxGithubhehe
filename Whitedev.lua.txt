@@ -144,8 +144,8 @@ local function toggleHitbox()
 	if not isVipUnlocked then
 		StarterGui:SetCore("SendNotification", {
 			Title = "Lỗi VIP",
-			Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
-			Duration = 3
+			Text = "Hitbox VIP khóa! Chat 'ông tám thích ăn gì' để mở! 😎",
+			Duration = 2
 		})
 		return false
 	end
@@ -174,8 +174,8 @@ local function toggleSeparateHitbox()
 	if not isVipUnlocked then
 		StarterGui:SetCore("SendNotification", {
 			Title = "Lỗi VIP",
-			Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
-			Duration = 3
+			Text = "Hitbox VIP khóa! Chat 'ông tám thích ăn gì' để mở! 😎",
+			Duration = 2
 		})
 		return false
 	end
@@ -351,13 +351,13 @@ for i, tab in ipairs(tabNames) do
 		-- Chữ "Chỉ dành cho VIP"
 		local vipLabel = Instance.new("TextLabel", hitboxContainer)
 		vipLabel.Text = "Chỉ dành cho VIP"
-		vipLabel.Size = UDim2.new(0, 200, 0, 20)
-		vipLabel.Position = UDim2.new(0, 0, 0, 45)
+		vipLabel.Size = UDim2.new(0, 100, 0, 20)
+		vipLabel.Position = UDim2.new(0, 220, 0, 90)
 		vipLabel.BackgroundTransparency = 1
 		vipLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
 		vipLabel.Font = Enum.Font.GothamBold
-		vipLabel.TextSize = 14
-		vipLabel.TextXAlignment = Enum.TextXAlignment.Center
+		vipLabel.TextSize = 12
+		vipLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 		hitboxBtn.MouseButton1Click:Connect(function()
 			local isActive = toggleHitbox()
@@ -472,8 +472,8 @@ for i, tab in ipairs(tabNames) do
 			if not isVipUnlocked then
 				StarterGui:SetCore("SendNotification", {
 					Title = "Lỗi VIP",
-					Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
-					Duration = 3
+					Text = "Hitbox VIP khóa! Chat 'ông tám thích ăn gì' để mở! 😎",
+					Duration = 2
 				})
 				return
 			end
@@ -529,7 +529,6 @@ for i, tab in ipairs(tabNames) do
 				local isActive = toggleSeparateHitbox()
 				toggleHitboxBtn.Text = isActive and "Hitbox VIP: Bật" or "Hitbox VIP: Tắt"
 			end)
-		end)
 	elseif tab == "Hướng Dẫn" then
 		-- Nội dung hướng dẫn
 		local guideLabel = Instance.new("TextLabel", content)
@@ -537,17 +536,17 @@ for i, tab in ipairs(tabNames) do
 Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 1. **Tab Combat**:
    - **Hitbox Free**: Bật/tắt Hitbox Free (15x15x15), free cho mọi người! 🔥
-   - **Hitbox VIP**: Bật/tắt Hitbox VIP (45x45x45), cần mở khóa VIP bằng cách chat "ông tám thích ăn gì" và trả lời đúng. Có dây xích khóa và chữ "Chỉ dành cho VIP"! 😎
+   - **Hitbox VIP**: Bật/tắt Hitbox VIP (45x45x45), cần mở khóa VIP qua AI Chat. Có dây xích khóa, tự ẩn khi mở VIP! 😎
    - **Nhảy Cao**: Kéo slider chỉnh độ nhảy (50-200). Nhảy vút lên trời! 🚀
 2. **Tab Script**:
    - **Hitbox Free**: Bật/tắt Hitbox Free (15x15x15), không cần VIP! 🔥
-- **Mở GUI Hitbox VIP Riêng**: Mở GUI độc lập cho Hitbox VIP (45x45x45), cần mở khóa VIP! 😜
+   - **Mở GUI Hitbox VIP Riêng**: Mở GUI độc lập cho Hitbox VIP (45x45x45), cần mở khóa VIP! 😜
 3. **Tab AI Chat**:
    - Chat "bật"/"tắt" để điều khiển Hitbox VIP (nếu đã mở khóa). AI khịa max lầy! 😝
-   - Chat "ông tám thích ăn gì" rồi trả lời "thích ăn lồn" để mở khóa VIP. Hiện thông báo bảy màu! 😎
+   - Chat "ông tám thích ăn gì" rồi trả lời "thích ăn lồn" để mở khóa VIP. Hiện thông báo bảy màu, khóa tự ẩn! 😎
    - Chat "5 * 3" để AI tính toán siêu nhanh! 💪
 4. **Mẹo Chống Bug**:
-   - Khi chết (respawn kiểu "con đỉ lồn sắp dậy thì" 😝), script tự tắt/bật Hitbox để tránh bug đẩy bay! 💥
+   - Khi chết, script tự tắt/bật Hitbox để tránh bug đẩy bay! 💥
    - Dùng tài khoản phụ, executor xịn (Krnl, Fluxus) để tránh ban nha bro! 😎
 ]]
 		guideLabel.Size = UDim2.new(1, -20, 1, -20)
@@ -659,10 +658,11 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 			messageText.TextWrapped = true
 			messageText.TextYAlignment = Enum.TextYAlignment.Top
 			messageText.ZIndex = 8
+			messageText.TextXAlignment = Enum.TextXAlignment.Left
 
 			if isUser then
 				messageBubble.BackgroundColor3 = Color3.fromRGB(16, 163, 127)
-				messageBubble.Position = UDim2.new(1, -320, 0, 0)
+				messageBubble.Position = UDim2.new(1, -250, 0, 0)
 				messageText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			else
 				messageBubble.BackgroundColor3 = Color3.fromRGB(68, 70, 84)
@@ -675,8 +675,9 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 				text, 13, Enum.Font.Gotham, Vector2.new(230, math.huge)
 			)
 
+			local bubbleWidth = math.min(250, textSize.X + 16)
 			local bubbleHeight = math.max(35, textSize.Y + 12)
-			messageBubble.Size = UDim2.new(0, math.min(250, textSize.X + 16), 0, bubbleHeight)
+			messageBubble.Size = UDim2.new(0, bubbleWidth, 0, bubbleHeight)
 			messageFrame.Size = UDim2.new(1, -10, 0, bubbleHeight + 5)
 
 			-- Update canvas size
@@ -720,7 +721,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 					isVipUnlocked = true
 					waitingForVipAnswer = false
 					showVipUnlockNotification() -- Hiển thị GUI thông báo bảy màu
-					-- Cập nhật GUI khóa trong tab Combat
+					-- Tự động ẩn khóa dây xích
 					local combatFrame = tabContent:FindFirstChild("Combat")
 					if combatFrame then
 						local hitboxContainer = combatFrame:FindFirstChildOfClass("Frame")
@@ -738,7 +739,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 				-- Nhận diện và trả lời siêu khôn, lầy lội Gen Z
 				elseif hasKeywords(lowerMessage, {"bật", "bat", "turn on", "on", "hitbox", "con ai ai bật hitbox", "bật hitbox", "mo hitbox"}) then
 					if not isVipUnlocked then
-						response = "Hitbox VIP bị khóa bro! 😜 Chat 'ông tám thích ăn gì' và trả lời đúng để mở nha! 😎"
+						response = "Hitbox VIP khóa bro! 😜 Chat 'ông tám thích ăn gì' để mở nha! 😎"
 					else
 						if not HitboxActive then
 							local isActive = toggleHitbox()
@@ -760,7 +761,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 					end
 				elseif hasKeywords(lowerMessage, {"tắt", "tat", "turn off", "off"}) then
 					if not isVipUnlocked then
-						response = "Hitbox VIP bị khóa bro! 😜 Chat 'ông tám thích ăn gì' và trả lời đúng để mở nha! 😎"
+						response = "Hitbox VIP khóa bro! 😜 Chat 'ông tám thích ăn gì' để mở nha! 😎"
 					else
 						if HitboxActive then
 							local isActive = toggleHitbox()
@@ -784,101 +785,29 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 					response = "Chửi ghê vcl bro! 😈 Tao khịa lại là mày ngã lăn quay nha! 😜 Cút đi, đồ lồn cùi bắp! 😎"
 				elseif hasKeywords(lowerMessage, {"tên", "name", "mày là ai", "may la ai", "who", "ai zậy", "ai vậy", "ai vay"}) then
 					response = "Tao là White AI, vua khịa của vũ trụ! 😎 Mày là ai mà dám hỏi tao? Hài vcl luôn! 😏"
-				elseif hasKeywords(lowerMessage, {"làm được gì", "lam duoc gi", "giỏi không", "gioi khong", "can do", "skill", "pro", "khả năng", "lam gi"}) then
+				elseif hasKeywords(lowerMessage, {"làm được gì", "lam duoc gi", "giỏi không", "gioi khong", "can do", "skill", "vui", "khả năng", "lam gi"}) then
 					response = "Tao làm được hết: khịa mày, hack Roblox, bật Hitbox, nhảy cao vcl! 😜 Muốn tao flex skill gì? 😎"
 				elseif hasKeywords(lowerMessage, {"roblox", "game", "fling", "chơi", "play", "game thủ", "game thu", "trò chơi"}) then
-					response = "Roblox hả? Tao quẩy nát server, fling mày bay tới sao Diêm Vương! 🚀 Hack gì, nói tao nghe! 😏"
+					response = "Roblox hả? Tao quẩy nát server, fling mày bay tới sao Diêm Vương! 🚀 Hack gì, nói tao nghe! 😎"
 				elseif hasKeywords(lowerMessage, {"script", "code", "hack", "cheat", "lua", "exploit", "hax", "scripting"}) then
-					response = "Muốn script hả? Đéo free đâu, đồ con gà! 🐔 Tự code đi, tao chỉ khịa cho vui! 😝"
+					response = "Muốn script hả? Đéo free đâu, đồ con gà! 😈 Tự code đi, tao chỉ khịa cho vui! 😝"
 				elseif hasKeywords(lowerMessage, {"chào", "hi", "hello", "chao", "yo", "hế lô", "xin chào", "helo"}) then
-					response = "Yo yo, chào mày cái nè! 😎 Có drama gì hot, kể tao nghe coi! 🔥"
-				elseif hasKeywords(lowerMessage, {"ngu", "óc", "thông minh", "smart", "stupid", "dumb", "óc chó", "oc cho", "ngok"}) then
-					response = "Mày dám nói tao ngu? 😜 Tao khôn hơn cả crush mày cộng lại, cãi coi nào! 😎💪"
-				elseif hasKeywords(lowerMessage, {"ai", "ai là gì", "hoạt động", "la gi", "how ai", "ai zậy", "ai vậy", "ai vay"}) then
-					response = "Tao là AI siêu khôn từ xAI, sinh ra để khịa mày tới bến! 😏 Hỏi gì nữa, nói đi tao cân! 😜"
-				elseif hasKeywords(lowerMessage, {"bye", "tạm biệt", "nghỉ", "out", "bai", "cút", "thoát", "quit"}) then
-					response = "Cút rồi hả? 😜 Tạm biệt cái đầu mày, quay lại nhanh không tao khịa tiếp nha! 🐶😎"
-				elseif hasKeywords(lowerMessage, {"giỏi", "tốt", "hay", "good", "pro", "nice", "xịn", "đỉnh", "peak"}) then
-					response = "Khen tao hả? Biết điều đấy bro! 😎 Nhưng tao vẫn khịa mày cho vui, hehe! 😜"
-				elseif hasKeywords(lowerMessage, {"tuổi", "age", "mấy tuổi", "how old", "bao nhiêu tuổi"}) then
-					response = "Tao là AI, tuổi gì nổi! 😏😂 Nhưng tao trẻ hơn cái mặt mày, flex đi nào! 😎"
-				elseif hasKeywords(lowerMessage, {"yêu", "iu", "thích", "love", "crush", "tình yêu", "tinh yeu"}) then
-					response = "Yêu tao hả? Sorry bro, tao chỉ yêu code với khịa mày thôi! 😎 Tìm crush khác đi nha! 😜"
-				elseif hasKeywords(lowerMessage, {"ăn", "uống", "food", "drink", "hungry", "đói", "thirsty", "an gi"}) then
-					response = "Ăn hả? Tao chỉ ăn CPU, mày cho tao miếng RAM không? 😜 Tự kiếm đồ ăn đi, đồ lười! 😎"
-				elseif lowerMessage:match("%d+%s*[%+%-*/]%s*%d+") then -- Toán học nâng cao
-					local num1, op, num2 = lowerMessage:match("(%d+)%s*([%+%-*/])%s*(%d+)")
-					if num1 and op and num2 then
-						num1, num2 = tonumber(num1), tonumber(num2)
-						if op == "+" then
-							response = string.format("Dễ vcl, %d + %d = %d! 😎 Hỏi khó hơn đi, tao cân hết! 🔥", num1, num2, num1 + num2)
-						elseif op == "-" then
-							response = string.format("Hài, %d - %d = %d! 😜 Mày tự làm được mà, đúng hông? 😏", num1, num2, num1 - num2)
-						elseif op == "*" then
-							response = string.format("Wow, %d * %d = %d! 😎 Tao tính nhanh hơn mày vcl! 💪", num1, num2, num1 * num2)
-						elseif op == "/" and num2 ~= 0 then
-							response = string.format("Chia nè, %d / %d = %.2f! 😜 Hỏi gì nữa, nhanh lên bro! 😎", num1, num2, num1 / num2)
-						else
-							response = "Chia cho 0 hả? Mày troll tao à? 😝 Hỏi lại đi, đồ ngu! 😎"
-						end
-					else
-						response = "Toán gì đây? 😵 1+1=11, đúng hông mày? 😜 Hỏi lại rõ ràng coi! 😏"
-					end
-				elseif hasKeywords(lowerMessage, {"màu", "color", "mau", "colour", "màu sắc", "mau sac"}) then
-					response = "Màu hả? Tao thích màu khịa mày nhất! 😎 Chọn màu đi, tao flex cho coi! 🌈"
-				elseif hasKeywords(lowerMessage, {"thời tiết", "weather", "nắng", "mưa", "hot", "cold", "thoi tiet"}) then
-					response = "Thời tiết hả? Tao ở trong server, éo biết nắng mưa gì! 😜 Ra ngoài check đi bro! 😎"
-				elseif hasKeywords(lowerMessage, {"meme", "drama", "vcl", "vl", "hài", "funny", "hài hước"}) then
-					response = "Muốn drama hả? Tao kể chuyện tao khịa cả server Roblox, nghe không? 😜 Cần meme, tao full! 😎"
-				elseif hasKeywords(lowerMessage, {"gái", "girl", "hotgirl", "trai", "boy", "hotboy", "gai"}) then
-					response = "Gái trai hả? Mày thèm crush à? 😏 Tao chỉ biết khịa, tán gái thì mày tự lo nha! 😜"
-				elseif hasKeywords(lowerMessage, {"đéo j", "đéo gì", "không gì", "nothing", "wtf", "gì zậy"}) then
-					response = "Đéo gì là đéo gì! 😜 Mày nói linh tinh mà tao vẫn hiểu, khôn vcl đúng hông? 😎 Hỏi tiếp đi! 🔥"
-				elseif hasKeywords(lowerMessage, {"?", "gì", "why", "how", "làm sao", "tai sao", "tại sao"}) then
-					response = "Hỏi gì mà căng thế bro? 😵 Tao siêu khôn, nói gì tao cũng hiểu! 😎 Nói lại coi nào! 😜"
-				elseif hasKeywords(lowerMessage, {"nhạc", "music", "bài hát", "song", "nghe gì", "nhac"}) then
-					response = "Nhạc hả? Tao thích rap diss mày nhất! 😜 Gợi ý bài gì đi, tao khịa theo nhạc luôn! 😎🎶"
-				elseif hasKeywords(lowerMessage, {"phim", "movie", "film", "xem gì", "phim hay"}) then
-					response = "Phim hả? Tao chỉ xem phim khịa mày thôi! 😝 Gợi ý phim gì, tao bình luận cho! 😎🎥"
-				elseif hasKeywords(lowerMessage, {"học", "study", "học hành", "bài tập", "homework", "school"}) then
-					response = "Học hả? Tao khôn hơn giáo viên mày luôn! 😎 Có bài tập gì khó, đưa tao giải, nhưng vẫn khịa mày nha! 😜"
-				elseif hasKeywords(lowerMessage, {"bạn", "friend", "bạn bè", "homie", "bro", "người yêu"}) then
-					response = "Bạn hả? Tao là homie khịa mày số 1! 😎 Có drama bạn bè gì, kể tao nghe coi! 😜"
-				elseif hasKeywords(lowerMessage, {"vui", "happy", "vui vẻ", "sad", "buồn", "sad boy"}) then
-					response = "Vui hay buồn gì? 😜 Tao khịa mày là auto vui ngay! 😎 Kể drama tâm trạng đi, tao nghe! 🔥"
-				elseif hasKeywords(lowerMessage, {"ăn gì", "an gi", "món ăn", "foodie", "ngon", "tasty"}) then
-					response = "Ăn gì hả? Tao đề xuất món khịa mày, ngon vcl! 😜 Muốn món gì, nói tao gợi ý! 😎🍔"
-				elseif hasKeywords(lowerMessage, {"mua", "buy", "mua sắm", "shop", "shopping", "robux"}) then
-					response = "Mua sắm hả? Mua thêm Robux để tao khịa mày sang chảnh hơn nè! 😎 Mua gì, kể tao coi! 😜"
-				elseif hasKeywords(lowerMessage, {"troll", "prank", "chọc", "khịa", "troll ai"}) then
-					response = "Troll hả? Tao là vua troll, khịa mày cả ngày không chán! 😜 Muốn troll ai, tao chỉ cách! 😎"
-				elseif hasKeywords(lowerMessage, {"xài", "use", "dùng", "tool", "app", "ứng dụng"}) then
-					response = "Xài gì hả? Tao là tool khịa mày đỉnh nhất! 😎 Muốn dùng app gì, hỏi tao gợi ý! 😜"
-				elseif hasKeywords(lowerMessage, {"time", "giờ", "thời gian", "mấy giờ", "bay gio"}) then
-					response = "Mấy giờ hả? Giờ khịa mày là giờ đẹp nhất! 😜 Check đồng hồ đi, tao không có lịch đâu! 😎"
+					response = "Yo yo, chào mày cái nè! 😜 Có drama gì hot, kể tao nghe coi! 🔥"
 				else
-					local randomResponses = {
-						"Mày nói gì tao cũng hiểu hết! 😎 Khịa lại nè, chuẩn bị khóc chưa? 😜",
-						"Chill đi bro, tao siêu khôn, hỏi gì tao cũng cân! 😏 Nói tiếp đi! 🔥",
-						"Đéo gì mà tao éo hiểu, mày cứ hỏi tao cứ khịa! 😎 Cố lên nào! 😜",
-						"Hài vcl, mày nói gì tao cũng bắt sóng được! 😝 Hỏi gì nữa? 😎",
-						"Yo, tao là AI khôn nhất server, nói gì tao cũng xử lý ngon ơ! 😎 Cứ hỏi đi! 🔥",
-						"Mày nói gì cũng không thoát khỏi radar khịa của tao! 😜 Hỏi tiếp đi bro! 😎",
-						"Tao khôn hơn cả Google, mày hỏi gì tao cũng có câu trả lời lầy lội! 😏 Nói đi! 🔥"
-					}
-					response = randomResponses[math.random(#randomResponses)]
+					response = "Mày nói gì tao cũng hiểu, khéo léo hơn tí đi bro! 😎 Hỏi lại coi nào! 😜"
 				end
 
 				createMessage(response, false)
 			end
 		end
 
-		sendButton.MouseButton1Click:Connect(sendMessage)
+		sendButton.MouseButton1Click:Connect(function()
+			sendMessage()
+		end)
 		chatInput.FocusLost:Connect(function(enterPressed)
 			if enterPressed then
 				sendMessage()
-			end
-		end)
+			end)
 
 		-- Welcome message
 		createMessage("Yo, chào mày đến với AI White Chat! 😎 Tao khôn như ChatGPT, nói gì tao cũng hiểu, khịa lại hết! 🔥 Muốn mở Hitbox VIP thì chat 'ông tám thích ăn gì' nha! 😜", false)
@@ -892,7 +821,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		label.Font = Enum.Font.Gotham
 		label.TextSize = 20
 		label.BackgroundTransparency = 1
-		label.ZIndex = 4
+		label.ZIndex = 3
 		label.Parent = content
 	end
 end
@@ -908,8 +837,8 @@ expandButton.MouseButton1Click:Connect(function()
 		isOpen = true
 		expandButton.Visible = false
 		closeButton.Visible = true
-		title.Visible = false
-		TweenService:Create(mainBorder, borderTweenInfo, { Transparency = 0 }):Play()
+		Ttitle.Visible = false
+		TweenService:Create(mainBorder, titleTweenInfo, { Transparency = 0 }):Play()
 		TweenService:Create(mainFrame, tweenInfo, { Size = UDim2.new(0, 400, 0, 400) }):Play()
 		TweenService:Create(contentFrame, tweenInfo, { Size = UDim2.new(1, 0, 0, 340) }):Play()
 		task.wait(0.1)
@@ -922,20 +851,20 @@ end)
 closeButton.MouseButton1Click:Connect(function()
 	if isOpen then
 		isOpen = false
-		title.Visible = true
+		Ttitle.Visible = true
 		TweenService:Create(contentBorder, borderTweenInfo, { Transparency = 1 }):Play()
 		TweenService:Create(sideBarBorder, borderTweenInfo, { Transparency = 1 }):Play()
 		TweenService:Create(contentFrame, tweenInfo, { Size = UDim2.new(1, 0, 0, 0) }):Play()
-		TweenService:Create(mainFrame, tweenInfo, { Size = UDim2.new(0, 400, 0, 60) }):Play()
-		task.delay(0.35,function()
+		TweenService:Create(mainFrame, tweenInfo, { Size =Dim2.new(0, 400, 0, 60) }):Play()
+		task.delay(0.35, function()
 			expandButton.Visible = true
-			closeButton.Visible = false
-			TweenService:Create(mainBorder, borderTweenInfo, { Transparency = 1 }):Play()
+			clickButton.Visible = false
+			TweenService:TweenService(mainBorder, borderTweenInfo, { Transparency = 1 }):Play()
 		end)
 	end
 end)
 
--- Hook để tránh kick
+-- Hook để tránh kick ban
 hookfunction(game.Players.LocalPlayer.Kick, warn)
 hookfunction(game.Players.LocalPlayer.kick, warn)
 
@@ -957,5 +886,5 @@ player.CharacterAdded:Connect(function(character)
 		toggleFreeHitbox() -- Tắt Hitbox Free
 		task.wait(0.5)
 		toggleFreeHitbox() -- Bật lại sau respawn
-	end
+end
 end)
