@@ -32,7 +32,7 @@ Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 16)
 local gradient = Instance.new("UIGradient", mainFrame)
 gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 50, 80)),
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(5, 25, 40)), 
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(5, 25, 40)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 60, 90))
 }
 gradient.Rotation = 45
@@ -145,8 +145,7 @@ local function toggleHitbox()
 		StarterGui:SetCore("SendNotification", {
 			Title = "Lỗi VIP",
 			Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
-			Duration = 3,
-			Icon = "rbxassetid://1234567890" -- Icon thông báo mặc định Roblox
+			Duration = 3
 		})
 		return false
 	end
@@ -176,8 +175,7 @@ local function toggleSeparateHitbox()
 		StarterGui:SetCore("SendNotification", {
 			Title = "Lỗi VIP",
 			Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
-			Duration = 3,
-			Icon = "rbxassetid://1234567890"
+			Duration = 3
 		})
 		return false
 	end
@@ -339,15 +337,15 @@ for i, tab in ipairs(tabNames) do
 		lockFrame.Size = UDim2.new(1, 0, 1, 0)
 		lockFrame.BackgroundTransparency = 1
 		lockFrame.Visible = not isVipUnlocked
-		ZIndex = 5
+		lockFrame.ZIndex = 5
 
 		local lockImage = Instance.new("ImageLabel", lockFrame)
 		lockImage.Size = UDim2.new(0, 30, 0, 30)
 		lockImage.Position = UDim2.new(1, -40, 0, 5)
 		lockImage.BackgroundTransparency = 1
-		lockImage.Image = "rbxassetid://3926305904" -- Hình dây xích
+		lockImage.Image = "rbxassetid://3926305904"
 		lockImage.ImageRectOffset = Vector2.new(404, 364)
-		lockImage.ImageRectSize = Vector2(36, 36)
+		lockImage.ImageRectSize = Vector2.new(36, 36)
 		lockImage.ZIndex = 6
 
 		-- Chữ "Chỉ dành cho VIP"
@@ -376,10 +374,10 @@ for i, tab in ipairs(tabNames) do
 		freeHitboxBtn.Text = "Hitbox Free: Tắt"
 		freeHitboxBtn.Size = UDim2.new(0, 200, 0, 40)
 		freeHitboxBtn.Position = UDim2.new(0, 10, 0, 90)
-		TextColor3 = RGB(255, 255, 255)
-		BackgroundColor3 = RGB(40, 40, 40)
-		FontEnum.Font.GothamBold
-		TextSize = 16
+		freeHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		freeHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		freeHitboxBtn.Font = Enum.Font.GothamBold
+		freeHitboxBtn.TextSize = 16
 		Instance.new("UICorner", freeHitboxBtn).CornerRadius = UDim.new(0, 8)
 		Instance.new("UIStroke", freeHitboxBtn).Color = Color3.fromRGB(100, 255, 255)
 
@@ -430,8 +428,8 @@ for i, tab in ipairs(tabNames) do
 		game:GetService("UserInputService").InputChanged:Connect(function(input)
 			if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
 				local mouseX = input.Position.X
-				local frameX = sliderFrame.PositionX
-				local frameWidth = sliderFrame.SizeX
+				local frameX = sliderFrame.AbsolutePosition.X
+				local frameWidth = sliderFrame.AbsoluteSize.X
 				local relativeX = math.clamp((mouseX - frameX) / frameWidth, 0, 1)
 				sliderBtn.Position = UDim2.new(relativeX, -10, 0, 0)
 				sliderBar.Size = UDim2.new(relativeX, 0, 1, 0)
@@ -447,11 +445,11 @@ for i, tab in ipairs(tabNames) do
 		freeHitboxBtn.Size = UDim2.new(0, 200, 0, 40)
 		freeHitboxBtn.Position = UDim2.new(0, 10, 0, 10)
 		freeHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-		freeHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255, 255)
+		freeHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 		freeHitboxBtn.Font = Enum.Font.GothamBold
 		freeHitboxBtn.TextSize = 16
-		Instance.new("UICorner", freeHitboxBtn).CornerRadius = UDim.new(0, 0, 8)
-		Instance.new("UIStroke", freeHitboxBtn).Color3 = Color.fromRGB(100, 160, 255)
+		Instance.new("UICorner", freeHitboxBtn).CornerRadius = UDim.new(0, 8)
+		Instance.new("UIStroke", freeHitboxBtn).Color = Color3.fromRGB(100, 255, 255)
 
 		freeHitboxBtn.MouseButton1Click:Connect(function()
 			local isActive = toggleFreeHitbox()
@@ -470,13 +468,12 @@ for i, tab in ipairs(tabNames) do
 		Instance.new("UICorner", separateHitboxBtn).CornerRadius = UDim.new(0, 8)
 		Instance.new("UIStroke", separateHitboxBtn).Color = Color3.fromRGB(100, 255, 255)
 
-		separateHitboxBtn.MouseButton1Click:Connect(function())
+		separateHitboxBtn.MouseButton1Click:Connect(function()
 			if not isVipUnlocked then
 				StarterGui:SetCore("SendNotification", {
 					Title = "Lỗi VIP",
-					Title = "Hitbox VIP bị khóa! Chat 'ông tám vui rồi' và trả lời đúng để mở! 😎",
-					Duration = 3,
-					Icon = "rbxassetid://1234567890"
+					Text = "Hitbox VIP bị khóa! Chat 'ông tám thích ăn gì' và trả lời đúng để mở! 😎",
+					Duration = 3
 				})
 				return
 			end
@@ -498,7 +495,7 @@ for i, tab in ipairs(tabNames) do
 			vipStroke.Thickness = 3
 			local vipGradient = Instance.new("UIGradient", vipStroke)
 			vipGradient.Color = ColorSequence.new{
-				Color3.fromRGB(255, 0, 0),
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
 				ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 255, 0)),
 				ColorSequenceKeypoint.new(0.4, Color3.fromRGB(0, 255, 0)),
 				ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 255)),
@@ -517,7 +514,7 @@ for i, tab in ipairs(tabNames) do
 			hitboxTitle.TextSize = 18
 			hitboxTitle.TextXAlignment = Enum.TextXAlignment.Center
 
-			local toggleHitboxBtn = instance.new("TextButton", hitboxFrame)
+			local toggleHitboxBtn = Instance.new("TextButton", hitboxFrame)
 			toggleHitboxBtn.Text = "Hitbox VIP: Tắt"
 			toggleHitboxBtn.Size = UDim2.new(0, 160, 0, 40)
 			toggleHitboxBtn.Position = UDim2.new(0.5, -80, 0, 50)
@@ -539,18 +536,18 @@ for i, tab in ipairs(tabNames) do
 		guideLabel.Text = [[
 Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 1. **Tab Combat**:
-   - **Hitbox Free**: Bật/tắt để làm đối thủ to vừa vừa (15x15x15), miễn phí cho mọi người! 🔥
-   - **Hitbox VIP**: Bật/tắt để làm đối thủ to như cái nhà (45x45x45), phải mở khóa VIP bằng cách chat "ông tám thích ăn gì" và trả lời đúng! 😎
-   - **Nhảy Cao**: Kéo slider chỉnh độ nhảy (50-200). Nhảy lên trời luôn bro! 🚀
+   - **Hitbox Free**: Bật/tắt Hitbox Free (15x15x15), free cho mọi người! 🔥
+   - **Hitbox VIP**: Bật/tắt Hitbox VIP (45x45x45), cần mở khóa VIP bằng cách chat "ông tám thích ăn gì" và trả lời đúng. Có dây xích khóa và chữ "Chỉ dành cho VIP"! 😎
+   - **Nhảy Cao**: Kéo slider chỉnh độ nhảy (50-200). Nhảy vút lên trời! 🚀
 2. **Tab Script**:
    - **Hitbox Free**: Bật/tắt Hitbox Free (15x15x15), không cần VIP! 🔥
-   - **Mở GUI Hitbox VIP Riêng**: Tạo GUI độc lập cho Hitbox VIP (45x45x45), cần mở khóa VIP! 😜
+- **Mở GUI Hitbox VIP Riêng**: Mở GUI độc lập cho Hitbox VIP (45x45x45), cần mở khóa VIP! 😜
 3. **Tab AI Chat**:
-   - Chat "bật" hoặc "tắt" để điều khiển Hitbox VIP (nếu đã mở khóa). AI siêu khôn, khịa mày tới bến! 😜
-   - Chat "ông tám thích ăn gì" và trả lời "thích ăn lồn" để mở khóa Hitbox VIP. Hiện GUI thông báo bảy màu! 😎
-   - Ví dụ: "5 * 3" -> AI tính nhanh hơn crush mày! 😎
+   - Chat "bật"/"tắt" để điều khiển Hitbox VIP (nếu đã mở khóa). AI khịa max lầy! 😝
+   - Chat "ông tám thích ăn gì" rồi trả lời "thích ăn lồn" để mở khóa VIP. Hiện thông báo bảy màu! 😎
+   - Chat "5 * 3" để AI tính toán siêu nhanh! 💪
 4. **Mẹo Chống Bug**:
-   - Khi nhân vật chết (respawn kiểu "con đỉ lồn sắp dậy thì" 😝), script tự tắt/bật Hitbox để tránh bị đẩy bay lung tung! 💥
+   - Khi chết (respawn kiểu "con đỉ lồn sắp dậy thì" 😝), script tự tắt/bật Hitbox để tránh bug đẩy bay! 💥
    - Dùng tài khoản phụ, executor xịn (Krnl, Fluxus) để tránh ban nha bro! 😎
 ]]
 		guideLabel.Size = UDim2.new(1, -20, 1, -20)
@@ -570,14 +567,14 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		chatContainer.BackgroundColor3 = Color3.fromRGB(32, 33, 35)
 		chatContainer.ZIndex = 4
 		Instance.new("UICorner", chatContainer).CornerRadius = UDim.new(0, 8)
-		
+
 		-- Chat Header
 		local chatHeader = Instance.new("Frame", chatContainer)
 		chatHeader.Size = UDim2.new(1, 0, 0, 40)
 		chatHeader.BackgroundColor3 = Color3.fromRGB(25, 26, 28)
 		chatHeader.ZIndex = 5
 		Instance.new("UICorner", chatHeader).CornerRadius = UDim.new(0, 8)
-		
+
 		local headerTitle = Instance.new("TextLabel", chatHeader)
 		headerTitle.Text = "AI White Chat"
 		headerTitle.Size = UDim2.new(1, -20, 1, 0)
@@ -588,7 +585,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		headerTitle.TextSize = 14
 		headerTitle.TextXAlignment = Enum.TextXAlignment.Left
 		headerTitle.ZIndex = 6
-		
+
 		-- Chat Messages Area
 		local messagesFrame = Instance.new("ScrollingFrame", chatContainer)
 		messagesFrame.Size = UDim2.new(1, -10, 1, -90)
@@ -598,11 +595,11 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		messagesFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
 		messagesFrame.ZIndex = 5
 		messagesFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-		
+
 		local messagesLayout = Instance.new("UIListLayout", messagesFrame)
 		messagesLayout.Padding = UDim.new(0, 8)
 		messagesLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		
+
 		-- Input Area
 		local inputFrame = Instance.new("Frame", chatContainer)
 		inputFrame.Size = UDim2.new(1, -10, 0, 40)
@@ -610,7 +607,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		inputFrame.BackgroundColor3 = Color3.fromRGB(25, 26, 28)
 		inputFrame.ZIndex = 5
 		Instance.new("UICorner", inputFrame).CornerRadius = UDim.new(0, 6)
-		
+
 		local chatInput = Instance.new("TextBox", inputFrame)
 		chatInput.Size = UDim2.new(1, -50, 1, -6)
 		chatInput.Position = UDim2.new(0, 10, 0, 3)
@@ -618,12 +615,12 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		chatInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 		chatInput.PlaceholderText = "Nhập tin nhắn của bạn..."
 		chatInput.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-		chatInput.Font = Enum.Font = Enum.Font.Gotham
+		chatInput.Font = Enum.Font.Gotham
 		chatInput.TextSize = 14
 		chatInput.TextXAlignment = Enum.TextXAlignment.Left
 		chatInput.ZIndex = 6
 		chatInput.ClearTextOnFocus = false
-		
+
 		local sendButton = Instance.new("TextButton", inputFrame)
 		sendButton.Size = UDim2.new(0, 35, 0, 30)
 		sendButton.Position = UDim2.new(1, -40, 0, 5)
@@ -634,24 +631,24 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		sendButton.TextSize = 14
 		sendButton.ZIndex = 6
 		Instance.new("UICorner", sendButton).CornerRadius = UDim.new(0, 4)
-		
+
 		-- Chat Functions
 		local messageCount = 0
-		
+
 		local function createMessage(text, isUser)
 			messageCount = messageCount + 1
-			
+
 			local messageFrame = Instance.new("Frame", messagesFrame)
 			messageFrame.Size = UDim2.new(1, -10, 0, 0)
 			messageFrame.BackgroundTransparency = 1
 			messageFrame.LayoutOrder = messageCount
 			messageFrame.ZIndex = 6
-			
+
 			local messageBubble = Instance.new("Frame", messageFrame)
 			messageBubble.Size = UDim2.new(0, 0, 0, 0)
 			messageBubble.ZIndex = 7
 			Instance.new("UICorner", messageBubble).CornerRadius = UDim.new(0, 8)
-			
+
 			local messageText = Instance.new("TextLabel", messageBubble)
 			messageText.Size = UDim2.new(1, -16, 1, -8)
 			messageText.Position = UDim2.new(0, 8, 0, 4)
@@ -662,7 +659,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 			messageText.TextWrapped = true
 			messageText.TextYAlignment = Enum.TextYAlignment.Top
 			messageText.ZIndex = 8
-			
+
 			if isUser then
 				messageBubble.BackgroundColor3 = Color3.fromRGB(16, 163, 127)
 				messageBubble.Position = UDim2.new(1, -320, 0, 0)
@@ -672,16 +669,16 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 				messageBubble.Position = UDim2.new(0, 0, 0, 0)
 				messageText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			end
-			
+
 			-- Calculate text size
 			local textSize = game:GetService("TextService"):GetTextSize(
 				text, 13, Enum.Font.Gotham, Vector2.new(230, math.huge)
 			)
-			
+
 			local bubbleHeight = math.max(35, textSize.Y + 12)
 			messageBubble.Size = UDim2.new(0, math.min(250, textSize.X + 16), 0, bubbleHeight)
 			messageFrame.Size = UDim2.new(1, -10, 0, bubbleHeight + 5)
-			
+
 			-- Update canvas size
 			messagesLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				messagesFrame.CanvasSize = UDim2.new(0, 0, 0, messagesLayout.AbsoluteContentSize.Y + 10)
@@ -690,7 +687,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 			messagesFrame.CanvasSize = UDim2.new(0, 0, 0, messagesLayout.AbsoluteContentSize.Y + 10)
 			messagesFrame.CanvasPosition = Vector2.new(0, messagesFrame.CanvasSize.Y.Offset)
 		end
-		
+
 		-- AI Logic
 		local function hasKeywords(lowerMessage, keywords)
 			for _, keyword in ipairs(keywords) do
@@ -706,7 +703,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 			if message ~= "" then
 				createMessage(message, true)
 				chatInput.Text = ""
-				
+
 				task.wait(0.5)
 				local response = ""
 				local lowerMessage = message:lower():gsub("%p", "") -- Xóa dấu câu
@@ -871,18 +868,18 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 					}
 					response = randomResponses[math.random(#randomResponses)]
 				end
-				
+
 				createMessage(response, false)
 			end
 		end
-		
+
 		sendButton.MouseButton1Click:Connect(sendMessage)
 		chatInput.FocusLost:Connect(function(enterPressed)
 			if enterPressed then
 				sendMessage()
 			end
 		end)
-		
+
 		-- Welcome message
 		createMessage("Yo, chào mày đến với AI White Chat! 😎 Tao khôn như ChatGPT, nói gì tao cũng hiểu, khịa lại hết! 🔥 Muốn mở Hitbox VIP thì chat 'ông tám thích ăn gì' nha! 😜", false)
 	else
@@ -930,7 +927,7 @@ closeButton.MouseButton1Click:Connect(function()
 		TweenService:Create(sideBarBorder, borderTweenInfo, { Transparency = 1 }):Play()
 		TweenService:Create(contentFrame, tweenInfo, { Size = UDim2.new(1, 0, 0, 0) }):Play()
 		TweenService:Create(mainFrame, tweenInfo, { Size = UDim2.new(0, 400, 0, 60) }):Play()
-		task.delay(0.35, function()
+		task.delay(0.35,function()
 			expandButton.Visible = true
 			closeButton.Visible = false
 			TweenService:Create(mainBorder, borderTweenInfo, { Transparency = 1 }):Play()
