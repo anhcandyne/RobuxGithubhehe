@@ -198,7 +198,7 @@ local function toggleSeparateHitbox()
 	return SeparateHitboxActive
 end
 
--- Hitbox Free Logic (cho tab Combat)
+-- Hitbox Free Logic (cho tab Combat và Script)
 local FreeHitboxActive = false
 local function toggleFreeHitbox()
 	FreeHitboxActive = not FreeHitboxActive
@@ -225,6 +225,64 @@ local function setJumpPower(value)
 	if humanoid then
 		humanoid.JumpPower = value
 	end
+end
+
+-- GUI thông báo mở khóa VIP
+local function showVipUnlockNotification()
+	local notificationGui = Instance.new("ScreenGui")
+	notificationGui.Name = "VipUnlockNotification"
+	notificationGui.ResetOnSpawn = false
+	notificationGui.Parent = playerGui
+
+	local frame = Instance.new("Frame", notificationGui)
+	frame.Size = UDim2.new(0, 300, 0, 100)
+	frame.Position = UDim2.new(1, -320, 0, 20)
+	frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	frame.BorderSizePixel = 0
+	Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
+
+	-- Viền bảy màu
+	local stroke = Instance.new("UIStroke", frame)
+	stroke.Thickness = 3
+	local gradient = Instance.new("UIGradient", stroke)
+	gradient.Color = ColorSequence.new{
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+		ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 255, 0)),
+		ColorSequenceKeypoint.new(0.4, Color3.fromRGB(0, 255, 0)),
+		ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 255)),
+		ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 255))
+	}
+	gradient.Rotation = 45
+
+	local title = Instance.new("TextLabel", frame)
+	title.Text = "MỞ KHÓA VIP"
+	title.Size = UDim2.new(1, 0, 0, 40)
+	title.Position = UDim2.new(0, 0, 0, 10)
+	title.BackgroundTransparency = 1
+	title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	title.Font = Enum.Font.GothamBold
+	title.TextSize = 20
+	title.TextXAlignment = Enum.TextXAlignment.Center
+
+	local message = Instance.new("TextLabel", frame)
+	message.Text = "Chúc mừng bro, Hitbox VIP đã mở khóa! Quẩy nát server đi nào! 😎🔥"
+	message.Size = UDim2.new(1, -20, 0, 50)
+	message.Position = UDim2.new(0, 10, 0, 40)
+	message.BackgroundTransparency = 1
+	message.TextColor3 = Color3.fromRGB(200, 200, 200)
+	message.Font = Enum.Font.Gotham
+	message.TextSize = 14
+	message.TextWrapped = true
+	message.TextXAlignment = Enum.TextXAlignment.Center
+
+	-- Animation hiển thị
+	frame.Position = UDim2.new(1, 0, 0, 20)
+	TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quad), { Position = UDim2.new(1, -320, 0, 20) }):Play()
+	task.wait(5)
+	TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quad), { Position = UDim2.new(1, 0, 0, 20) }):Play()
+	task.wait(0.5)
+	notificationGui:Destroy()
 end
 
 -- Biến để theo dõi trạng thái câu hỏi VIP
@@ -347,11 +405,28 @@ for i, tab in ipairs(tabNames) do
 			end
 		end)
 	elseif tab == "Script" then
-		-- GUI Hitbox VIP riêng
+		-- Nút Hitbox Free
+		local freeHitboxBtn = Instance.new("TextButton", content)
+		freeHitboxBtn.Text = "Hitbox Free: Tắt"
+		freeHitboxBtn.Size = UDim2.new(0, 200, 0, 40)
+		freeHitboxBtn.Position = UDim2.new(0, 10, 0, 10)
+		freeHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		freeHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		freeHitboxBtn.Font = Enum.Font.GothamBold
+		freeHitboxBtn.TextSize = 16
+		Instance.new("UICorner", freeHitboxBtn).CornerRadius = UDim.new(0, 8)
+		Instance.new("UIStroke", freeHitboxBtn).Color = Color3.fromRGB(100, 160, 255)
+
+		freeHitboxBtn.MouseButton1Click:Connect(function()
+			local isActive = toggleFreeHitbox()
+			freeHitboxBtn.Text = isActive and "Hitbox Free: Bật" or "Hitbox Free: Tắt"
+		end)
+
+		-- Nút Mở GUI Hitbox VIP Riêng
 		local separateHitboxBtn = Instance.new("TextButton", content)
 		separateHitboxBtn.Text = "Mở GUI Hitbox VIP Riêng"
 		separateHitboxBtn.Size = UDim2.new(0, 200, 0, 40)
-		separateHitboxBtn.Position = UDim2.new(0, 10, 0, 10)
+		separateHitboxBtn.Position = UDim2.new(0, 10, 0, 60)
 		separateHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 		separateHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 		separateHitboxBtn.Font = Enum.Font.GothamBold
@@ -374,32 +449,57 @@ for i, tab in ipairs(tabNames) do
 			hitboxGui.Parent = playerGui
 
 			local hitboxFrame = Instance.new("Frame", hitboxGui)
-			hitboxFrame.Size = UDim2.new(0, 150, 0, 100)
-			hitboxFrame.Position = UDim2.new(0.5, -75, 0.5, -50)
-			hitboxFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			hitboxFrame.Size = UDim2.new(0, 200, 0, 140)
+			hitboxFrame.Position = UDim2.new(0.5, -100, 0.5, -70)
+			hitboxFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 			hitboxFrame.Active = true
 			hitboxFrame.Draggable = true
 			Instance.new("UICorner", hitboxFrame).CornerRadius = UDim.new(0, 12)
 
+			-- Viền gradient bảy màu cho GUI Hitbox VIP
+			local vipStroke = Instance.new("UIStroke", hitboxFrame)
+			vipStroke.Thickness = 3
+			local vipGradient = Instance.new("UIGradient", vipStroke)
+			vipGradient.Color = ColorSequence.new{
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+				ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 255, 0)),
+				ColorSequenceKeypoint.new(0.4, Color3.fromRGB(0, 255, 0)),
+				ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 255)),
+				ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),
+				ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 255))
+			}
+			vipGradient.Rotation = 45
+
 			local hitboxTitle = Instance.new("TextLabel", hitboxFrame)
-			hitboxTitle.Text = "GUI Hitbox VIP Riêng"
+			hitboxTitle.Text = "GUI HITBOX VIP"
 			hitboxTitle.Size = UDim2.new(1, 0, 0, 30)
+			hitboxTitle.Position = UDim2.new(0, 0, 0, 10)
 			hitboxTitle.BackgroundTransparency = 1
 			hitboxTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			hitboxTitle.Font = Enum.Font.GothamBold
-			hitboxTitle.TextSize = 16
+			hitboxTitle.TextSize = 18
 			hitboxTitle.TextXAlignment = Enum.TextXAlignment.Center
 
 			local toggleHitboxBtn = Instance.new("TextButton", hitboxFrame)
 			toggleHitboxBtn.Text = "Hitbox VIP: Tắt"
-			toggleHitboxBtn.Size = UDim2.new(0, 120, 0, 40)
-			toggleHitboxBtn.Position = UDim2.new(0.5, -60, 0, 40)
+			toggleHitboxBtn.Size = UDim2.new(0, 160, 0, 40)
+			toggleHitboxBtn.Position = UDim2.new(0.5, -80, 0, 50)
 			toggleHitboxBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 			toggleHitboxBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 			toggleHitboxBtn.Font = Enum.Font.GothamBold
 			toggleHitboxBtn.TextSize = 16
 			Instance.new("UICorner", toggleHitboxBtn).CornerRadius = UDim.new(0, 8)
 			Instance.new("UIStroke", toggleHitboxBtn).Color = Color3.fromRGB(100, 160, 255)
+
+			local vipLabel = Instance.new("TextLabel", hitboxFrame)
+			vipLabel.Text = "Chỉ dành cho VIP"
+			vipLabel.Size = UDim2.new(1, 0, 0, 20)
+			vipLabel.Position = UDim2.new(0, 0, 0, 100)
+			vipLabel.BackgroundTransparency = 1
+			vipLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
+			vipLabel.Font = Enum.Font.GothamBold
+			vipLabel.TextSize = 14
+			vipLabel.TextXAlignment = Enum.TextXAlignment.Center
 
 			toggleHitboxBtn.MouseButton1Click:Connect(function()
 				local isActive = toggleSeparateHitbox()
@@ -416,10 +516,11 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
    - **Hitbox VIP**: Bật/tắt để làm đối thủ to như cái nhà (45x45x45), nhưng phải mở khóa VIP! 😎
    - **Nhảy Cao**: Kéo slider chỉnh độ nhảy (50-200). Nhảy lên trời luôn bro! 🚀
 2. **Tab Script**:
-   - Nhấn "Mở GUI Hitbox VIP Riêng" để tạo GUI độc lập, bật/tắt Hitbox VIP riêng, nhưng phải mở khóa VIP! 😜
+   - **Hitbox Free**: Bật/tắt Hitbox Free (15x15x15), không cần VIP! 🔥
+   - **Mở GUI Hitbox VIP Riêng**: Tạo GUI độc lập cho Hitbox VIP (45x45x45), nhưng phải mở khóa VIP! 😜
 3. **Tab AI Chat**:
    - Chat "bật" hoặc "tắt" để điều khiển Hitbox VIP (nếu đã mở khóa). AI siêu khôn, khịa mày tới bến! 😜
-   - Chat "ông tám thích ăn gì" và trả lời "thích ăn lồn" để mở khóa Hitbox VIP. Hiện thông báo góc màn hình! 😎
+   - Chat "ông tám thích ăn gì" và trả lời "thích ăn lồn" để mở khóa Hitbox VIP. Hiện GUI thông báo bảy màu! 😎
    - Ví dụ: "5 * 3" -> AI tính nhanh hơn crush mày! 😎
 4. **Mẹo Chống Bug**:
    - Khi nhân vật sắp respawn (kiểu "con đỉ lồn sắp dậy thì" 😝), script tự tắt/bật Hitbox để tránh bị đẩy bay lung tung! 💥
@@ -501,7 +602,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 		sendButton.Position = UDim2.new(1, -40, 0, 5)
 		sendButton.BackgroundColor3 = Color3.fromRGB(16, 163, 127)
 		sendButton.Text = "gửi"
-	sendButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		sendButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		sendButton.Font = Enum.Font.GothamBold
 		sendButton.TextSize = 14
 		sendButton.ZIndex = 6
@@ -594,11 +695,7 @@ Hướng Dẫn Sử Dụng Script (Vibe Gen Z 😎):
 				elseif waitingForVipAnswer and hasKeywords(lowerMessage, {"thích ăn lồn", "thich an lon", "an lon", "ăn lồn"}) then
 					isVipUnlocked = true
 					waitingForVipAnswer = false
-					StarterGui:SetCore("SendNotification", {
-						Title = "Mở Khóa VIP",
-						Text = "Chúc mừng bro, Hitbox VIP đã mở khóa! Quẩy nát server đi nào! 😎🔥",
-						Duration = 5
-					})
+					showVipUnlockNotification() -- Hiển thị GUI thông báo bảy màu
 					response = "Hài vcl, đúng gu ông Tám! 😝 Hitbox VIP mở khóa rồi, quẩy nát đi bro! 🔥"
 				elseif waitingForVipAnswer then
 					waitingForVipAnswer = false
