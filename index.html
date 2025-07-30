@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mua Robux - Game Store</title>
+    <title>check value pet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -33,6 +33,21 @@
             margin-bottom: 20px;
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .header-right {
+            flex-shrink: 0;
+        }
+
         .section-title {
             font-size: 24px;
             font-weight: 600;
@@ -51,6 +66,47 @@
 
         .package-list-icon i {
             font-size: 18px;
+        }
+
+        /* Search Container */
+        .search-container {
+            position: relative;
+            width: 250px;
+            margin-top: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .search-input:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .search-input:focus + .search-icon {
+            color: #ff6b35;
         }
 
         /* Payment Methods */
@@ -109,14 +165,90 @@
             border-color: #ff6b35;
         }
 
+        /* Custom border colors for each package */
+        .package-card[data-package="kitsune"] {
+            border-color: #ff0000;
+        }
+
+        .package-card[data-package="raccon"] {
+            border-color: #808080;
+        }
+
+        .package-card[data-package="kitsune"]:hover {
+            border-color: #ff0000;
+        }
+
+        .package-card[data-package="raccon"]:hover {
+            border-color: #808080;
+        }
+
+        .package-card[data-package="butterfly"] {
+            border-color: #ff6b35;
+        }
+
+        .package-card[data-package="trex"] {
+            border-color: #ff4757;
+        }
+
+        .package-card[data-package="tiger"] {
+            border-color: #ffa502;
+        }
+
+        .package-card[data-package="mooncat"] {
+            border-color: #57606f;
+        }
+
+        .package-card[data-package="butterfly"]:hover {
+            border-color: #ff6b35;
+        }
+
+        .package-card[data-package="trex"]:hover {
+            border-color: #ff4757;
+        }
+
+        .package-card[data-package="tiger"]:hover {
+            border-color: #ffa502;
+        }
+
+        .package-card[data-package="mooncat"]:hover {
+            border-color: #57606f;
+        }
+
         .package-image {
             height: 120px;
-            background: url('1403347641449975808.png') center/cover;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+        }
+
+        .package-card[data-package="kitsune"] .package-image {
+            background: url('cach-san-kitsune-thumb.jpg') center/cover;
+        }
+
+        .package-card[data-package="raccon"] .package-image {
+            background: url('grow-a-garden-raccoon.jpg') center/cover;
+        }
+
+        .package-card[data-package="disco"] .package-image {
+            background: url('Roblox-GROW-A-GARDEN-GAG-Disco-Bee.webp') center/cover;
+        }
+
+        .package-card[data-package="butterfly"] .package-image {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+        }
+
+        .package-card[data-package="trex"] .package-image {
+            background: linear-gradient(135deg, #ff4757, #ff6348);
+        }
+
+        .package-card[data-package="tiger"] .package-image {
+            background: linear-gradient(135deg, #ffa502, #ff6348);
+        }
+
+        .package-card[data-package="mooncat"] .package-image {
+            background: linear-gradient(135deg, #57606f, #747d8c);
         }
 
         @keyframes float {
@@ -226,82 +358,7 @@
             color: white;
         }
 
-        /* Shopping Cart */
-        .shopping-cart {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 600px;
-            background: #ff6b35;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-        }
-
-        .cart-icon {
-            position: relative;
-            font-size: 24px;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: white;
-            color: #ff6b35;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .cart-info {
-            flex: 1;
-        }
-
-        .cart-label {
-            display: block;
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .cart-total {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .continue-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .continue-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .continue-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        
 
         /* Modal Styles */
         .modal-overlay {
@@ -545,6 +602,15 @@
                 padding: 15px;
             }
             
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-container {
+                width: 100%;
+            }
+            
             .packages-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
@@ -606,60 +672,126 @@
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <h2 class="section-title">2. Chọn gói</h2>
-            <div class="package-list-icon">
-                <i class="fas fa-list-ul"></i>
-                <span>Danh sách gói</span>
+            <div class="header-top">
+                <div class="header-left">
+                    <h2 class="section-title">Check value pet</h2>
+                    <div class="package-list-icon">
+                        <i class="fas fa-list-ul"></i>
+                        <span>Danh sách pet</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <input type="text" placeholder="Tìm kiếm pet..." class="search-input" id="searchInput">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Payment Method Selection -->
-        <div class="payment-methods">
-            <button class="payment-method active" data-method="zingcard">ZingCard</button>
-            <button class="payment-method" data-method="other">ZaloPay / VietQR / ATM / Credit Card</button>
-        </div>
+        
 
         <!-- Robux Packages -->
         <div class="packages-grid">
-            <!-- 55 Robux Package -->
-            <div class="package-card" data-robux="55" data-price="20000">
+            <!-- Kitsune Package -->
+            <div class="package-card" data-package="kitsune" data-value="330">
                 <div class="package-image">
                 </div>
                 <div class="package-info">
-                    <h3>Gói 55 Robux</h3>
+                    <h3>Kitsune</h3>
                     <div class="package-footer">
-                        <span class="price">20.000 VND</span>
-                        <button class="add-btn">
+                        <span class="price">Value: 330</span>
+                        <button class="add-btn" data-modal="kitsuneModal">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 145 Robux Package -->
-            <div class="package-card" data-robux="145" data-price="50000">
+            <!-- Raccon Package -->
+            <div class="package-card" data-package="raccon" data-value="120">
                 <div class="package-image">
                 </div>
                 <div class="package-info">
-                    <h3>Gói 145 Robux</h3>
+                    <h3>Raccon</h3>
                     <div class="package-footer">
-                        <span class="price">50.000 VND</span>
-                        <button class="add-btn">
+                        <span class="price">Value: 120</span>
+                        <button class="add-btn" data-modal="racconModal">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 300 Robux Package -->
-            <div class="package-card" data-robux="300" data-price="100000">
+            <!-- Disco Package -->
+            <div class="package-card" data-package="disco" data-value="150">
                 <div class="package-image">
                 </div>
                 <div class="package-info">
-                    <h3>Gói 300 Robux</h3>
+                    <h3>Disco</h3>
                     <div class="package-footer">
-                        <span class="price">100.000 VND</span>
-                        <button class="add-btn">
+                        <span class="price">Value: 150</span>
+                        <button class="add-btn" data-modal="discoModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dragon Package -->
+            <div class="package-card" data-package="butterfly" data-value="110">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Dragonfly</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 50</span>
+                        <button class="add-btn" data-modal="dragonModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phoenix Package -->
+            <div class="package-card" data-package="trex" data-value="65">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Spinosaurus</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 85</span>
+                        <button class="add-btn" data-modal="phoenixModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiger Package -->
+            <div class="package-card" data-package="tiger" data-value="280">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>ChickenZombie</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 28</span>
+                        <button class="add-btn" data-modal="tigerModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wolf Package -->
+            <div class="package-card" data-package="mooncat" data-value="2">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Admin Web sẽ cập nhật value 24/24</h3>
+                    <div class="package-footer">
+                        <span class="price">Pé White xin cảm ơn</span>
+                        <button class="add-btn" data-modal="wolfModal">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
@@ -667,57 +799,52 @@
             </div>
         </div>
 
-        <!-- Account Balance Display -->
-        <div class="account-balance">
-            <div class="balance-info">
-                <i class="fas fa-wallet"></i>
-                <div class="balance-details">
-                    <span class="balance-label">Số dư tài khoản:</span>
-                    <span class="balance-amount" id="accountBalance">700.000 VND</span>
-                </div>
-            </div>
-        </div>
+        
 
-        <!-- Shopping Cart -->
-        <div class="shopping-cart">
-            <div class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </div>
-            <div class="cart-info">
-                <span class="cart-label">Số dư tài khoản:</span>
-                <span class="cart-total" id="cartBalance">700.000 VND</span>
-            </div>
-            <button class="continue-btn" id="continueBtn">
-                <span>Tiếp tục</span>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
+        
     </div>
 
-    <!-- Account Input Modal -->
-    <div class="modal-overlay" id="accountModal">
+    <!-- Kitsune Modal -->
+    <div class="modal-overlay" id="kitsuneModal">
         <div class="modal">
             <div class="modal-header">
-                <h3>Thông tin tài khoản</h3>
-                <button class="close-btn" id="closeAccountModal">
+                <h3>Kitsune</h3>
+                <button class="close-btn" data-close="kitsuneModal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Vui lòng nhập tên tài khoản game để nạp Robux:</p>
-                <div class="input-group">
-                    <label for="gameUsername">Tên tài khoản game:</label>
-                    <input type="text" id="gameUsername" placeholder="Nhập tên tài khoản của bạn..." required>
-                </div>
-                <div class="selected-package">
-                    <p>Gói đã chọn: <span id="selectedPackage"></span></p>
-                    <p>Số tiền: <span id="selectedPrice"></span></p>
-                </div>
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
             </div>
-            <div class="modal-footer">
-                <button class="cancel-btn" id="cancelBtn">Hủy</button>
-                <button class="confirm-btn" id="topupBtn">Nạp</button>
+        </div>
+    </div>
+
+    <!-- Raccon Modal -->
+    <div class="modal-overlay" id="racconModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Raccon</h3>
+                <button class="close-btn" data-close="racconModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disco Modal -->
+    <div class="modal-overlay" id="discoModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Disco</h3>
+                <button class="close-btn" data-close="discoModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
             </div>
         </div>
     </div>
@@ -758,56 +885,104 @@
         </div>
     </div>
 
+    <!-- Dragon Modal -->
+    <div class="modal-overlay" id="dragonModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Dragon</h3>
+                <button class="close-btn" data-close="dragonModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phoenix Modal -->
+    <div class="modal-overlay" id="phoenixModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Phoenix</h3>
+                <button class="close-btn" data-close="phoenixModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tiger Modal -->
+    <div class="modal-overlay" id="tigerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Tiger</h3>
+                <button class="close-btn" data-close="tigerModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wolf Modal -->
+    <div class="modal-overlay" id="wolfModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Wolf</h3>
+                <button class="close-btn" data-close="wolfModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertisement Modal -->
+    <div class="modal-overlay" id="adModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Quảng cáo</h3>
+                <button class="close-btn" data-close="adModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px; line-height: 1.6;">
+             quang cáo không có ai thuê:) <br><br>
+                    sjhdndíưiunsijsks yay Yaya nhận thuê quảng cáo nhoa<br>
+                    qu<br><br>
+                    ọet                </p>
+            </div>
+        </div>
+    </div>
+
     <script>
         class RobuxStore {
             constructor() {
-                this.cart = [];
-                this.selectedPackage = null;
-                this.paymentMethod = 'zingcard';
-                this.accountBalance = 700000; // 700,000 VND starting balance
-                
                 this.init();
             }
 
             init() {
                 this.bindEvents();
-                this.updateCartDisplay();
-                this.updateBalanceDisplay();
+                this.initSearch();
             }
 
             bindEvents() {
-                // Payment method selection
-                document.querySelectorAll('.payment-method').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
-                        e.target.classList.add('active');
-                        this.paymentMethod = e.target.dataset.method;
-                    });
-                });
-
-                // Package card clicks
-                document.querySelectorAll('.package-card').forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        if (!e.target.closest('.add-btn')) {
-                            this.selectPackage(card);
-                        }
-                    });
-                });
-
                 // Add to cart buttons
                 document.querySelectorAll('.add-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const card = e.target.closest('.package-card');
-                        this.addToCart(card);
+                        const modalId = btn.getAttribute('data-modal');
+                        this.showModal(modalId);
                     });
-                });
-
-                // Continue button
-                document.getElementById('continueBtn').addEventListener('click', () => {
-                    if (this.cart.length > 0) {
-                        this.showAccountModal();
-                    }
                 });
 
                 // Modal events
@@ -815,165 +990,29 @@
             }
 
             bindModalEvents() {
-                // Account modal
-                document.getElementById('closeAccountModal').addEventListener('click', () => {
-                    this.hideModal('accountModal');
-                });
-
-                document.getElementById('cancelBtn').addEventListener('click', () => {
-                    this.hideModal('accountModal');
-                });
-
-                document.getElementById('topupBtn').addEventListener('click', () => {
-                    this.processTopup();
+                // Close buttons for all modals
+                document.querySelectorAll('.close-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const modalId = btn.getAttribute('data-close');
+                        if (modalId) {
+                            this.hideModal(modalId);
+                        }
+                    });
                 });
 
                 // Success modal
                 document.getElementById('closeSuccessModal').addEventListener('click', () => {
                     this.hideModal('successModal');
-                    this.resetCart();
                 });
 
-                // Close modal on overlay click
+                // Close modal on overlay click (except for advertisement modal)
                 document.querySelectorAll('.modal-overlay').forEach(overlay => {
                     overlay.addEventListener('click', (e) => {
-                        if (e.target === overlay) {
+                        if (e.target === overlay && overlay.id !== 'adModal') {
                             this.hideModal(overlay.id);
                         }
                     });
                 });
-
-                // Enter key in username input
-                document.getElementById('gameUsername').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        this.processTopup();
-                    }
-                });
-            }
-
-            selectPackage(card) {
-                const robux = card.dataset.robux;
-                const price = parseInt(card.dataset.price);
-                
-                this.selectedPackage = {
-                    robux: robux,
-                    price: price,
-                    formattedPrice: this.formatPrice(price)
-                };
-
-                this.showAccountModal();
-            }
-
-            addToCart(card) {
-                const robux = card.dataset.robux;
-                const price = parseInt(card.dataset.price);
-                
-                const existingItem = this.cart.find(item => item.robux === robux);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    this.cart.push({
-                        robux: robux,
-                        price: price,
-                        quantity: 1
-                    });
-                }
-
-                this.updateCartDisplay();
-                this.showAddAnimation(card);
-            }
-
-            showAddAnimation(card) {
-                card.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 150);
-            }
-
-            updateCartDisplay() {
-                const cartCount = this.cart.reduce((total, item) => total + item.quantity, 0);
-
-                document.querySelector('.cart-count').textContent = cartCount;
-                document.getElementById('cartBalance').textContent = this.formatPrice(this.accountBalance);
-
-                const continueBtn = document.getElementById('continueBtn');
-                continueBtn.disabled = cartCount === 0;
-            }
-
-            showAccountModal() {
-                const modal = document.getElementById('accountModal');
-                const usernameInput = document.getElementById('gameUsername');
-                
-                if (this.selectedPackage) {
-                    document.getElementById('selectedPackage').textContent = `${this.selectedPackage.robux} Robux`;
-                    document.getElementById('selectedPrice').textContent = this.selectedPackage.formattedPrice;
-                } else if (this.cart.length > 0) {
-                    const totalRobux = this.cart.reduce((total, item) => total + (parseInt(item.robux) * item.quantity), 0);
-                    const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-                    
-                    document.getElementById('selectedPackage').textContent = `${totalRobux} Robux`;
-                    document.getElementById('selectedPrice').textContent = this.formatPrice(totalPrice);
-                }
-
-                usernameInput.value = '';
-                this.showModal('accountModal');
-                
-                setTimeout(() => {
-                    usernameInput.focus();
-                }, 300);
-            }
-
-            processTopup() {
-                const username = document.getElementById('gameUsername').value.trim();
-                
-                if (!username) {
-                    alert('Vui lòng nhập tên tài khoản game!');
-                    return;
-                }
-
-                // Calculate total cost
-                let totalCost;
-                if (this.selectedPackage) {
-                    totalCost = this.selectedPackage.price;
-                } else {
-                    totalCost = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-                }
-
-                // Check if user has enough balance
-                if (totalCost > this.accountBalance) {
-                    alert('Số dư tài khoản không đủ để thanh toán!');
-                    return;
-                }
-
-                // Hide account modal and show loading
-                this.hideModal('accountModal');
-                this.showModal('loadingModal');
-
-                // Simulate processing time
-                setTimeout(() => {
-                    // Deduct balance
-                    this.accountBalance -= totalCost;
-                    this.updateBalanceDisplay();
-                    
-                    this.hideModal('loadingModal');
-                    this.showSuccessModal(username);
-                }, 3000);
-            }
-
-            showSuccessModal(username) {
-                document.getElementById('successUsername').textContent = username;
-                
-                let totalRobux;
-                if (this.selectedPackage) {
-                    totalRobux = this.selectedPackage.robux;
-                } else {
-                    totalRobux = this.cart.reduce((total, item) => total + (parseInt(item.robux) * item.quantity), 0);
-                }
-                
-                document.getElementById('successRobux').textContent = `${totalRobux} Robux`;
-                
-                this.showModal('successModal');
             }
 
             showModal(modalId) {
@@ -986,25 +1025,94 @@
                 document.body.style.overflow = '';
             }
 
-            resetCart() {
-                this.cart = [];
-                this.selectedPackage = null;
-                this.updateCartDisplay();
+            initSearch() {
+                const searchInput = document.getElementById('searchInput');
+                const packages = document.querySelectorAll('.package-card');
+
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    let visibleCount = 0;
+                    
+                    packages.forEach(pkgCard => {
+                        const pkgName = pkgCard.querySelector('h3').textContent.toLowerCase();
+                        const pkgValue = pkgCard.getAttribute('data-value');
+                        const pkgType = pkgCard.getAttribute('data-package');
+                        
+                        const matchesName = pkgName.includes(searchTerm);
+                        const matchesValue = pkgValue && pkgValue.includes(searchTerm);
+                        const matchesType = pkgType && pkgType.toLowerCase().includes(searchTerm);
+                        
+                        if (matchesName || matchesValue || matchesType || searchTerm === '') {
+                            pkgCard.style.display = 'block';
+                            pkgCard.style.opacity = '1';
+                            pkgCard.style.transform = 'scale(1)';
+                            visibleCount++;
+                        } else {
+                            pkgCard.style.display = 'none';
+                            pkgCard.style.opacity = '0';
+                            pkgCard.style.transform = 'scale(0.8)';
+                        }
+                    });
+
+                    // Show/hide "no results" message if needed
+                    if (visibleCount === 0 && searchTerm !== '') {
+                        this.showNoResults();
+                    } else {
+                        this.hideNoResults();
+                    }
+                });
+
+                // Clear search when clicking the search icon
+                const searchIcon = document.querySelector('.search-icon');
+                searchIcon.addEventListener('click', () => {
+                    searchInput.value = '';
+                    packages.forEach(packageCard => {
+                        packageCard.style.display = 'block';
+                        packageCard.style.opacity = '1';
+                        packageCard.style.transform = 'scale(1)';
+                    });
+                    this.hideNoResults();
+                });
             }
 
-            updateBalanceDisplay() {
-                document.getElementById('accountBalance').textContent = this.formatPrice(this.accountBalance);
-                document.getElementById('cartBalance').textContent = this.formatPrice(this.accountBalance);
+            showNoResults() {
+                let noResultsMsg = document.getElementById('noResultsMessage');
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.id = 'noResultsMessage';
+                    noResultsMsg.innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #666;">
+                            <i class="fas fa-search" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+                            <p style="font-size: 18px; margin-bottom: 5px;">Không tìm thấy gói nào</p>
+                            <p style="font-size: 14px; opacity: 0.7;">Thử tìm kiếm với từ khóa khác</p>
+                        </div>
+                    `;
+                    document.querySelector('.packages-grid').parentNode.appendChild(noResultsMsg);
+                }
+                noResultsMsg.style.display = 'block';
             }
 
-            formatPrice(price) {
-                return price.toLocaleString('vi-VN') + ' VND';
+            hideNoResults() {
+                const noResultsMsg = document.getElementById('noResultsMessage');
+                if (noResultsMsg) {
+                    noResultsMsg.style.display = 'none';
+                }
             }
         }
 
         // Initialize the store when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             new RobuxStore();
+            
+            // Show advertisement modal once after 15 seconds
+            let adShown = false;
+            setTimeout(() => {
+                if (!adShown) {
+                    document.getElementById('adModal').classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    adShown = true;
+                }
+            }, 15000);
         });
 
         // Add some visual enhancements
@@ -1023,12 +1131,26 @@
             // Add hover effects for cards
             const cards = document.querySelectorAll('.package-card');
             cards.forEach(card => {
+                const packageType = card.getAttribute('data-package');
+                let originalColor = 'transparent';
+                
+                // Set original colors based on package type
+                if (packageType === 'kitsune') {
+                    originalColor = '#ff0000';
+                } else if (packageType === 'raccon') {
+                    originalColor = '#808080';
+                } else {
+                    originalColor = 'transparent';
+                }
+                
                 card.addEventListener('mouseenter', function() {
-                    this.style.borderColor = '#ff6b35';
+                    // Keep the original color on hover
+                    this.style.borderColor = originalColor;
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.borderColor = 'transparent';
+                    // Keep the original color when not hovering
+                    this.style.borderColor = originalColor;
                 });
             });
 
