@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -199,6 +199,18 @@
             border-color: #57606f;
         }
 
+        .package-card[data-package="fennecfox"] {
+            border-color: #f39c12;
+        }
+
+        .package-card[data-package="queenbee"] {
+            border-color: #f1c40f;
+        }
+
+        .package-card[data-package="redfox"] {
+            border-color: #e74c3c;
+        }
+
         .package-card[data-package="butterfly"]:hover {
             border-color: #ff6b35;
         }
@@ -213,6 +225,18 @@
 
         .package-card[data-package="mooncat"]:hover {
             border-color: #57606f;
+        }
+
+        .package-card[data-package="fennecfox"]:hover {
+            border-color: #f39c12;
+        }
+
+        .package-card[data-package="queenbee"]:hover {
+            border-color: #f1c40f;
+        }
+
+        .package-card[data-package="redfox"]:hover {
+            border-color: #e74c3c;
         }
 
         .package-image {
@@ -250,6 +274,18 @@
 
         .package-card[data-package="mooncat"] .package-image {
             background: linear-gradient(135deg, #57606f, #747d8c);
+        }
+
+        .package-card[data-package="fennecfox"] .package-image {
+            background: url('640x640.webp') center/cover;
+        }
+
+        .package-card[data-package="queenbee"] .package-image {
+            background: url('Queen_Bee_(Pet)_Rainbow.gif') center/cover;
+        }
+
+        .package-card[data-package="redfox"] .package-image {
+            background: url('09c49f4a-e768-458d-b835-50769cf934f5.jpg') center/cover;
         }
 
         @keyframes float {
@@ -863,6 +899,51 @@
                 </div>
             </div>
 
+            <!-- Fennec Fox Package -->
+            <div class="package-card" data-package="fennecfox" data-value="110">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Fennec Fox</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 110</span>
+                        <button class="add-btn" data-modal="fennecfoxModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Queen Bee Package -->
+            <div class="package-card" data-package="queenbee" data-value="15">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Queen Bee</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 15</span>
+                        <button class="add-btn" data-modal="queenbeeModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Red Fox Package -->
+            <div class="package-card" data-package="redfox" data-value="3">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Red Fox</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 3</span>
+                        <button class="add-btn" data-modal="redfoxModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Wolf Package -->
             <div class="package-card" data-package="mooncat" data-value="2">
                 <div class="package-image">
@@ -1020,6 +1101,51 @@
             <div class="modal-header">
                 <h3>Wolf</h3>
                 <button class="close-btn" data-close="wolfModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fennec Fox Modal -->
+    <div class="modal-overlay" id="fennecfoxModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Fennec Fox</h3>
+                <button class="close-btn" data-close="fennecfoxModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Queen Bee Modal -->
+    <div class="modal-overlay" id="queenbeeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Queen Bee</h3>
+                <button class="close-btn" data-close="queenbeeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Red Fox Modal -->
+    <div class="modal-overlay" id="redfoxModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Red Fox</h3>
+                <button class="close-btn" data-close="redfoxModal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
