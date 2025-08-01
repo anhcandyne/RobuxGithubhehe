@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -211,6 +211,18 @@
             border-color: #e74c3c;
         }
 
+        .package-card[data-package="newtrex"] {
+            border-color: #2d3436;
+        }
+
+        .package-card[data-package="mimic"] {
+            border-color: #6c5ce7;
+        }
+
+        .package-card[data-package="newbutterfly"] {
+            border-color: #fd79a8;
+        }
+
         .package-card[data-package="butterfly"]:hover {
             border-color: #ff6b35;
         }
@@ -237,6 +249,18 @@
 
         .package-card[data-package="redfox"]:hover {
             border-color: #e74c3c;
+        }
+
+        .package-card[data-package="newtrex"]:hover {
+            border-color: #2d3436;
+        }
+
+        .package-card[data-package="mimic"]:hover {
+            border-color: #6c5ce7;
+        }
+
+        .package-card[data-package="newbutterfly"]:hover {
+            border-color: #fd79a8;
         }
 
         .package-image {
@@ -286,6 +310,18 @@
 
         .package-card[data-package="redfox"] .package-image {
             background: url('09c49f4a-e768-458d-b835-50769cf934f5.jpg') center/cover;
+        }
+
+        .package-card[data-package="newtrex"] .package-image {
+            background: url('Grow-A-Garden-T-Rex.jpg') center/cover;
+        }
+
+        .package-card[data-package="mimic"] .package-image {
+            background: url('Mimic-Octopus-in-Roblox-Grow-a-Garden.webp') center/cover;
+        }
+
+        .package-card[data-package="newbutterfly"] .package-image {
+            background: url('grow-a-garden-butterfly.jpg') center/cover;
         }
 
         @keyframes float {
@@ -944,6 +980,51 @@
                 </div>
             </div>
 
+            <!-- T-Rex Package -->
+            <div class="package-card" data-package="newtrex" data-value="35">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>T-Rex</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 35</span>
+                        <button class="add-btn" data-modal="newtrexModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mimic Package -->
+            <div class="package-card" data-package="mimic" data-value="25">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Mimic</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 25</span>
+                        <button class="add-btn" data-modal="mimicModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Butterfly Package -->
+            <div class="package-card" data-package="newbutterfly" data-value="90">
+                <div class="package-image">
+                </div>
+                <div class="package-info">
+                    <h3>Butterfly</h3>
+                    <div class="package-footer">
+                        <span class="price">Value: 90</span>
+                        <button class="add-btn" data-modal="newbutterflyModal">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Wolf Package -->
             <div class="package-card" data-package="mooncat" data-value="2">
                 <div class="package-image">
@@ -1146,6 +1227,51 @@
             <div class="modal-header">
                 <h3>Red Fox</h3>
                 <button class="close-btn" data-close="redfoxModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- T-Rex Modal -->
+    <div class="modal-overlay" id="newtrexModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>T-Rex</h3>
+                <button class="close-btn" data-close="newtrexModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mimic Modal -->
+    <div class="modal-overlay" id="mimicModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Mimic</h3>
+                <button class="close-btn" data-close="mimicModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-size: 18px; padding: 20px;">Tí</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Butterfly Modal -->
+    <div class="modal-overlay" id="newbutterflyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Butterfly</h3>
+                <button class="close-btn" data-close="newbutterflyModal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
