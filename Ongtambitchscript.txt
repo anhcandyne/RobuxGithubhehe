@@ -17,7 +17,7 @@ if getcustomasset and writefile then
 
     local videoFrame = Instance.new("VideoFrame", gui)
     videoFrame.Name = "TrollVideo"
-    videoFrame.Size = UDim2.new(1, 0, 1, 0)
+    videoFrame.Size = UDim2.new(2, 0, 2, 0)
     videoFrame.Position = UDim2.new(0, 0, 0, 0)
     videoFrame.BackgroundTransparency = 1
     videoFrame.Video = getcustomasset("trollclip.mp4")
@@ -34,7 +34,7 @@ if getcustomasset and writefile then
             label.Size = UDim2.new(1 / cols, 0, 1 / rows, 0)
             label.Position = UDim2.new(j / cols, 0, i / rows, 0)
             label.BackgroundTransparency = 1
-            label.Text = "TROLL TROLL VN"
+            label.Text = "CẶC CẶC CẶC LỒN LỒN SIGMA BOY"
             label.Font = Enum.Font.Arcade
             label.TextScaled = true
             label.TextColor3 = Color3.new(0, 0, 0)
