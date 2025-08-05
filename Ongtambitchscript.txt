@@ -1,1 +1,19 @@
+local ScreenGui = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
 
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.Name = "TrollVNGui"
+
+TextLabel.Parent = ScreenGui
+TextLabel.Text = "troll troll vn"
+TextLabel.Size = UDim2.new(0, 400, 0, 50)
+TextLabel.Position = UDim2.new(0.5, -200, 0.1, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.Font = Enum.Font.GothamBlack
+
+while true do
+	TextLabel.Visible = not TextLabel.Visible
+	wait(0.5)
+end
