@@ -1,19 +1,46 @@
-local ScreenGui = Instance.new("ScreenGui")
-local TextLabel = Instance.new("TextLabel")
+if getcustomasset and writefile then
+    local player = game:GetService("Players").LocalPlayer
+    local coreGui = game:GetService("CoreGui")
 
-ScreenGui.Parent = game:GetService("CoreGui")
-ScreenGui.Name = "TrollVNGui"
+    if coreGui:FindFirstChild("TrollTrollVN") then
+        coreGui:FindFirstChild("TrollTrollVN"):Destroy()
+    end
 
-TextLabel.Parent = ScreenGui
-TextLabel.Text = "troll troll vn"
-TextLabel.Size = UDim2.new(0, 400, 0, 50)
-TextLabel.Position = UDim2.new(0.5, -200, 0.1, 0)
-TextLabel.BackgroundTransparency = 1
-TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.Font = Enum.Font.GothamBlack
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "TrollTrollVN"
+    gui.ResetOnSpawn = false
+    gui.IgnoreGuiInset = true
+    gui.Parent = coreGui
 
-while true do
-	TextLabel.Visible = not TextLabel.Visible
-	wait(0.5)
+    local videoURL = "https://github.com/HappyCow91/RobloxScripts/blob/main/Videos/videoplayback.mp4?raw=true"
+    writefile("trollclip.mp4", game:HttpGet(videoURL))
+
+    local videoFrame = Instance.new("VideoFrame", gui)
+    videoFrame.Name = "TrollVideo"
+    videoFrame.Size = UDim2.new(1, 0, 1, 0)
+    videoFrame.Position = UDim2.new(0, 0, 0, 0)
+    videoFrame.BackgroundTransparency = 1
+    videoFrame.Video = getcustomasset("trollclip.mp4")
+    videoFrame.Looped = true
+    videoFrame.Volume = 10
+    videoFrame.Playing = true
+
+    local rows = 6
+    local cols = 6
+    for i = 0, rows - 1 do
+        for j = 0, cols - 1 do
+            local label = Instance.new("TextLabel")
+            label.Parent = gui
+            label.Size = UDim2.new(1 / cols, 0, 1 / rows, 0)
+            label.Position = UDim2.new(j / cols, 0, i / rows, 0)
+            label.BackgroundTransparency = 1
+            label.Text = "TROLL TROLL VN"
+            label.Font = Enum.Font.Arcade
+            label.TextScaled = true
+            label.TextColor3 = Color3.new(0, 0, 0)
+            label.TextStrokeTransparency = 1
+        end
+    end
+else
+    game:Shutdown()
 end
