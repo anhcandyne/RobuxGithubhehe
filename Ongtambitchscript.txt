@@ -1,46 +1,1601 @@
-if getcustomasset and writefile then
-    local player = game:GetService("Players").LocalPlayer
-    local coreGui = game:GetService("CoreGui")
-
-    if coreGui:FindFirstChild("TrollTrollVN") then
-        coreGui:FindFirstChild("TrollTrollVN"):Destroy()
-    end
-
-    local gui = Instance.new("ScreenGui")
-    gui.Name = "TrollTrollVN"
-    gui.ResetOnSpawn = false
-    gui.IgnoreGuiInset = true
-    gui.Parent = coreGui
-
-    local videoURL = "https://github.com/HappyCow91/RobloxScripts/blob/main/Videos/videoplayback.mp4?raw=true"
-    writefile("trollclip.mp4", game:HttpGet(videoURL))
-
-    local videoFrame = Instance.new("VideoFrame", gui)
-    videoFrame.Name = "TrollVideo"
-    videoFrame.Size = UDim2.new(1, 0, 1, 0)
-    videoFrame.Position = UDim2.new(0, 0, 0, 0)
-    videoFrame.BackgroundTransparency = 1
-    videoFrame.Video = getcustomasset("trollclip.mp4")
-    videoFrame.Looped = true
-    videoFrame.Volume = 10
-    videoFrame.Playing = true
-
-    local rows = 6
-    local cols = 6
-    for i = 0, rows - 1 do
-        for j = 0, cols - 1 do
-            local label = Instance.new("TextLabel")
-            label.Parent = gui
-            label.Size = UDim2.new(1 / cols, 0, 1 / rows, 0)
-            label.Position = UDim2.new(j / cols, 0, i / rows, 0)
-            label.BackgroundTransparency = 1
-            label.Text = "con cặc đụ má"
-            label.Font = Enum.Font.Arcade
-            label.TextScaled = true
-            label.TextColor3 = Color3.new(0, 0, 0)
-            label.TextStrokeTransparency = 1
-        end
-    end
-else
-    game:Shutdown()
+if not game:IsLoaded() then
+game:GetService("StarterGui"):SetCore("SendNotification", {
+Title = "Script loading",
+Text = "Waiting for the game to finish loading!",
+Duration = 5
+})
+game.Loaded:Wait()
 end
+-- Instances:
+local Converted = {
+["_YARHM"] = Instance.new("ScreenGui");
+["_Open"] = Instance.new("TextButton");
+["_UICorner"] = Instance.new("UICorner");
+["_InitOpen"] = Instance.new("LocalScript");
+["_OnClick"] = Instance.new("LocalScript");
+["_Resizer"] = Instance.new("LocalScript");
+["_UIPadding"] = Instance.new("UIPadding");
+["_DropdownFrameSample"] = Instance.new("Frame");
+["_UICorner1"] = Instance.new("UICorner");
+["_UIGradient"] = Instance.new("UIGradient");
+["_UIStroke"] = Instance.new("UIStroke");
+["_UIGradient1"] = Instance.new("UIGradient");
+["_ScrollingFrame"] = Instance.new("ScrollingFrame");
+["_UIListLayout"] = Instance.new("UIListLayout");
+["_Sample"] = Instance.new("TextButton");
+["_UIPadding1"] = Instance.new("UIPadding");
+["_UICorner2"] = Instance.new("UICorner");
+["_UIPadding2"] = Instance.new("UIPadding");
+["_ListButton"] = Instance.new("TextButton");
+["_UICorner3"] = Instance.new("UICorner");
+["_FUNCTIONS"] = Instance.new("ModuleScript");
+["_Notifications"] = Instance.new("Frame");
+["_UIListLayout1"] = Instance.new("UIListLayout");
+["_UIPadding3"] = Instance.new("UIPadding");
+["_Placeholder"] = Instance.new("Frame");
+["_UICorner4"] = Instance.new("UICorner");
+["_TextLabel"] = Instance.new("TextLabel");
+["_TextBoxPlaceholder"] = Instance.new("Frame");
+["_UIListLayout2"] = Instance.new("UIListLayout");
+["_TextButton"] = Instance.new("TextButton");["_UICorner5"] = Instance.new("UICorner");
+["_UIPadding4"] = Instance.new("UIPadding");
+["_TextBox"] = Instance.new("TextBox");
+["_UICorner6"] = Instance.new("UICorner");
+["_FloatingButton"] = Instance.new("TextButton");
+["_UIPadding5"] = Instance.new("UIPadding");
+["_UICorner7"] = Instance.new("UICorner");
+["_Keybinding"] = Instance.new("LocalScript");
+["_UIStroke1"] = Instance.new("UIStroke");
+["_Invisible"] = Instance.new("LocalScript");
+["_Lock"] = Instance.new("TextLabel");
+["_UIScale"] = Instance.new("UIScale");
+["_FloatingButtons"] = Instance.new("Frame");
+["_AddCustomModule"] = Instance.new("Frame");
+["_UICorner8"] = Instance.new("UICorner");
+["_UIStroke2"] = Instance.new("UIStroke");
+["_UIGradient2"] = Instance.new("UIGradient");
+["_UIGradient3"] = Instance.new("UIGradient");
+["_UIScale1"] = Instance.new("UIScale");
+["_TextLabel1"] = Instance.new("TextLabel");
+["_TextBox1"] = Instance.new("TextBox");
+["_UICorner9"] = Instance.new("UICorner");
+["_UIPadding6"] = Instance.new("UIPadding");
+["_TextLabel2"] = Instance.new("TextLabel");
+["_Add"] = Instance.new("TextButton");
+["_UICorner10"] = Instance.new("UICorner");
+["_UIPadding7"] = Instance.new("UIPadding");
+["_UIStroke3"] = Instance.new("UIStroke");
+["_LocalScript"] = Instance.new("LocalScript");
+["_Cancel"] = Instance.new("TextButton");
+["_UICorner11"] = Instance.new("UICorner");
+["_UIPadding8"] = Instance.new("UIPadding");
+["_UIStroke4"] = Instance.new("UIStroke");
+["_LocalScript1"] = Instance.new("LocalScript");
+["_themedColor"] = Instance.new("StringValue");
+["_Flee the Facility"] = Instance.new("LocalScript");
+["_Universal"] = Instance.new("LocalScript");
+["_DraggableObject"] = Instance.new("ModuleScript");
+["_Menu"] = Instance.new("Frame");
+["_UICorner12"] = Instance.new("UICorner");
+["_UIScale2"] = Instance.new("UIScale");
+["_UIStroke5"] = Instance.new("UIStroke");
+["_UIGradient4"] = Instance.new("UIGradient");
+["_Animator"] = Instance.new("LocalScript");
+["_List"] = Instance.new("Frame");
+["_UICorner13"] = Instance.new("UICorner");
+["_AutoSetup"] = Instance.new("LocalScript");
+["_ScrollingFrame1"] = Instance.new("ScrollingFrame");["_UIListLayout3"] = Instance.new("UIListLayout");
+["_UIPadding9"] = Instance.new("UIPadding");
+["_UIPadding10"] = Instance.new("UIPadding");
+["_UIGradient5"] = Instance.new("UIGradient");
+["_UIStroke6"] = Instance.new("UIStroke");
+["_UIGradient6"] = Instance.new("UIGradient");
+["_AddCustomModule1"] = Instance.new("TextButton");
+["_UICorner14"] = Instance.new("UICorner");
+["_UIPadding11"] = Instance.new("UIPadding");
+["_UIStroke7"] = Instance.new("UIStroke");
+["_LocalScript2"] = Instance.new("LocalScript");
+["_themedColor1"] = Instance.new("StringValue");
+["_themedColor2"] = Instance.new("StringValue");
+["_HubCredits"] = Instance.new("TextLabel");
+["_HubDesc"] = Instance.new("TextLabel");
+["_HubName"] = Instance.new("TextLabel");
+["_CanvasGroup"] = Instance.new("CanvasGroup");
+["_UICorner15"] = Instance.new("UICorner");
+["_ImageLabel"] = Instance.new("ImageLabel");
+["_Opener"] = Instance.new("TextButton");
+["_TextLabel3"] = Instance.new("TextLabel");
+["_Area"] = Instance.new("Frame");
+["_Area1"] = Instance.new("ScrollingFrame");
+["_TextLabel4"] = Instance.new("TextLabel");
+["_TextLabel5"] = Instance.new("TextLabel");
+["_UIGradient7"] = Instance.new("UIGradient");
+["_CloseArea"] = Instance.new("TextButton");
+["_Frame"] = Instance.new("Frame");
+["_UICorner16"] = Instance.new("UICorner");
+["_CloseOpen"] = Instance.new("LocalScript");
+["_TextLabel6"] = Instance.new("TextLabel");
+["_UICorner17"] = Instance.new("UICorner");
+["_AllowForSpring"] = Instance.new("BindableEvent");
+["_themedColor3"] = Instance.new("StringValue");
+["_ClickAndHold"] = Instance.new("ModuleScript");
+["_Spring"] = Instance.new("ModuleScript");
+["_Toggle"] = Instance.new("Frame");
+["_TextLabel7"] = Instance.new("TextLabel");
+["_UIListLayout4"] = Instance.new("UIListLayout");
+["_Frame1"] = Instance.new("Frame");
+["_Frame2"] = Instance.new("Frame");
+["_UICorner18"] = Instance.new("UICorner");
+["_Toggler"] = Instance.new("TextButton");
+["_UICorner19"] = Instance.new("UICorner");
+["_ImageLabel1"] = Instance.new("ImageLabel");
+["_UIPadding12"] = Instance.new("UIPadding");
+["_Modules"] = Instance.new("Folder");
+["_NotificationSample"] = Instance.new("Frame");["_UICorner20"] = Instance.new("UICorner");
+["_UIStroke8"] = Instance.new("UIStroke");
+["_UIGradient8"] = Instance.new("UIGradient");
+["_ImageLabel2"] = Instance.new("ImageLabel");
+["_TextLabel8"] = Instance.new("TextLabel");
+["_UITextSizeConstraint"] = Instance.new("UITextSizeConstraint");
+["_Close"] = Instance.new("ImageButton");
+["_UICorner21"] = Instance.new("UICorner");
+["_UIStroke9"] = Instance.new("UIStroke");
+["_UIScale3"] = Instance.new("UIScale");
+["_themedColor4"] = Instance.new("StringValue");
+["_Dialog"] = Instance.new("Frame");
+["_UICorner22"] = Instance.new("UICorner");
+["_UIGradient9"] = Instance.new("UIGradient");
+["_UIPadding13"] = Instance.new("UIPadding");
+["_UIStroke10"] = Instance.new("UIStroke");
+["_UIGradient10"] = Instance.new("UIGradient");
+["_DialogTitle"] = Instance.new("TextLabel");
+["_UIListLayout5"] = Instance.new("UIListLayout");
+["_DialogDesc"] = Instance.new("TextLabel");
+["_UITextSizeConstraint1"] =
+Instance.new("UITextSizeConstraint");
+["_Options"] = Instance.new("Frame");
+["_UIListLayout6"] = Instance.new("UIListLayout");
+["_OptionPlaceholder"] = Instance.new("TextButton");
+["_UIPadding14"] = Instance.new("UIPadding");
+["_UICorner23"] = Instance.new("UICorner");
+["_UIStroke11"] = Instance.new("UIStroke");
+["_UIGradient11"] = Instance.new("UIGradient");
+["_themedColor5"] = Instance.new("StringValue");
+["_OnSelect"] = Instance.new("BindableEvent");
+["_UIScale4"] = Instance.new("UIScale");
+["_themedColor6"] = Instance.new("StringValue");
+["_Range"] = Instance.new("Frame");
+["_TextLabel9"] = Instance.new("TextLabel");
+["_UIListLayout7"] = Instance.new("UIListLayout");
+["_UIPadding15"] = Instance.new("UIPadding");
+["_Frame3"] = Instance.new("Frame");
+["_UIPadding16"] = Instance.new("UIPadding");
+["_UICorner24"] = Instance.new("UICorner");
+["_Frame4"] = Instance.new("Frame");
+["_UICorner25"] = Instance.new("UICorner");
+["_TextButton1"] = Instance.new("TextButton");
+["_UICorner26"] = Instance.new("UICorner");
+["_Init"] = Instance.new("LocalScript");
+["_Forsaken"] = Instance.new("LocalScript");
+["_Murder Mystery 2"] = Instance.new("LocalScript");
+["_ESPIndicator"] = Instance.new("ModuleScript");["_Bezier"] = Instance.new("ModuleScript");
+["_FloatingButtonSetting"] = Instance.new("Frame");
+["_ControlBarContainer"] = Instance.new("Frame");
+["_ControlBar"] = Instance.new("Frame");
+["_UIListLayout8"] = Instance.new("UIListLayout");
+["_Visibility"] = Instance.new("TextButton");
+["_UICorner27"] = Instance.new("UICorner");
+["_UIPadding17"] = Instance.new("UIPadding");
+["_Event"] = Instance.new("BindableEvent");
+["_LocalScript3"] = Instance.new("LocalScript");
+["_themedColor7"] = Instance.new("StringValue");
+["_Lock1"] = Instance.new("TextButton");
+["_UICorner28"] = Instance.new("UICorner");
+["_UIPadding18"] = Instance.new("UIPadding");
+["_Event1"] = Instance.new("BindableEvent");
+["_LocalScript4"] = Instance.new("LocalScript");
+["_themedColor8"] = Instance.new("StringValue");
+["_Exit"] = Instance.new("TextButton");
+["_UICorner29"] = Instance.new("UICorner");
+["_UIPadding19"] = Instance.new("UIPadding");
+["_UIAspectRatioConstraint"] =
+Instance.new("UIAspectRatioConstraint");
+["_LocalScript5"] = Instance.new("LocalScript");
+["_themedColor9"] = Instance.new("StringValue");
+["_UIListLayout9"] = Instance.new("UIListLayout");
+["_Tip"] = Instance.new("TextLabel");
+["_UIStroke12"] = Instance.new("UIStroke");
+["_UIScale5"] = Instance.new("UIScale");
+["_Theme"] = Instance.new("ModuleScript");
+["_PointSave"] = Instance.new("ModuleScript");
+}
+-- Properties:
+Converted["_YARHM"].DisplayOrder = 3
+Converted["_YARHM"].IgnoreGuiInset = true
+Converted["_YARHM"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+Converted["_YARHM"].ResetOnSpawn = false
+Converted["_YARHM"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Converted["_YARHM"].Name = "YARHM"
+Converted["_YARHM"].Parent = game:GetService("CoreGui")
+Converted["_Open"].Font = Enum.Font.Gotham
+Converted["_Open"].Text = "Triple-click this region to open YARHM."
+Converted["_Open"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Open"].TextScaled = true
+Converted["_Open"].TextSize = 14
+Converted["_Open"].TextTransparency = 1
+Converted["_Open"].TextWrapped = true
+Converted["_Open"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Open"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)Converted["_Open"].BackgroundTransparency = 1
+Converted["_Open"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Open"].BorderSizePixel = 0
+Converted["_Open"].Position = UDim2.new(0.499372631, 0, 0.06341701, 0)
+Converted["_Open"].Selectable = false
+Converted["_Open"].Size = UDim2.new(0, 493, 0, 50)
+Converted["_Open"].Visible = false
+Converted["_Open"].Name = "Open"
+Converted["_Open"].Parent = Converted["_YARHM"]
+Converted["_UICorner"].Parent = Converted["_Open"]
+Converted["_UIPadding"].PaddingBottom = UDim.new(0, 10)
+Converted["_UIPadding"].PaddingLeft = UDim.new(0, 20)
+Converted["_UIPadding"].PaddingRight = UDim.new(0, 20)
+Converted["_UIPadding"].PaddingTop = UDim.new(0, 10)
+Converted["_UIPadding"].Parent = Converted["_Open"]
+Converted["_DropdownFrameSample"].AnchorPoint = Vector2.new(0.5, 0)
+Converted["_DropdownFrameSample"].BackgroundColor3 =
+Color3.fromRGB(255, 255, 255)
+Converted["_DropdownFrameSample"].BorderColor3 = Color3.fromRGB(0, 0,
+0)
+Converted["_DropdownFrameSample"].BorderSizePixel = 0
+Converted["_DropdownFrameSample"].Size = UDim2.new(0, 108, 0, 239)
+Converted["_DropdownFrameSample"].Visible = false
+Converted["_DropdownFrameSample"].Name = "DropdownFrameSample"
+Converted["_DropdownFrameSample"].Parent = Converted["_YARHM"]
+Converted["_UICorner1"].Parent = Converted["_DropdownFrameSample"]
+Converted["_UIGradient"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(36.00000165402889,
+36.00000165402889, 36.00000165402889)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(68.00000354647636,
+68.00000354647636, 68.00000354647636))
+}
+Converted["_UIGradient"].Rotation = 68
+Converted["_UIGradient"].Parent = Converted["_DropdownFrameSample"]
+Converted["_UIStroke"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke"].Thickness = 2
+Converted["_UIStroke"].Parent = Converted["_DropdownFrameSample"]
+Converted["_UIGradient1"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(111.00000098347664,
+111.00000098347664, 111.00000098347664)),
+ColorSequenceKeypoint.new(0.6401384472846985,
+Color3.fromRGB(114.23875719308853, 114.23875719308853,
+114.23875719308853)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+}
+Converted["_UIGradient1"].Rotation = -107
+Converted["_UIGradient1"].Parent = Converted["_UIStroke"]
+Converted["_ScrollingFrame"].AutomaticCanvasSize =Enum.AutomaticSize.XY
+Converted["_ScrollingFrame"].CanvasSize = UDim2.new(0, 0, 0, 0)
+Converted["_ScrollingFrame"].ScrollBarImageColor3 = Color3.fromRGB(0,
+0, 0)
+Converted["_ScrollingFrame"].ScrollBarThickness = 0
+Converted["_ScrollingFrame"].Active = true
+Converted["_ScrollingFrame"].BackgroundColor3 = Color3.fromRGB(255,
+255, 255)
+Converted["_ScrollingFrame"].BackgroundTransparency = 1
+Converted["_ScrollingFrame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ScrollingFrame"].BorderSizePixel = 0
+Converted["_ScrollingFrame"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_ScrollingFrame"].Parent =
+Converted["_DropdownFrameSample"]
+Converted["_UIListLayout"].Padding = UDim.new(0, 5)
+Converted["_UIListLayout"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout"].Parent = Converted["_ScrollingFrame"]
+Converted["_Sample"].Font = Enum.Font.Unknown
+Converted["_Sample"].Text = "This can fit a lot of text, probably."
+Converted["_Sample"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Sample"].TextScaled = true
+Converted["_Sample"].TextSize = 14
+Converted["_Sample"].TextWrapped = true
+Converted["_Sample"].BackgroundColor3 =
+Color3.fromRGB(22.000000588595867, 22.000000588595867,
+22.000000588595867)
+Converted["_Sample"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Sample"].BorderSizePixel = 0
+Converted["_Sample"].Size = UDim2.new(1, 0, 0, 35)
+Converted["_Sample"].Visible = false
+Converted["_Sample"].Name = "Sample"
+Converted["_Sample"].Parent = Converted["_ScrollingFrame"]
+Converted["_UIPadding1"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding1"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding1"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding1"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding1"].Parent = Converted["_Sample"]
+Converted["_UICorner2"].Parent = Converted["_Sample"]
+Converted["_UIPadding2"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding2"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding2"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding2"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding2"].Parent = Converted["_DropdownFrameSample"]
+Converted["_ListButton"].Font = Enum.Font.Gotham
+Converted["_ListButton"].Text = "Placeholder"
+Converted["_ListButton"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_ListButton"].TextSize = 14
+Converted["_ListButton"].TextWrapped = trueConverted["_ListButton"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_ListButton"].BackgroundColor3 =
+Color3.fromRGB(49.00000087916851, 49.00000087916851,
+49.00000087916851)
+Converted["_ListButton"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ListButton"].BorderSizePixel = 0
+Converted["_ListButton"].Position = UDim2.new(0.0450000018, 0,
+0.112000003, 0)
+Converted["_ListButton"].Size = UDim2.new(1, 0, 0, 50)
+Converted["_ListButton"].Visible = false
+Converted["_ListButton"].Name = "ListButton"
+Converted["_ListButton"].Parent = Converted["_YARHM"]
+Converted["_UICorner3"].Parent = Converted["_ListButton"]
+Converted["_Notifications"].AnchorPoint = Vector2.new(1, 0.5)
+Converted["_Notifications"].BackgroundColor3 = Color3.fromRGB(255,
+255, 255)
+Converted["_Notifications"].BackgroundTransparency = 1
+Converted["_Notifications"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Notifications"].BorderSizePixel = 0
+Converted["_Notifications"].Position = UDim2.new(0.99000001, 0, 0.5,
+0)
+Converted["_Notifications"].Size = UDim2.new(0, 242, 1, 0)
+Converted["_Notifications"].Name = "Notifications"
+Converted["_Notifications"].Parent = Converted["_YARHM"]
+Converted["_UIListLayout1"].Padding = UDim.new(0, 10)
+Converted["_UIListLayout1"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout1"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout1"].VerticalAlignment =
+Enum.VerticalAlignment.Bottom
+Converted["_UIListLayout1"].Parent = Converted["_Notifications"]
+Converted["_UIPadding3"].PaddingBottom = UDim.new(0, 10)
+Converted["_UIPadding3"].PaddingLeft = UDim.new(0, 10)
+Converted["_UIPadding3"].Parent = Converted["_Notifications"]
+Converted["_Placeholder"].AnchorPoint = Vector2.new(0.5, 0)
+Converted["_Placeholder"].BackgroundColor3 =
+Color3.fromRGB(31.000001952052116, 31.000001952052116,
+31.000001952052116)
+Converted["_Placeholder"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Placeholder"].BorderSizePixel = 0
+Converted["_Placeholder"].Position = UDim2.new(0.0450000018, 0,
+0.112000003, 0)
+Converted["_Placeholder"].Visible = false
+Converted["_Placeholder"].Name = "Placeholder"
+Converted["_Placeholder"].Parent = Converted["_Notifications"]
+Converted["_UICorner4"].Parent = Converted["_Placeholder"]
+Converted["_TextLabel"].Font = Enum.Font.Gotham
+Converted["_TextLabel"].TextColor3 = Color3.fromRGB(255, 255, 255)Converted["_TextLabel"].TextScaled = true
+Converted["_TextLabel"].TextSize = 14
+Converted["_TextLabel"].TextWrapped = true
+Converted["_TextLabel"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_TextLabel"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel"].BackgroundTransparency = 1
+Converted["_TextLabel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel"].BorderSizePixel = 0
+Converted["_TextLabel"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_TextLabel"].Size = UDim2.new(0.899999976, 0, 0.800000012,
+0)
+Converted["_TextLabel"].Parent = Converted["_Placeholder"]
+Converted["_TextBoxPlaceholder"].BackgroundColor3 =
+Color3.fromRGB(255, 255, 255)
+Converted["_TextBoxPlaceholder"].BackgroundTransparency = 1
+Converted["_TextBoxPlaceholder"].BorderColor3 = Color3.fromRGB(0, 0,
+0)
+Converted["_TextBoxPlaceholder"].BorderSizePixel = 0
+Converted["_TextBoxPlaceholder"].Size = UDim2.new(1, 0, 0, 50)
+Converted["_TextBoxPlaceholder"].Visible = false
+Converted["_TextBoxPlaceholder"].Name = "TextBoxPlaceholder"
+Converted["_TextBoxPlaceholder"].Parent = Converted["_YARHM"]
+Converted["_UIListLayout2"].Padding = UDim.new(0, 5)
+Converted["_UIListLayout2"].FillDirection =
+Enum.FillDirection.Horizontal
+Converted["_UIListLayout2"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout2"].Parent = Converted["_TextBoxPlaceholder"]
+Converted["_TextButton"].Font = Enum.Font.Gotham
+Converted["_TextButton"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextButton"].TextScaled = true
+Converted["_TextButton"].TextSize = 14
+Converted["_TextButton"].TextWrapped = true
+Converted["_TextButton"].BackgroundColor3 =
+Color3.fromRGB(22.000000588595867, 22.000000588595867,
+22.000000588595867)
+Converted["_TextButton"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextButton"].BorderSizePixel = 0
+Converted["_TextButton"].Position = UDim2.new(0.292333364, 0,
+1.67999995, 0)
+Converted["_TextButton"].Size = UDim2.new(0, 50, 0, 50)
+Converted["_TextButton"].Parent = Converted["_TextBoxPlaceholder"]
+Converted["_UICorner5"].Parent = Converted["_TextButton"]
+Converted["_UIPadding4"].PaddingBottom = UDim.new(0, 5)
+Converted["_UIPadding4"].PaddingLeft = UDim.new(0, 5)
+Converted["_UIPadding4"].PaddingRight = UDim.new(0, 5)Converted["_UIPadding4"].PaddingTop = UDim.new(0, 5)
+Converted["_UIPadding4"].Parent = Converted["_TextButton"]
+Converted["_TextBox"].Font = Enum.Font.Gotham
+Converted["_TextBox"].PlaceholderText = "Placeholder"
+Converted["_TextBox"].Text = ""
+Converted["_TextBox"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextBox"].TextSize = 14
+Converted["_TextBox"].TextWrapped = true
+Converted["_TextBox"].BackgroundColor3 =
+Color3.fromRGB(22.000000588595867, 22.000000588595867,
+22.000000588595867)
+Converted["_TextBox"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextBox"].BorderSizePixel = 0
+Converted["_TextBox"].Size = UDim2.new(0.800000012, 0, 0, 50)
+Converted["_TextBox"].Parent = Converted["_TextBoxPlaceholder"]
+Converted["_UICorner6"].Parent = Converted["_TextBox"]
+Converted["_FloatingButton"].Font = Enum.Font.Unknown
+Converted["_FloatingButton"].Text = "Shoot into murderer"
+Converted["_FloatingButton"].TextColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_FloatingButton"].TextScaled = true
+Converted["_FloatingButton"].TextSize = 14
+Converted["_FloatingButton"].TextWrapped = true
+Converted["_FloatingButton"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_FloatingButton"].BackgroundColor3 =
+Color3.fromRGB(31.000000052154064, 31.000000052154064,
+31.000000052154064)
+Converted["_FloatingButton"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_FloatingButton"].BorderSizePixel = 0
+Converted["_FloatingButton"].Position = UDim2.new(0, 125, 0, 40)
+Converted["_FloatingButton"].Size = UDim2.new(0, 50, 0, 100)
+Converted["_FloatingButton"].Visible = false
+Converted["_FloatingButton"].Name = "FloatingButton"
+Converted["_FloatingButton"].Parent = Converted["_YARHM"]
+Converted["_UIPadding5"].PaddingBottom = UDim.new(0, 5)
+Converted["_UIPadding5"].PaddingLeft = UDim.new(0, 5)
+Converted["_UIPadding5"].PaddingRight = UDim.new(0, 5)
+Converted["_UIPadding5"].PaddingTop = UDim.new(0, 5)
+Converted["_UIPadding5"].Parent = Converted["_FloatingButton"]
+Converted["_UICorner7"].Parent = Converted["_FloatingButton"]
+Converted["_UIStroke1"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke1"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke1"].Parent = Converted["_FloatingButton"]
+Converted["_Lock"].Font = Enum.Font.Gotham
+Converted["_Lock"].Text = "Converted["_Lock"].TextWrapped = true
+Converted["_Lock"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Lock"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Lock"].BackgroundTransparency = 1
+Converted["_Lock"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Lock"].BorderSizePixel = 0
+Converted["_Lock"].Position = UDim2.new(1, -10, 1, -10)
+Converted["_Lock"].Size = UDim2.new(0, 20, 0, 20)
+Converted["_Lock"].ZIndex = 999999999
+Converted["_Lock"].Name = "Lock"
+Converted["_Lock"].Parent = Converted["_FloatingButton"]
+Converted["_UIScale"].Scale = 1.0000000116860974e-07
+Converted["_UIScale"].Parent = Converted["_Lock"]
+Converted["_FloatingButtons"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_FloatingButtons"].BackgroundColor3 = Color3.fromRGB(255,
+255, 255)
+Converted["_FloatingButtons"].BackgroundTransparency = 1
+Converted["_FloatingButtons"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_FloatingButtons"].BorderSizePixel = 0
+Converted["_FloatingButtons"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_FloatingButtons"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_FloatingButtons"].ZIndex = 3
+Converted["_FloatingButtons"].Name = "FloatingButtons"
+Converted["_FloatingButtons"].Parent = Converted["_YARHM"]
+Converted["_AddCustomModule"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_AddCustomModule"].BackgroundColor3 = Color3.fromRGB(255,
+255, 255)
+Converted["_AddCustomModule"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_AddCustomModule"].BorderSizePixel = 0
+Converted["_AddCustomModule"].ClipsDescendants = true
+Converted["_AddCustomModule"].Position = UDim2.new(0.5, 0, -0.5, 0)
+Converted["_AddCustomModule"].Size = UDim2.new(0, 440, 0, 268)
+Converted["_AddCustomModule"].ZIndex = 3
+Converted["_AddCustomModule"].Name = "AddCustomModule"
+Converted["_AddCustomModule"].Parent = Converted["_YARHM"]
+Converted["_UICorner8"].Parent = Converted["_AddCustomModule"]
+Converted["_UIStroke2"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke2"].Thickness = 2
+Converted["_UIStroke2"].Parent = Converted["_AddCustomModule"]
+Converted["_UIGradient2"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(53.00000064074993,
+53.00000064074993, 53.00000064074993)),
+ColorSequenceKeypoint.new(0.15224914252758026,
+Color3.fromRGB(50.69031357765198, 50.69031357765198,
+50.69031357765198)),
+ColorSequenceKeypoint.new(0.4723183512687683, Color3.fromRGB(255,
+255, 255)),
+ColorSequenceKeypoint.new(0.7577854990959167,Color3.fromRGB(50.13314567506313, 50.13314567506313,
+50.13314567506313)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(48.000000938773155,
+48.000000938773155, 48.000000938773155))
+}
+Converted["_UIGradient2"].Rotation = 62
+Converted["_UIGradient2"].Parent = Converted["_UIStroke2"]
+Converted["_UIGradient3"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(36.00000165402889,
+36.00000165402889, 36.00000165402889)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(68.00000354647636,
+68.00000354647636, 68.00000354647636))
+}
+Converted["_UIGradient3"].Rotation = 68
+Converted["_UIGradient3"].Parent = Converted["_AddCustomModule"]
+Converted["_UIScale1"].Parent = Converted["_AddCustomModule"]
+Converted["_TextLabel1"].Font = Enum.Font.Gotham
+Converted["_TextLabel1"].Text = "Add a module"
+Converted["_TextLabel1"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel1"].TextScaled = true
+Converted["_TextLabel1"].TextSize = 14
+Converted["_TextLabel1"].TextWrapped = true
+Converted["_TextLabel1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel1"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel1"].BackgroundTransparency = 1
+Converted["_TextLabel1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel1"].BorderSizePixel = 0
+Converted["_TextLabel1"].Position = UDim2.new(0.352256238, 0,
+0.133915231, 0)
+Converted["_TextLabel1"].Size = UDim2.new(0.619047642, 0, 0.125920027,
+0)
+Converted["_TextLabel1"].Parent = Converted["_AddCustomModule"]
+Converted["_TextBox1"].ClearTextOnFocus = false
+Converted["_TextBox1"].Font = Enum.Font.Gotham
+Converted["_TextBox1"].PlaceholderText = "Custom module link"
+Converted["_TextBox1"].Text = ""
+Converted["_TextBox1"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextBox1"].TextScaled = true
+Converted["_TextBox1"].TextSize = 14
+Converted["_TextBox1"].TextWrapped = true
+Converted["_TextBox1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextBox1"].BackgroundColor3 =
+Color3.fromRGB(22.000000588595867, 22.000000588595867,
+22.000000588595867)
+Converted["_TextBox1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextBox1"].BorderSizePixel = 0
+Converted["_TextBox1"].Position = UDim2.new(0.499648541, 0,0.500059664, 0)
+Converted["_TextBox1"].Size = UDim2.new(0.804988742, 0, 0.544776142,
+0)
+Converted["_TextBox1"].Parent = Converted["_AddCustomModule"]
+Converted["_UICorner9"].Parent = Converted["_TextBox1"]
+Converted["_UIPadding6"].PaddingBottom = UDim.new(0, 10)
+Converted["_UIPadding6"].PaddingLeft = UDim.new(0, 10)
+Converted["_UIPadding6"].PaddingRight = UDim.new(0, 10)
+Converted["_UIPadding6"].PaddingTop = UDim.new(0, 10)
+Converted["_UIPadding6"].Parent = Converted["_TextBox1"]
+Converted["_TextLabel2"].Font = Enum.Font.GothamBold
+Converted["_TextLabel2"].Text = "ONLY ADD MODULES YOU TRUST!"
+Converted["_TextLabel2"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_TextLabel2"].TextScaled = true
+Converted["_TextLabel2"].TextSize = 14
+Converted["_TextLabel2"].TextWrapped = true
+Converted["_TextLabel2"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel2"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel2"].BackgroundTransparency = 1
+Converted["_TextLabel2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel2"].BorderSizePixel = 0
+Converted["_TextLabel2"].Position = UDim2.new(0.499648541, 0,
+0.833542168, 0)
+Converted["_TextLabel2"].Size = UDim2.new(0.619047642, 0,
+0.0550245307, 0)
+Converted["_TextLabel2"].Parent = Converted["_AddCustomModule"]
+Converted["_Add"].Font = Enum.Font.Gotham
+Converted["_Add"].Text = "Add"
+Converted["_Add"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Add"].TextScaled = true
+Converted["_Add"].TextSize = 14
+Converted["_Add"].TextWrapped = true
+Converted["_Add"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Add"].BackgroundColor3 = Color3.fromRGB(50.00000461935997,
+50.00000461935997, 50.00000461935997)
+Converted["_Add"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Add"].BorderSizePixel = 0
+Converted["_Add"].Position = UDim2.new(0.108492024, 0, 0.927298486, 0)
+Converted["_Add"].Size = UDim2.new(0.163265288, 0, 0.0858208984, 0)
+Converted["_Add"].Name = "Add"
+Converted["_Add"].Parent = Converted["_AddCustomModule"]
+Converted["_UICorner10"].Parent = Converted["_Add"]
+Converted["_UIPadding7"].PaddingBottom = UDim.new(0, 5)
+Converted["_UIPadding7"].PaddingLeft = UDim.new(0, 5)
+Converted["_UIPadding7"].PaddingRight = UDim.new(0, 5)
+Converted["_UIPadding7"].PaddingTop = UDim.new(0, 5)
+Converted["_UIPadding7"].Parent = Converted["_Add"]Converted["_UIStroke3"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke3"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke3"].Parent = Converted["_Add"]
+Converted["_Cancel"].Font = Enum.Font.Gotham
+Converted["_Cancel"].Text = "Cancel"
+Converted["_Cancel"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Cancel"].TextScaled = true
+Converted["_Cancel"].TextSize = 14
+Converted["_Cancel"].TextWrapped = true
+Converted["_Cancel"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Cancel"].BackgroundColor3 =
+Color3.fromRGB(50.00000461935997, 50.00000461935997,
+50.00000461935997)
+Converted["_Cancel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Cancel"].BorderSizePixel = 0
+Converted["_Cancel"].Position = UDim2.new(0.899875283, 0, 0.931029797,
+0)
+Converted["_Cancel"].Size = UDim2.new(0.163265288, 0, 0.0858208984, 0)
+Converted["_Cancel"].Name = "Cancel"
+Converted["_Cancel"].Parent = Converted["_AddCustomModule"]
+Converted["_UICorner11"].Parent = Converted["_Cancel"]
+Converted["_UIPadding8"].PaddingBottom = UDim.new(0, 5)
+Converted["_UIPadding8"].PaddingLeft = UDim.new(0, 5)
+Converted["_UIPadding8"].PaddingRight = UDim.new(0, 5)
+Converted["_UIPadding8"].PaddingTop = UDim.new(0, 5)
+Converted["_UIPadding8"].Parent = Converted["_Cancel"]
+Converted["_UIStroke4"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke4"].Color = Color3.fromRGB(255, 0, 0)
+Converted["_UIStroke4"].Parent = Converted["_Cancel"]
+Converted["_themedColor"].Value = "backgroundColorCSQ"
+Converted["_themedColor"].Name = "themedColor"
+Converted["_themedColor"].Parent = Converted["_AddCustomModule"]
+Converted["_Menu"].AnchorPoint = Vector2.new(0.5, 0)
+Converted["_Menu"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Menu"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Menu"].BorderSizePixel = 0
+Converted["_Menu"].Position = UDim2.new(0.5, 0, 0.0500000007, 0)
+Converted["_Menu"].Size = UDim2.new(0, 441, 0, 268)
+Converted["_Menu"].Name = "Menu"
+Converted["_Menu"].Parent = Converted["_YARHM"]
+Converted["_UICorner12"].Parent = Converted["_Menu"]
+Converted["_UIScale2"].Parent = Converted["_Menu"]
+Converted["_UIStroke5"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke5"].Thickness = 2
+Converted["_UIStroke5"].Parent = Converted["_Menu"]
+Converted["_UIGradient4"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(53.00000064074993,
+53.00000064074993, 53.00000064074993)),ColorSequenceKeypoint.new(0.15224914252758026,
+Color3.fromRGB(50.69031357765198, 50.69031357765198,
+50.69031357765198)),
+ColorSequenceKeypoint.new(0.4723183512687683, Color3.fromRGB(255,
+0, 4.000000236555934)),
+ColorSequenceKeypoint.new(0.7577854990959167,
+Color3.fromRGB(50.13314567506313, 50.13314567506313,
+50.13314567506313)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(48.000000938773155,
+48.000000938773155, 48.000000938773155))
+}
+Converted["_UIGradient4"].Rotation = 180
+Converted["_UIGradient4"].Parent = Converted["_UIStroke5"]
+Converted["_List"].AnchorPoint = Vector2.new(0, 0.5)
+Converted["_List"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_List"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_List"].BorderSizePixel = 0
+Converted["_List"].Position = UDim2.new(0, 0, 0.606999993, 0)
+Converted["_List"].Size = UDim2.new(0.315405339, 0, 0.785387993, 0)
+Converted["_List"].Name = "List"
+Converted["_List"].Parent = Converted["_Menu"]
+Converted["_UICorner13"].Parent = Converted["_List"]
+Converted["_ScrollingFrame1"].AutomaticCanvasSize =
+Enum.AutomaticSize.Y
+Converted["_ScrollingFrame1"].CanvasSize = UDim2.new(0, 0, 0, 0)
+Converted["_ScrollingFrame1"].ScrollBarThickness = 2
+Converted["_ScrollingFrame1"].VerticalScrollBarPosition =
+Enum.VerticalScrollBarPosition.Left
+Converted["_ScrollingFrame1"].Active = true
+Converted["_ScrollingFrame1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_ScrollingFrame1"].BackgroundColor3 = Color3.fromRGB(255,
+255, 255)
+Converted["_ScrollingFrame1"].BackgroundTransparency = 1
+Converted["_ScrollingFrame1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ScrollingFrame1"].BorderSizePixel = 0
+Converted["_ScrollingFrame1"].Position = UDim2.new(0.478333294, 0,
+0.408619136, 0)
+Converted["_ScrollingFrame1"].Size = UDim2.new(1, 0, 0.795258284, 0)
+Converted["_ScrollingFrame1"].Parent = Converted["_List"]
+Converted["_UIListLayout3"].Padding = UDim.new(0, 3)
+Converted["_UIListLayout3"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout3"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout3"].Parent = Converted["_ScrollingFrame1"]
+Converted["_UIPadding9"].PaddingLeft = UDim.new(0, 4)
+Converted["_UIPadding9"].Parent = Converted["_ScrollingFrame1"]
+Converted["_UIPadding10"].PaddingBottom = UDim.new(0, 10)
+Converted["_UIPadding10"].PaddingLeft = UDim.new(0, 10)Converted["_UIPadding10"].PaddingRight = UDim.new(0, 10)
+Converted["_UIPadding10"].PaddingTop = UDim.new(0, 10)
+Converted["_UIPadding10"].Parent = Converted["_List"]
+Converted["_UIGradient5"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(36.00000165402889,
+36.00000165402889, 36.00000165402889)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(68.00000354647636,
+68.00000354647636, 68.00000354647636))
+}
+Converted["_UIGradient5"].Offset = Vector2.new(0, -0.5)
+Converted["_UIGradient5"].Rotation = -133
+Converted["_UIGradient5"].Parent = Converted["_List"]
+Converted["_UIStroke6"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke6"].Thickness = 0
+Converted["_UIStroke6"].Parent = Converted["_List"]
+Converted["_UIGradient6"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(111.00000098347664,
+111.00000098347664, 111.00000098347664)),
+ColorSequenceKeypoint.new(0.6401384472846985,
+Color3.fromRGB(114.23875719308853, 114.23875719308853,
+114.23875719308853)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+}
+Converted["_UIGradient6"].Rotation = -44
+Converted["_UIGradient6"].Parent = Converted["_UIStroke6"]
+Converted["_AddCustomModule1"].Font = Enum.Font.Gotham
+Converted["_AddCustomModule1"].Text = "+"
+Converted["_AddCustomModule1"].TextColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_AddCustomModule1"].TextScaled = true
+Converted["_AddCustomModule1"].TextSize = 14
+Converted["_AddCustomModule1"].TextWrapped = true
+Converted["_AddCustomModule1"].AnchorPoint = Vector2.new(1, 1)
+Converted["_AddCustomModule1"].BackgroundColor3 =
+Color3.fromRGB(50.00000461935997, 50.00000461935997,
+50.00000461935997)
+Converted["_AddCustomModule1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_AddCustomModule1"].BorderSizePixel = 0
+Converted["_AddCustomModule1"].Position = UDim2.new(1, 0, 1, 0)
+Converted["_AddCustomModule1"].Size = UDim2.new(0.215681866, 0,
+0.142528668, 0)
+Converted["_AddCustomModule1"].Name = "AddCustomModule"
+Converted["_AddCustomModule1"].Parent = Converted["_List"]
+Converted["_UICorner14"].Parent = Converted["_AddCustomModule1"]
+Converted["_UIPadding11"].PaddingLeft = UDim.new(0, 1)
+Converted["_UIPadding11"].Parent = Converted["_AddCustomModule1"]
+Converted["_UIStroke7"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke7"].Color = Color3.fromRGB(255, 255, 255)Converted["_UIStroke7"].Parent = Converted["_AddCustomModule1"]
+Converted["_themedColor1"].Value = "primaryColor"
+Converted["_themedColor1"].Name = "themedColor"
+Converted["_themedColor1"].Parent = Converted["_AddCustomModule1"]
+Converted["_themedColor2"].Value = "backgroundColorCSQ"
+Converted["_themedColor2"].Name = "themedColor"
+Converted["_themedColor2"].Parent = Converted["_List"]
+Converted["_HubCredits"].Font = Enum.Font.GothamBold
+Converted["_HubCredits"].Text = "made and open sourced by imperial"
+Converted["_HubCredits"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_HubCredits"].TextScaled = true
+Converted["_HubCredits"].TextSize = 14
+Converted["_HubCredits"].TextTransparency = 0.699999988079071
+Converted["_HubCredits"].TextWrapped = true
+Converted["_HubCredits"].TextXAlignment = Enum.TextXAlignment.Right
+Converted["_HubCredits"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_HubCredits"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_HubCredits"].BackgroundTransparency = 1
+Converted["_HubCredits"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_HubCredits"].BorderSizePixel = 0
+Converted["_HubCredits"].Position = UDim2.new(0.785926819, 0,
+0.160157606, 0)
+Converted["_HubCredits"].Size = UDim2.new(0.316320807, 0,
+0.0585099049, 0)
+Converted["_HubCredits"].Name = "HubCredits"
+Converted["_HubCredits"].Parent = Converted["_Menu"]
+Converted["_HubDesc"].Font = Enum.Font.GothamBold
+Converted["_HubDesc"].Text = "yet another random hub menu"
+Converted["_HubDesc"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_HubDesc"].TextSize = 14
+Converted["_HubDesc"].TextWrapped = true
+Converted["_HubDesc"].TextXAlignment = Enum.TextXAlignment.Right
+Converted["_HubDesc"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_HubDesc"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_HubDesc"].BackgroundTransparency = 1
+Converted["_HubDesc"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_HubDesc"].BorderSizePixel = 0
+Converted["_HubDesc"].Position = UDim2.new(0.708829343, 0,
+0.116141364, 0)
+Converted["_HubDesc"].Size = UDim2.new(0.470515788, 0, 0.082417585, 0)
+Converted["_HubDesc"].Name = "HubDesc"
+Converted["_HubDesc"].Parent = Converted["_Menu"]
+Converted["_HubName"].Font = Enum.Font.GothamBold
+Converted["_HubName"].Text = "YARHM"
+Converted["_HubName"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_HubName"].TextScaled = true
+Converted["_HubName"].TextSize = 14Converted["_HubName"].TextWrapped = true
+Converted["_HubName"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_HubName"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_HubName"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_HubName"].BackgroundTransparency = 1
+Converted["_HubName"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_HubName"].BorderSizePixel = 0
+Converted["_HubName"].Position = UDim2.new(0.186153606, 0,
+0.112410031, 0)
+Converted["_HubName"].Size = UDim2.new(0.259631485, 0, 0.0824175924,
+0)
+Converted["_HubName"].Name = "HubName"
+Converted["_HubName"].Parent = Converted["_Menu"]
+Converted["_CanvasGroup"].GroupTransparency = 1
+Converted["_CanvasGroup"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_CanvasGroup"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_CanvasGroup"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_CanvasGroup"].BorderSizePixel = 0
+Converted["_CanvasGroup"].Interactable = false
+Converted["_CanvasGroup"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_CanvasGroup"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_CanvasGroup"].Visible = false
+Converted["_CanvasGroup"].ZIndex = 999999998
+Converted["_CanvasGroup"].Parent = Converted["_Menu"]
+Converted["_UICorner15"].Parent = Converted["_CanvasGroup"]
+Converted["_ImageLabel"].Image = "rbxassetid://17864987433"
+-- Converted["_ImageLabel"].ImageContent = Content
+Converted["_ImageLabel"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_ImageLabel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ImageLabel"].BorderSizePixel = 0
+Converted["_ImageLabel"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_ImageLabel"].Size = UDim2.new(0, 50, 0, 50)
+Converted["_ImageLabel"].Visible = false
+Converted["_ImageLabel"].ZIndex = 3
+Converted["_ImageLabel"].Parent = Converted["_CanvasGroup"]
+Converted["_Opener"].Font = Enum.Font.SourceSans
+Converted["_Opener"].Text = ""
+Converted["_Opener"].TextColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Opener"].TextSize = 14
+Converted["_Opener"].AutoButtonColor = false
+Converted["_Opener"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Opener"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Opener"].BorderSizePixel = 0
+Converted["_Opener"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_Opener"].Name = "Opener"Converted["_Opener"].Parent = Converted["_CanvasGroup"]
+Converted["_TextLabel3"].Font = Enum.Font.GothamBold
+Converted["_TextLabel3"].Text = "Yet Another Random Hub Menu"
+Converted["_TextLabel3"].TextColor3 = Color3.fromRGB(255,
+69.00000348687172, 67.00000360608101)
+Converted["_TextLabel3"].TextScaled = true
+Converted["_TextLabel3"].TextSize = 14
+Converted["_TextLabel3"].TextWrapped = true
+Converted["_TextLabel3"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel3"].BackgroundTransparency = 1
+Converted["_TextLabel3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel3"].BorderSizePixel = 0
+Converted["_TextLabel3"].Position = UDim2.new(0.204081595, 0,
+0.447761208, 0)
+Converted["_TextLabel3"].Size = UDim2.new(0, 260, 0, 27)
+Converted["_TextLabel3"].ZIndex = 3
+Converted["_TextLabel3"].Parent = Converted["_CanvasGroup"]
+Converted["_Area"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Area"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Area"].BackgroundTransparency = 1
+Converted["_Area"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Area"].BorderSizePixel = 0
+Converted["_Area"].ClipsDescendants = true
+Converted["_Area"].Position = UDim2.new(0.659600496, 0, 0.60637325, 0)
+Converted["_Area"].Size = UDim2.new(0.643815279, 0, 0.783582091, 0)
+Converted["_Area"].Name = "Area"
+Converted["_Area"].Parent = Converted["_Menu"]
+Converted["_Area1"].AutomaticCanvasSize = Enum.AutomaticSize.Y
+Converted["_Area1"].CanvasSize = UDim2.new(0, 0, 0, 0)
+Converted["_Area1"].ScrollBarThickness = 0
+Converted["_Area1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Area1"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Area1"].BackgroundTransparency = 1
+Converted["_Area1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Area1"].BorderSizePixel = 0
+Converted["_Area1"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_Area1"].Selectable = false
+Converted["_Area1"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_Area1"].Name = "Area"
+Converted["_Area1"].Parent = Converted["_Area"]
+Converted["_TextLabel4"].Font = Enum.Font.GothamBold
+Converted["_TextLabel4"].Text = "hello 1.19"
+Converted["_TextLabel4"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel4"].TextSize = 14
+Converted["_TextLabel4"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel4"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)Converted["_TextLabel4"].BackgroundTransparency = 1
+Converted["_TextLabel4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel4"].BorderSizePixel = 0
+Converted["_TextLabel4"].Position = UDim2.new(0.4923051, 0,
+0.46438089, 0)
+Converted["_TextLabel4"].Size = UDim2.new(0, 200, 0, 50)
+Converted["_TextLabel4"].Parent = Converted["_Area1"]
+Converted["_TextLabel5"].Font = Enum.Font.GothamBold
+Converted["_TextLabel5"].Text = "YARHM"
+Converted["_TextLabel5"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel5"].TextScaled = true
+Converted["_TextLabel5"].TextSize = 14
+Converted["_TextLabel5"].TextWrapped = true
+Converted["_TextLabel5"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel5"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel5"].BackgroundTransparency = 1
+Converted["_TextLabel5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel5"].BorderSizePixel = 0
+Converted["_TextLabel5"].Position = UDim2.new(0.491272807, 0,
+0.363785654, 0)
+Converted["_TextLabel5"].Size = UDim2.new(0, 135, 0, 33)
+Converted["_TextLabel5"].Parent = Converted["_Area1"]
+Converted["_UIGradient7"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(36.00000165402889,
+36.00000165402889, 36.00000165402889)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(68.00000354647636,
+68.00000354647636, 68.00000354647636))
+}
+Converted["_UIGradient7"].Rotation = 68
+Converted["_UIGradient7"].Parent = Converted["_Menu"]
+Converted["_CloseArea"].Text = ""
+Converted["_CloseArea"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_CloseArea"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_CloseArea"].BackgroundTransparency = 1
+Converted["_CloseArea"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_CloseArea"].BorderSizePixel = 0
+Converted["_CloseArea"].Position = UDim2.new(0.5, 0, 0.00295135868, 0)
+Converted["_CloseArea"].Size = UDim2.new(0.326999992, 0, 0.184, 0)
+Converted["_CloseArea"].Name = "CloseArea"
+Converted["_CloseArea"].Parent = Converted["_Menu"]
+Converted["_Frame"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Frame"].BackgroundTransparency = 0.6499999761581421
+Converted["_Frame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame"].BorderSizePixel = 0
+Converted["_Frame"].Position = UDim2.new(0.5, 0, 0.699999988, 0)Converted["_Frame"].Size = UDim2.new(0.699999988, 0, 0.100000001, 0)
+Converted["_Frame"].Parent = Converted["_CloseArea"]
+Converted["_UICorner16"].CornerRadius = UDim.new(0, 9999)
+Converted["_UICorner16"].Parent = Converted["_Frame"]
+Converted["_TextLabel6"].Font = Enum.Font.Gotham
+Converted["_TextLabel6"].Text = "Tap here to minimize."
+Converted["_TextLabel6"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel6"].TextSize = 15
+Converted["_TextLabel6"].TextWrapped = true
+Converted["_TextLabel6"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel6"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel6"].BackgroundTransparency = 0.4000000059604645
+Converted["_TextLabel6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel6"].BorderSizePixel = 0
+Converted["_TextLabel6"].Position = UDim2.new(0.5, 0, 0.680000007, 0)
+Converted["_TextLabel6"].Size = UDim2.new(1.39999998, 0, 0.740999997,
+0)
+Converted["_TextLabel6"].Parent = Converted["_CloseArea"]
+Converted["_UICorner17"].Parent = Converted["_TextLabel6"]
+Converted["_AllowForSpring"].Name = "AllowForSpring"
+Converted["_AllowForSpring"].Parent = Converted["_CloseArea"]
+Converted["_themedColor3"].Value = "backgroundColorCSQ"
+Converted["_themedColor3"].Name = "themedColor"
+Converted["_themedColor3"].Parent = Converted["_Menu"]
+Converted["_Toggle"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Toggle"].BackgroundTransparency = 1
+Converted["_Toggle"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Toggle"].BorderSizePixel = 0
+Converted["_Toggle"].Size = UDim2.new(1, 0, 0, 35)
+Converted["_Toggle"].Visible = false
+Converted["_Toggle"].Name = "Toggle"
+Converted["_Toggle"].Parent = Converted["_YARHM"]
+Converted["_TextLabel7"].Font = Enum.Font.Unknown
+Converted["_TextLabel7"].Text = "Loop walkspeed and FOV"
+Converted["_TextLabel7"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel7"].TextScaled = true
+Converted["_TextLabel7"].TextSize = 14
+Converted["_TextLabel7"].TextWrapped = true
+Converted["_TextLabel7"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_TextLabel7"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel7"].BackgroundTransparency = 1
+Converted["_TextLabel7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel7"].BorderSizePixel = 0
+Converted["_TextLabel7"].Size = UDim2.new(0.699999988, 0, 1, 0)
+Converted["_TextLabel7"].Parent = Converted["_Toggle"]
+Converted["_UIListLayout4"].Padding = UDim.new(0, 25)
+Converted["_UIListLayout4"].FillDirection =Enum.FillDirection.Horizontal
+Converted["_UIListLayout4"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout4"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout4"].Parent = Converted["_Toggle"]
+Converted["_Frame1"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Frame1"].BackgroundTransparency = 1
+Converted["_Frame1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame1"].BorderSizePixel = 0
+Converted["_Frame1"].Size = UDim2.new(0.200000003, 0, 1, 0)
+Converted["_Frame1"].Parent = Converted["_Toggle"]
+Converted["_Frame2"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Frame2"].BackgroundColor3 =
+Color3.fromRGB(46.000001057982445, 46.000001057982445,
+46.000001057982445)
+Converted["_Frame2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame2"].BorderSizePixel = 0
+Converted["_Frame2"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_Frame2"].Size = UDim2.new(0, 89, 1, 0)
+Converted["_Frame2"].Parent = Converted["_Frame1"]
+Converted["_UICorner18"].CornerRadius = UDim.new(1, 0)
+Converted["_UICorner18"].Parent = Converted["_Frame2"]
+Converted["_Toggler"].Font = Enum.Font.SourceSans
+Converted["_Toggler"].Text = ""
+Converted["_Toggler"].TextColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Toggler"].TextSize = 14
+Converted["_Toggler"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Toggler"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Toggler"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Toggler"].BorderSizePixel = 0
+Converted["_Toggler"].Position = UDim2.new(0.300000012, 0, 0.5, 0)
+Converted["_Toggler"].Size = UDim2.new(0.449438214, 0, 0.800000012, 0)
+Converted["_Toggler"].Name = "Toggler"
+Converted["_Toggler"].Parent = Converted["_Frame2"]
+Converted["_UICorner19"].CornerRadius = UDim.new(1, 0)
+Converted["_UICorner19"].Parent = Converted["_Toggler"]
+Converted["_ImageLabel1"].Image = "rbxassetid://10002373478"
+Converted["_ImageLabel1"].ImageColor3 = Color3.fromRGB(255, 0,
+4.000000236555934)
+-- Converted["_ImageLabel1"].ImageContent = Content
+Converted["_ImageLabel1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_ImageLabel1"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_ImageLabel1"].BackgroundTransparency = 1
+Converted["_ImageLabel1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ImageLabel1"].BorderSizePixel = 0
+Converted["_ImageLabel1"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_ImageLabel1"].Size = UDim2.new(0, 20, 0, 20)Converted["_ImageLabel1"].Parent = Converted["_Toggler"]
+Converted["_UIPadding12"].PaddingRight = UDim.new(0.0700000003, 0)
+Converted["_UIPadding12"].Parent = Converted["_Toggle"]
+Converted["_Modules"].Name = "Modules"
+Converted["_Modules"].Parent = Converted["_YARHM"]
+Converted["_NotificationSample"].AnchorPoint = Vector2.new(0.5, 0)
+Converted["_NotificationSample"].BackgroundColor3 =
+Color3.fromRGB(255, 255, 255)
+Converted["_NotificationSample"].BorderColor3 = Color3.fromRGB(0, 0,
+0)
+Converted["_NotificationSample"].BorderSizePixel = 0
+Converted["_NotificationSample"].ClipsDescendants = true
+Converted["_NotificationSample"].Position = UDim2.new(0.5, 0, 0, 10)
+Converted["_NotificationSample"].Size = UDim2.new(0, 400, 0, 50)
+Converted["_NotificationSample"].Visible = false
+Converted["_NotificationSample"].ZIndex = 5
+Converted["_NotificationSample"].Name = "NotificationSample"
+Converted["_NotificationSample"].Parent = Converted["_YARHM"]
+Converted["_UICorner20"].CornerRadius = UDim.new(0, 10)
+Converted["_UICorner20"].Parent = Converted["_NotificationSample"]
+Converted["_UIStroke8"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke8"].Thickness = 1.600000023841858
+Converted["_UIStroke8"].Parent = Converted["_NotificationSample"]
+Converted["_UIGradient8"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(46.000001057982445,
+46.000001057982445, 46.000001057982445)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(12.000000234693289,
+12.000000234693289, 12.000000234693289))
+}
+Converted["_UIGradient8"].Parent = Converted["_NotificationSample"]
+Converted["_ImageLabel2"].Image = "rbxassetid://11780939099"
+-- Converted["_ImageLabel2"].ImageContent = Content
+Converted["_ImageLabel2"].ScaleType = Enum.ScaleType.Fit
+Converted["_ImageLabel2"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_ImageLabel2"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_ImageLabel2"].BackgroundTransparency = 1
+Converted["_ImageLabel2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ImageLabel2"].BorderSizePixel = 0
+Converted["_ImageLabel2"].Position = UDim2.new(0.100000001, 0, 0.5, 0)
+Converted["_ImageLabel2"].Size = UDim2.new(0.0799999982, 0,
+0.639999986, 0)
+Converted["_ImageLabel2"].Parent = Converted["_NotificationSample"]
+Converted["_TextLabel8"].Font = Enum.Font.Gotham
+Converted["_TextLabel8"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel8"].TextScaled = true
+Converted["_TextLabel8"].TextSize = 14
+Converted["_TextLabel8"].TextWrapped = trueConverted["_TextLabel8"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_TextLabel8"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextLabel8"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel8"].BackgroundTransparency = 1
+Converted["_TextLabel8"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextLabel8"].BorderSizePixel = 0
+Converted["_TextLabel8"].Position = UDim2.new(0.5, 0, 0.5, 0)
+Converted["_TextLabel8"].Size = UDim2.new(0.600000024, 0, 0.600000024,
+0)
+Converted["_TextLabel8"].Parent = Converted["_NotificationSample"]
+Converted["_UITextSizeConstraint"].MaxTextSize = 30
+Converted["_UITextSizeConstraint"].Parent = Converted["_TextLabel8"]
+Converted["_Close"].Image = "rbxassetid://10002373478"
+-- Converted["_Close"].ImageContent = Content
+Converted["_Close"].ScaleType = Enum.ScaleType.Fit
+Converted["_Close"].Active = false
+Converted["_Close"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Close"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Close"].BackgroundTransparency = 1
+Converted["_Close"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Close"].BorderSizePixel = 0
+Converted["_Close"].Position = UDim2.new(0.899999976, 0, 0.5, 0)
+Converted["_Close"].Selectable = false
+Converted["_Close"].Size = UDim2.new(0.0799999982, 0, 0.639999986, 0)
+Converted["_Close"].Name = "Close"
+Converted["_Close"].Parent = Converted["_NotificationSample"]
+Converted["_UICorner21"].Parent = Converted["_Close"]
+Converted["_UIStroke9"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke9"].Parent = Converted["_Close"]
+Converted["_UIScale3"].Scale = 0.800000011920929
+Converted["_UIScale3"].Parent = Converted["_NotificationSample"]
+Converted["_themedColor4"].Value = "backgroundColorCSQ"
+Converted["_themedColor4"].Name = "themedColor"
+Converted["_themedColor4"].Parent = Converted["_NotificationSample"]
+Converted["_Dialog"].AnchorPoint = Vector2.new(0.5, 1)
+Converted["_Dialog"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Dialog"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Dialog"].BorderSizePixel = 0
+Converted["_Dialog"].Position = UDim2.new(0.499000013, 0, 0.984000027,
+0)
+Converted["_Dialog"].Size = UDim2.new(0, 313, 0, 147)
+Converted["_Dialog"].Visible = false
+Converted["_Dialog"].ZIndex = 5
+Converted["_Dialog"].Name = "Dialog"
+Converted["_Dialog"].Parent = Converted["_YARHM"]
+Converted["_UICorner22"].Parent = Converted["_Dialog"]
+Converted["_UIGradient9"].Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(36.00000165402889,
+36.00000165402889, 36.00000165402889)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(68.00000354647636,
+68.00000354647636, 68.00000354647636))
+}
+Converted["_UIGradient9"].Rotation = -133
+Converted["_UIGradient9"].Parent = Converted["_Dialog"]
+Converted["_UIPadding13"].PaddingBottom = UDim.new(0, 15)
+Converted["_UIPadding13"].PaddingLeft = UDim.new(0, 15)
+Converted["_UIPadding13"].PaddingRight = UDim.new(0, 15)
+Converted["_UIPadding13"].PaddingTop = UDim.new(0, 15)
+Converted["_UIPadding13"].Parent = Converted["_Dialog"]
+Converted["_UIStroke10"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke10"].Thickness = 2
+Converted["_UIStroke10"].Parent = Converted["_Dialog"]
+Converted["_UIGradient10"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(111.00000098347664,
+111.00000098347664, 111.00000098347664)),
+ColorSequenceKeypoint.new(0.6401384472846985,
+Color3.fromRGB(114.23875719308853, 114.23875719308853,
+114.23875719308853)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+}
+Converted["_UIGradient10"].Rotation = -107
+Converted["_UIGradient10"].Parent = Converted["_UIStroke10"]
+Converted["_DialogTitle"].Font = Enum.Font.Unknown
+Converted["_DialogTitle"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_DialogTitle"].TextScaled = true
+Converted["_DialogTitle"].TextSize = 14
+Converted["_DialogTitle"].TextWrapped = true
+Converted["_DialogTitle"].TextXAlignment = Enum.TextXAlignment.Right
+Converted["_DialogTitle"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_DialogTitle"].BackgroundTransparency = 1
+Converted["_DialogTitle"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_DialogTitle"].BorderSizePixel = 0
+Converted["_DialogTitle"].Size = UDim2.new(0.997416437, 0, 0.16459392,
+0)
+Converted["_DialogTitle"].Name = "DialogTitle"
+Converted["_DialogTitle"].Parent = Converted["_Dialog"]
+Converted["_UIListLayout5"].Padding = UDim.new(0, 3)
+Converted["_UIListLayout5"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout5"].Parent = Converted["_Dialog"]
+Converted["_DialogDesc"].Font = Enum.Font.Unknown
+Converted["_DialogDesc"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_DialogDesc"].TextScaled = true
+Converted["_DialogDesc"].TextSize = 14
+Converted["_DialogDesc"].TextWrapped = trueConverted["_DialogDesc"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_DialogDesc"].TextYAlignment = Enum.TextYAlignment.Top
+Converted["_DialogDesc"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_DialogDesc"].BackgroundTransparency = 1
+Converted["_DialogDesc"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_DialogDesc"].BorderSizePixel = 0
+Converted["_DialogDesc"].Position = UDim2.new(0, 0, 0.187079012, 0)
+Converted["_DialogDesc"].Size = UDim2.new(0.997416437, 0, 0.604575336,
+0)
+Converted["_DialogDesc"].Name = "DialogDesc"
+Converted["_DialogDesc"].Parent = Converted["_Dialog"]
+Converted["_UITextSizeConstraint1"].MaxTextSize = 20
+Converted["_UITextSizeConstraint1"].MinTextSize = 5
+Converted["_UITextSizeConstraint1"].Parent = Converted["_DialogDesc"]
+Converted["_Options"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Options"].BackgroundTransparency = 1
+Converted["_Options"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Options"].BorderSizePixel = 0
+Converted["_Options"].Position = UDim2.new(0, 0, 0.82045126, 0)
+Converted["_Options"].Size = UDim2.new(0.997436285, 0, 0.241758227, 0)
+Converted["_Options"].Name = "Options"
+Converted["_Options"].Parent = Converted["_Dialog"]
+Converted["_UIListLayout6"].Padding = UDim.new(0, 10)
+Converted["_UIListLayout6"].FillDirection =
+Enum.FillDirection.Horizontal
+Converted["_UIListLayout6"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout6"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout6"].Parent = Converted["_Options"]
+Converted["_OptionPlaceholder"].Font = Enum.Font.GothamBold
+Converted["_OptionPlaceholder"].RichText = true
+Converted["_OptionPlaceholder"].Text = "aaaaaaaaaaa"
+Converted["_OptionPlaceholder"].TextColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_OptionPlaceholder"].TextScaled = true
+Converted["_OptionPlaceholder"].TextSize = 100
+Converted["_OptionPlaceholder"].TextWrapped = true
+Converted["_OptionPlaceholder"].BackgroundColor3 =
+Color3.fromRGB(36.00000165402889, 36.00000165402889,
+36.00000165402889)
+Converted["_OptionPlaceholder"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_OptionPlaceholder"].BorderSizePixel = 0
+Converted["_OptionPlaceholder"].Size = UDim2.new(0.532000005, -5,
+1.00899994, 0)
+Converted["_OptionPlaceholder"].Visible = false
+Converted["_OptionPlaceholder"].Name = "OptionPlaceholder"
+Converted["_OptionPlaceholder"].Parent = Converted["_Options"]Converted["_UIPadding14"].PaddingBottom = UDim.new(0, 1)
+Converted["_UIPadding14"].PaddingLeft = UDim.new(0, 15)
+Converted["_UIPadding14"].PaddingRight = UDim.new(0, 15)
+Converted["_UIPadding14"].PaddingTop = UDim.new(0, 1)
+Converted["_UIPadding14"].Parent = Converted["_OptionPlaceholder"]
+Converted["_UICorner23"].Parent = Converted["_OptionPlaceholder"]
+Converted["_UIStroke11"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke11"].Color = Color3.fromRGB(255, 255, 255)
+Converted["_UIStroke11"].Thickness = 2
+Converted["_UIStroke11"].Parent = Converted["_OptionPlaceholder"]
+Converted["_UIGradient11"].Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, Color3.fromRGB(111.00000098347664,
+111.00000098347664, 111.00000098347664)),
+ColorSequenceKeypoint.new(0.6401384472846985,
+Color3.fromRGB(114.23875719308853, 114.23875719308853,
+114.23875719308853)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+}
+Converted["_UIGradient11"].Rotation = -107
+Converted["_UIGradient11"].Parent = Converted["_UIStroke11"]
+Converted["_themedColor5"].Value = "primaryColor"
+Converted["_themedColor5"].Name = "themedColor"
+Converted["_themedColor5"].Parent = Converted["_OptionPlaceholder"]
+Converted["_OnSelect"].Name = "OnSelect"
+Converted["_OnSelect"].Parent = Converted["_Dialog"]
+Converted["_UIScale4"].Parent = Converted["_Dialog"]
+Converted["_themedColor6"].Value = "backgroundColorCSQ"
+Converted["_themedColor6"].Name = "themedColor"
+Converted["_themedColor6"].Parent = Converted["_Dialog"]
+Converted["_Range"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Range"].BackgroundTransparency = 1
+Converted["_Range"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Range"].BorderSizePixel = 0
+Converted["_Range"].Size = UDim2.new(1, 0, 0, 35)
+Converted["_Range"].Visible = false
+Converted["_Range"].Name = "Range"
+Converted["_Range"].Parent = Converted["_YARHM"]
+Converted["_TextLabel9"].Font = Enum.Font.Unknown
+Converted["_TextLabel9"].Text = "How many #### I give"
+Converted["_TextLabel9"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel9"].TextScaled = true
+Converted["_TextLabel9"].TextSize = 14
+Converted["_TextLabel9"].TextWrapped = true
+Converted["_TextLabel9"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_TextLabel9"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextLabel9"].BackgroundTransparency = 1
+Converted["_TextLabel9"].BorderColor3 = Color3.fromRGB(0, 0, 0)Converted["_TextLabel9"].BorderSizePixel = 0
+Converted["_TextLabel9"].Size = UDim2.new(0.699999988, 0, 1, 0)
+Converted["_TextLabel9"].Parent = Converted["_Range"]
+Converted["_UIListLayout7"].Padding = UDim.new(0, 15)
+Converted["_UIListLayout7"].FillDirection =
+Enum.FillDirection.Horizontal
+Converted["_UIListLayout7"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout7"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout7"].Parent = Converted["_Range"]
+Converted["_UIPadding15"].PaddingLeft = UDim.new(0.0700000003, 0)
+Converted["_UIPadding15"].PaddingRight = UDim.new(0.0700000003, 0)
+Converted["_UIPadding15"].Parent = Converted["_Range"]
+Converted["_Frame3"].BackgroundColor3 =
+Color3.fromRGB(31.000001952052116, 31.000001952052116,
+31.000001952052116)
+Converted["_Frame3"].BackgroundTransparency = 1
+Converted["_Frame3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame3"].BorderSizePixel = 0
+Converted["_Frame3"].Size = UDim2.new(0.400000006, 0, 1, 0)
+Converted["_Frame3"].Parent = Converted["_Range"]
+Converted["_UIPadding16"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding16"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding16"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding16"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding16"].Parent = Converted["_Frame3"]
+Converted["_UICorner24"].Parent = Converted["_Frame3"]
+Converted["_Frame4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Frame4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame4"].BorderSizePixel = 0
+Converted["_Frame4"].Size = UDim2.new(1, 0, 0.200000003, 0)
+Converted["_Frame4"].Parent = Converted["_Frame3"]
+Converted["_UICorner25"].CornerRadius = UDim.new(1, 0)
+Converted["_UICorner25"].Parent = Converted["_Frame4"]
+Converted["_TextButton1"].Font = Enum.Font.SourceSans
+Converted["_TextButton1"].Text = ""
+Converted["_TextButton1"].TextColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextButton1"].TextSize = 14
+Converted["_TextButton1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_TextButton1"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_TextButton1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_TextButton1"].BorderSizePixel = 0
+Converted["_TextButton1"].Position = UDim2.new(0, 0, 0.5, 0)
+Converted["_TextButton1"].Size = UDim2.new(0, 20, 0, 20)
+Converted["_TextButton1"].Parent = Converted["_Frame4"]
+Converted["_UICorner26"].CornerRadius = UDim.new(1, 0)
+Converted["_UICorner26"].Parent = Converted["_TextButton1"]Converted["_FloatingButtonSetting"].AnchorPoint = Vector2.new(0.5,
+0.5)
+Converted["_FloatingButtonSetting"].BackgroundColor3 =
+Color3.fromRGB(0, 0, 0)
+Converted["_FloatingButtonSetting"].BackgroundTransparency = 0.5
+Converted["_FloatingButtonSetting"].BorderColor3 = Color3.fromRGB(0,
+0, 0)
+Converted["_FloatingButtonSetting"].BorderSizePixel = 0
+Converted["_FloatingButtonSetting"].Position = UDim2.new(0.5, 0, 0.5,
+0)
+Converted["_FloatingButtonSetting"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_FloatingButtonSetting"].Visible = false
+Converted["_FloatingButtonSetting"].ZIndex = 10
+Converted["_FloatingButtonSetting"].Name = "FloatingButtonSetting"
+Converted["_FloatingButtonSetting"].Parent = Converted["_YARHM"]
+Converted["_ControlBarContainer"].AnchorPoint = Vector2.new(0.5, 1)
+Converted["_ControlBarContainer"].BackgroundColor3 =
+Color3.fromRGB(255, 255, 255)
+Converted["_ControlBarContainer"].BackgroundTransparency = 1
+Converted["_ControlBarContainer"].BorderColor3 = Color3.fromRGB(0, 0,
+0)
+Converted["_ControlBarContainer"].BorderSizePixel = 0
+Converted["_ControlBarContainer"].Position = UDim2.new(0.5, 0, 1, -50)
+Converted["_ControlBarContainer"].Size = UDim2.new(1, 0, 0, 40)
+Converted["_ControlBarContainer"].Name = "ControlBarContainer"
+Converted["_ControlBarContainer"].Parent =
+Converted["_FloatingButtonSetting"]
+Converted["_ControlBar"].AnchorPoint = Vector2.new(0.5, 1)
+Converted["_ControlBar"].BackgroundColor3 = Color3.fromRGB(255, 255,
+255)
+Converted["_ControlBar"].BackgroundTransparency = 1
+Converted["_ControlBar"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ControlBar"].BorderSizePixel = 0
+Converted["_ControlBar"].Position = UDim2.new(0.5, 0, 1, -30)
+Converted["_ControlBar"].Size = UDim2.new(1, 0, 0, 40)
+Converted["_ControlBar"].Name = "ControlBar"
+Converted["_ControlBar"].Parent = Converted["_ControlBarContainer"]
+Converted["_UIListLayout8"].Padding = UDim.new(0, 5)
+Converted["_UIListLayout8"].FillDirection =
+Enum.FillDirection.Horizontal
+Converted["_UIListLayout8"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout8"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout8"].Parent = Converted["_ControlBar"]
+Converted["_Visibility"].Font = Enum.Font.Gotham
+Converted["_Visibility"].Text = "Toggle visibility"
+Converted["_Visibility"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Visibility"].TextScaled = trueConverted["_Visibility"].TextSize = 14
+Converted["_Visibility"].TextWrapped = true
+Converted["_Visibility"].BackgroundColor3 =
+Color3.fromRGB(46.000001057982445, 46.000001057982445,
+46.000001057982445)
+Converted["_Visibility"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Visibility"].BorderSizePixel = 0
+Converted["_Visibility"].Size = UDim2.new(0, 200, 1, 0)
+Converted["_Visibility"].Name = "Visibility"
+Converted["_Visibility"].Parent = Converted["_ControlBar"]
+Converted["_UICorner27"].CornerRadius = UDim.new(0, 16)
+Converted["_UICorner27"].Parent = Converted["_Visibility"]
+Converted["_UIPadding17"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding17"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding17"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding17"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding17"].Parent = Converted["_Visibility"]
+Converted["_Event"].Parent = Converted["_Visibility"]
+Converted["_themedColor7"].Value = "primaryColor"
+Converted["_themedColor7"].Name = "themedColor"
+Converted["_themedColor7"].Parent = Converted["_Visibility"]
+Converted["_Lock1"].Font = Enum.Font.Gotham
+Converted["_Lock1"].Text = "Toggle lock"
+Converted["_Lock1"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Lock1"].TextScaled = true
+Converted["_Lock1"].TextSize = 14
+Converted["_Lock1"].TextWrapped = true
+Converted["_Lock1"].BackgroundColor3 =
+Color3.fromRGB(46.000001057982445, 46.000001057982445,
+46.000001057982445)
+Converted["_Lock1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Lock1"].BorderSizePixel = 0
+Converted["_Lock1"].Size = UDim2.new(0, 200, 1, 0)
+Converted["_Lock1"].Name = "Lock"
+Converted["_Lock1"].Parent = Converted["_ControlBar"]
+Converted["_UICorner28"].CornerRadius = UDim.new(0, 16)
+Converted["_UICorner28"].Parent = Converted["_Lock1"]
+Converted["_UIPadding18"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding18"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding18"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding18"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding18"].Parent = Converted["_Lock1"]
+Converted["_Event1"].Parent = Converted["_Lock1"]
+Converted["_themedColor8"].Value = "primaryColor"
+Converted["_themedColor8"].Name = "themedColor"
+Converted["_themedColor8"].Parent = Converted["_Lock1"]
+Converted["_Exit"].Font = Enum.Font.GothamBold
+Converted["_Exit"].Text = "X"Converted["_Exit"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Exit"].TextScaled = true
+Converted["_Exit"].TextSize = 14
+Converted["_Exit"].TextWrapped = true
+Converted["_Exit"].BackgroundColor3 =
+Color3.fromRGB(46.000001057982445, 0, 0)
+Converted["_Exit"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Exit"].BorderSizePixel = 0
+Converted["_Exit"].Size = UDim2.new(1, 0, 1, 0)
+Converted["_Exit"].Name = "Exit"
+Converted["_Exit"].Parent = Converted["_ControlBar"]
+Converted["_UICorner29"].CornerRadius = UDim.new(0, 16)
+Converted["_UICorner29"].Parent = Converted["_Exit"]
+Converted["_UIPadding19"].PaddingBottom = UDim.new(0, 7)
+Converted["_UIPadding19"].PaddingLeft = UDim.new(0, 7)
+Converted["_UIPadding19"].PaddingRight = UDim.new(0, 7)
+Converted["_UIPadding19"].PaddingTop = UDim.new(0, 7)
+Converted["_UIPadding19"].Parent = Converted["_Exit"]
+Converted["_UIAspectRatioConstraint"].Parent = Converted["_Exit"]
+Converted["_themedColor9"].Value = "secondaryColor"
+Converted["_themedColor9"].Name = "themedColor"
+Converted["_themedColor9"].Parent = Converted["_Exit"]
+Converted["_UIListLayout9"].Padding = UDim.new(0, 5)
+Converted["_UIListLayout9"].HorizontalAlignment =
+Enum.HorizontalAlignment.Center
+Converted["_UIListLayout9"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout9"].Parent = Converted["_ControlBarContainer"]
+Converted["_Tip"].Font = Enum.Font.GothamBold
+Converted["_Tip"].Text = "Drag the button around to resize!"
+Converted["_Tip"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Tip"].TextScaled = true
+Converted["_Tip"].TextSize = 14
+Converted["_Tip"].TextWrapped = true
+Converted["_Tip"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Tip"].BackgroundTransparency = 1
+Converted["_Tip"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Tip"].BorderSizePixel = 0
+Converted["_Tip"].Size = UDim2.new(1, 0, 0, 10)
+Converted["_Tip"].Name = "Tip"
+Converted["_Tip"].Parent = Converted["_ControlBarContainer"]
+Converted["_UIStroke12"].Parent = Converted["_Tip"]
+Converted["_UIScale5"].Parent = Converted["_ControlBarContainer"]
+-- Fake Module Scripts:
+local fake_module_scripts = {}
+do -- Fake Module: StarterGui.YARHM.FUNCTIONS
+local script = Instance.new("ModuleScript")
+script.Name = "FUNCTIONS"
+script.Parent = Converted["_YARHM"]local function module_script()
+-- Functionality removed
+local FUNCTIONSmodule = {}
+return FUNCTIONSmodule
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.DraggableObject
+local script = Instance.new("ModuleScript")
+script.Name = "DraggableObject"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.ClickAndHold
+local script = Instance.new("ModuleScript")
+script.Name = "ClickAndHold"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.Spring
+local script = Instance.new("ModuleScript")
+script.Name = "Spring"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.ESPIndicator
+local script = Instance.new("ModuleScript")
+script.Name = "ESPIndicator"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.Bezierlocal script = Instance.new("ModuleScript")
+script.Name = "Bezier"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.Theme
+local script = Instance.new("ModuleScript")
+script.Name = "Theme"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+do -- Fake Module: StarterGui.YARHM.PointSave
+local script = Instance.new("ModuleScript")
+script.Name = "PointSave"
+script.Parent = Converted["_YARHM"]
+local function module_script()
+-- Functionality removed
+return {}
+end
+fake_module_scripts[script] = module_script
+end
+-- Fake Local Scripts:
+local function ZTSOVAR_fake_script() -- Fake Script:
+StarterGui.YARHM.Open.InitOpen
+-- Functionality removed
+end
+local function FONQUUM_fake_script() -- Fake Script:
+StarterGui.YARHM.Open.OnClick
+-- Functionality removed
+end
+local function DOAXIVT_fake_script() -- Fake Script:
+StarterGui.YARHM.Open.Resizer
+-- Functionality removed
+end
+local function DVJENL_fake_script() -- Fake Script:
+StarterGui.YARHM.FloatingButton.Keybinding
+-- Functionality removed
+end
+local function SAJO_fake_script() -- Fake Script:
+StarterGui.YARHM.FloatingButton.InvisibleFunctionality removed
+end
+local function NCDB_fake_script() -- Fake Script:
+StarterGui.YARHM.AddCustomModule.Add.LocalScript
+-- Functionality removed
+end
+local function SBOBP_fake_script() -- Fake Script:
+StarterGui.YARHM.AddCustomModule.Cancel.LocalScript
+-- Functionality removed
+end
+local function VIZJP_fake_script() -- Fake Script:
+StarterGui.YARHM.Flee the Facility
+-- Functionality removed
+end
+local function UTRFSE_fake_script() -- Fake Script:
+StarterGui.YARHM.Universal
+-- Functionality removed
+end
+local function SFEGW_fake_script() -- Fake Script:
+StarterGui.YARHM.Menu.UIStroke.UIGradient.Animator
+-- Functionality removed
+end
+local function MZHT_fake_script() -- Fake Script:
+StarterGui.YARHM.Menu.List.AutoSetup
+-- Functionality removed
+end
+local function PKEHOF_fake_script() -- Fake Script:
+StarterGui.YARHM.Menu.List.AddCustomModule.LocalScript
+-- Functionality removed
+end
+local function OEALVLK_fake_script() -- Fake Script:
+StarterGui.YARHM.Menu.CloseArea.CloseOpen
+-- Functionality removed
+end
+local function NFLXNSA_fake_script() -- Fake Script:
+StarterGui.YARHM.Init
+-- Functionality removed
+end
+local function DFEDO_fake_script() -- Fake Script:
+StarterGui.YARHM.Forsaken
+-- Functionality removed
+end
+local function QUXUEEW_fake_script() -- Fake Script:
+StarterGui.YARHM.Murder Mystery 2
+-- Functionality removed
+end
+local function PIXKC_fake_script() -- Fake Script:
+StarterGui.YARHM.FloatingButtonSetting.ControlBarContainer.ControlBar.Visibility.LocalScript
+-- Functionality removed
+end
+local function JIUI_fake_script() -- Fake Script:
+StarterGui.YARHM.FloatingButtonSetting.ControlBarContainer.ControlBar.
+Lock.LocalScript
+-- Functionality removed
+end
+local function ZISNWBG_fake_script() -- Fake Script:
+StarterGui.YARHM.FloatingButtonSetting.ControlBarContainer.ControlBar.
+Exit.LocalScript
+-- Functionality removed
+end
+-- Script execution calls have been removed.
